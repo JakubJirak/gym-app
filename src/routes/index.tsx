@@ -1,63 +1,46 @@
-import {createFileRoute} from '@tanstack/react-router'
-import logo from '../logo.svg'
-import {createServerFn} from "@tanstack/react-start";
+import {ThemeSwitch} from "@/components/index/ThemeSwitch.tsx";
+import {Button} from "@/components/ui/button.tsx";
 import {db} from "@/db";
 import {testTable} from "@/db/schema.ts";
 import {useQuery} from "@tanstack/react-query";
+import {createFileRoute, Link} from "@tanstack/react-router";
+import {createServerFn} from "@tanstack/react-start";
 import {useEffect} from "react";
 
-export const Route = createFileRoute('/')({
-    component: App,
-})
+export const Route = createFileRoute("/")({
+  component: App,
+});
 
-const fetchData = createServerFn({method: "GET"})
-    .handler(async () => {
-        const user = await db.select().from(testTable)
-        return user;
-    })
+const fetchData = createServerFn({ method: "GET" }).handler(async () => {
+  const user = await db.select().from(testTable);
+  return user;
+});
 
 function App() {
+  const { data } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchData,
+    enabled: true,
+  });
 
-    const {data} = useQuery({
-        queryKey: ["users"],
-        queryFn: fetchData,
-        enabled: true,
-    });
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
+  return (
+    <div className="text-center">
+      <div className="flex mb-10 justify-center items-center gap-3 mt-5">
+        <ThemeSwitch />
+      </div>
 
-    return (
-        <div className="text-center">
-
-            <header
-                className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-                <img
-                    src={logo}
-                    className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-                    alt="logo"
-                />
-                <p>
-                    Edit <code>src/routes/index.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="text-[#61dafb] hover:underline"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-                <a
-                    className="text-[#61dafb] hover:underline"
-                    href="https://tanstack.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn TanStack
-                </a>
-            </header>
-        </div>
-    )
+      <div className="flex gap-3 justify-center">
+        <Button>
+          <Link to={"/login"}>Přihlaste se</Link>
+        </Button>
+        <Button variant="outline">
+          <Link to={"/register"}>Vytvořte si účet</Link>
+        </Button>
+      </div>
+    </div>
+  );
 }
