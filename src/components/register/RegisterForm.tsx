@@ -11,7 +11,7 @@ export function RegisterForm({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("flex flex-col w-[min(500px,90%)] gap-6", className)}
+      className={cn("flex flex-col w-[min(480px,90%)] gap-6 m", className)}
       {...props}
     >
       <Card>
@@ -47,7 +47,10 @@ export function RegisterForm({
                 <Input id="password" type="password" required />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full text-base">
+                <Button
+                  type="submit"
+                  className="w-full text-base cursor-pointer"
+                >
                   Vytvořit účet
                 </Button>
               </div>

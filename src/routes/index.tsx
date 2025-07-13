@@ -34,12 +34,17 @@ function App() {
       </div>
 
       <div className="flex gap-3 justify-center">
-        <Button>
-          <Link to={"/login"}>Přihlaste se</Link>
-        </Button>
-        <Button variant="outline">
-          <Link to={"/register"}>Vytvořte si účet</Link>
-        </Button>
+        <Link to={"/login"}>
+          <Button className="cursor-pointer">Prihlaste se</Button>
+        </Link>
+        <Link to={"/menu"}>
+          <Button className="cursor-pointer">Menu</Button>
+        </Link>
+        <Link to={"/register"}>
+          <Button variant="outline" className="cursor-pointer">
+            Vytvořte si účet
+          </Button>
+        </Link>
       </div>
     </div>
   );

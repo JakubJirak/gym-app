@@ -6,12 +6,12 @@ import {cn} from "@/lib/utils.ts";
 import type React from "react";
 
 export function LoginForm({
-                            className,
-                            ...props
-                          }: React.ComponentProps<"div">) {
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("flex flex-col w-[min(500px,90%)] gap-6", className)}
+      className={cn("flex flex-col w-[min(480px,90%)] gap-6", className)}
       {...props}
     >
       <Card>
@@ -46,10 +46,13 @@ export function LoginForm({
                     Obnovit heslo
                   </a>
                 </div>
-                <Input id="password" type="password" required/>
+                <Input id="password" type="password" required />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full text-base">
+                <Button
+                  type="submit"
+                  className="w-full text-base cursor-pointer"
+                >
                   Přihlásit se
                 </Button>
               </div>

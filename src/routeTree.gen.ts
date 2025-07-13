@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TreninkyIndexRouteImport } from './routes/treninky/index'
+import { Route as StatistikyIndexRouteImport } from './routes/statistiky/index'
+import { Route as RutinyIndexRouteImport } from './routes/rutiny/index'
 import { Route as RegisterIndexRouteImport } from './routes/register/index'
+import { Route as MenuIndexRouteImport } from './routes/menu/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +22,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TreninkyIndexRoute = TreninkyIndexRouteImport.update({
+  id: '/treninky/',
+  path: '/treninky/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatistikyIndexRoute = StatistikyIndexRouteImport.update({
+  id: '/statistiky/',
+  path: '/statistiky/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RutinyIndexRoute = RutinyIndexRouteImport.update({
+  id: '/rutiny/',
+  path: '/rutiny/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterIndexRoute = RegisterIndexRouteImport.update({
   id: '/register/',
   path: '/register/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenuIndexRoute = MenuIndexRouteImport.update({
+  id: '/menu/',
+  path: '/menu/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
@@ -32,31 +56,69 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginIndexRoute
+  '/menu': typeof MenuIndexRoute
   '/register': typeof RegisterIndexRoute
+  '/rutiny': typeof RutinyIndexRoute
+  '/statistiky': typeof StatistikyIndexRoute
+  '/treninky': typeof TreninkyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginIndexRoute
+  '/menu': typeof MenuIndexRoute
   '/register': typeof RegisterIndexRoute
+  '/rutiny': typeof RutinyIndexRoute
+  '/statistiky': typeof StatistikyIndexRoute
+  '/treninky': typeof TreninkyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login/': typeof LoginIndexRoute
+  '/menu/': typeof MenuIndexRoute
   '/register/': typeof RegisterIndexRoute
+  '/rutiny/': typeof RutinyIndexRoute
+  '/statistiky/': typeof StatistikyIndexRoute
+  '/treninky/': typeof TreninkyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/menu'
+    | '/register'
+    | '/rutiny'
+    | '/statistiky'
+    | '/treninky'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register'
-  id: '__root__' | '/' | '/login/' | '/register/'
+  to:
+    | '/'
+    | '/login'
+    | '/menu'
+    | '/register'
+    | '/rutiny'
+    | '/statistiky'
+    | '/treninky'
+  id:
+    | '__root__'
+    | '/'
+    | '/login/'
+    | '/menu/'
+    | '/register/'
+    | '/rutiny/'
+    | '/statistiky/'
+    | '/treninky/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
+  MenuIndexRoute: typeof MenuIndexRoute
   RegisterIndexRoute: typeof RegisterIndexRoute
+  RutinyIndexRoute: typeof RutinyIndexRoute
+  StatistikyIndexRoute: typeof StatistikyIndexRoute
+  TreninkyIndexRoute: typeof TreninkyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +130,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/treninky/': {
+      id: '/treninky/'
+      path: '/treninky'
+      fullPath: '/treninky'
+      preLoaderRoute: typeof TreninkyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/statistiky/': {
+      id: '/statistiky/'
+      path: '/statistiky'
+      fullPath: '/statistiky'
+      preLoaderRoute: typeof StatistikyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rutiny/': {
+      id: '/rutiny/'
+      path: '/rutiny'
+      fullPath: '/rutiny'
+      preLoaderRoute: typeof RutinyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register/': {
       id: '/register/'
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menu/': {
+      id: '/menu/'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login/': {
@@ -88,7 +178,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginIndexRoute: LoginIndexRoute,
+  MenuIndexRoute: MenuIndexRoute,
   RegisterIndexRoute: RegisterIndexRoute,
+  RutinyIndexRoute: RutinyIndexRoute,
+  StatistikyIndexRoute: StatistikyIndexRoute,
+  TreninkyIndexRoute: TreninkyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
