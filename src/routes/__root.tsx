@@ -3,11 +3,11 @@ import {TanStackRouterDevtools} from "@tanstack/react-router-devtools";
 
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 
-import appCss from "../styles.css?url";
-
-import {ThemeProvider} from "@/data/providers/theme-provider.tsx";
+import {ThemeProvider, useTheme} from "@/data/providers/theme-provider.tsx";
+import {getThemeServerFn} from "@/lib/theme.ts";
 import type {QueryClient} from "@tanstack/react-query";
 import type {ReactNode} from "react";
+import appCss from "../styles.css?url";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -34,22 +34,27 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
+  loader: () => getThemeServerFn(),
 
-  component: () => (
-    <RootDocument>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <Outlet />
-        <TanStackRouterDevtools />
+  component: () => {
+    const data = Route.useLoaderData();
+    return (
+      <ThemeProvider theme={data}>
+        <RootDocument>
+          <Outlet />
+          <TanStackRouterDevtools />
 
-        <TanStackQueryLayout />
+          <TanStackQueryLayout />
+        </RootDocument>
       </ThemeProvider>
-    </RootDocument>
-  ),
+    );
+  },
 });
 
 function RootDocument({ children }: { children: ReactNode }) {
+  const { theme } = useTheme();
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={theme}>
       <head>
         <HeadContent />
       </head>

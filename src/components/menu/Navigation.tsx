@@ -3,6 +3,7 @@ import {Link} from "@tanstack/react-router";
 import {GiWeightLiftingUp} from "react-icons/gi";
 import {IoIosStats} from "react-icons/io";
 import {LuClipboardList} from "react-icons/lu";
+import {FaUser} from "react-icons/fa6";
 
 const Navigation = () => {
   return (
@@ -23,6 +24,12 @@ const Navigation = () => {
         <Card className="flex flex-row px-8 items-center">
           <LuClipboardList size={40} />
           <p className="text-2xl ml-2">RUTINY</p>
+        </Card>
+      </Link>
+      <Link to={"/profil"}>
+        <Card className="flex flex-row px-8 items-center">
+          <FaUser size={40} />
+          <p className="text-2xl ml-2">PROFIL</p>
         </Card>
       </Link>
     </div>

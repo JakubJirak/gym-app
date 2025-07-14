@@ -1,14 +1,14 @@
-import Header from "@/components/Header.tsx";
 import {createFileRoute} from '@tanstack/react-router'
+import Header from "@/components/Header.tsx";
 
-export const Route = createFileRoute("/treninky/")({
+export const Route = createFileRoute("/profil/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <div>
-      <Header page="TRÉNINKY" />
+      <Header page="PROFIL" />
     </div>
   );
 }
