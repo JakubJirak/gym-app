@@ -1,18 +1,18 @@
-import {Button} from "@/components/ui/button.tsx";
-import {Link} from "@tanstack/react-router";
+import { Button } from "@/components/ui/button.tsx";
+import { Link } from "@tanstack/react-router";
 
 const HeroSection = () => {
   return (
     <div className="h-[100dvh] flex flex-col items-center">
-      <h1 className="text-5xl/16 text-left w-[80%] mx-auto font-bold mt-[14dvh]">
+      <h1 className="text-[5.3dvh]/[6.7dvh] text-left w-[80%] mt-[13dvh] mx-auto font-bold">
         Získejte kontrolu nad svým tréninkem
       </h1>
-      <p className="tracking-wider font-light text-xl/9 text-left w-[80%] mx-auto  mt-[6dvh]">
+      <p className="tracking-wider font-light text-[2.8dvh]/[4.7dvh] text-left w-[80%] mx-auto mt-[4dvh]">
         Jednoduše si zapisujte tréninky a sledujte svůj progres v přehledných
         statistikách a souhrnech. Profesionální nástroj pro každého, kdo to s
         pohybem myslí vážně.
       </p>
-      <div className="flex flex-col gap-[2dvh] w-[80%] mx-auto mt-[8dvh] justify-between">
+      <div className="flex flex-col gap-[2dvh] w-[80%] mx-auto mt-[6dvh] justify-between">
         <Link to={"/login"} className="inline-flex">
           <Button size="xl" className="cursor-pointer">
             Přihlaste se
