@@ -7,7 +7,7 @@ const HeroSection = () => {
       <h1 className="text-5xl/16 text-left w-[80%] mx-auto font-bold mt-[14dvh]">
         Získejte kontrolu nad svým tréninkem
       </h1>
-      <p className="tracking-wider font-light text-xl/9 text-left w-[80%] mx-auto mt-[6dvh]">
+      <p className="tracking-wider font-light text-xl/9 text-left w-[80%] mx-auto  mt-[6dvh]">
         Jednoduše si zapisujte tréninky a sledujte svůj progres v přehledných
         statistikách a souhrnech. Profesionální nástroj pro každého, kdo to s
         pohybem myslí vážně.

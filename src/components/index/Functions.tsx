@@ -1,7 +1,7 @@
 const Functions = () => {
   return (
-    <div className="bg-secondary w-full">
-      <h1>Funkce</h1>
+    <div className="bg-secondary w-full py-15">
+      <h1 className="text-3xl font-bold">FUNKCE</h1>
     </div>
   );
 };

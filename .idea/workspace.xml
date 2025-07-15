@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani hlavniho menu, headeru a novych sekci v route">
-      <change afterPath="$PROJECT_DIR$/src/components/index/HeroSection.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/theme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/profil/index.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="uprava herosection, pridani dalsich kategorii pro index">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index/ThemeSwitch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/ThemeSwitch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/providers/theme-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/providers/theme-provider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Functions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Functions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/News.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,27 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
-    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.14.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.14.1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/WebstormProjects/gym/src/components/register&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
+    "Notification.DoNotAsk-Biome": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "code.cleanup.on.save": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "22.14.0",
+    "javascript.nodejs.core.library.typings.version": "22.14.1",
+    "last_opened_file_path": "C:/Users/Kuba/WebstormProjects/gym/src/components/register",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.sync",
+    "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
@@ -111,6 +105,8 @@
       <workItem from="1752402137221" duration="846000" />
       <workItem from="1752403031048" duration="8919000" />
       <workItem from="1752487042158" duration="3529000" />
+      <workItem from="1752506650062" duration="4267000" />
+      <workItem from="1752569474917" duration="951000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -136,7 +132,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752421336295</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="oprava theme, pridani herosection">
+      <option name="closed" value="true" />
+      <created>1752507309065</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1752507309065</updated>
+    </task>
+    <task id="LOCAL-00005" summary="uprava herosection, pridani dalsich kategorii pro index">
+      <option name="closed" value="true" />
+      <created>1752509204334</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1752509204334</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +158,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="pridani buttonu, register a login form, light dark switch" />
     <MESSAGE value="pridani hlavniho menu, headeru a novych sekci v route" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani hlavniho menu, headeru a novych sekci v route" />
+    <MESSAGE value="oprava theme, pridani herosection" />
+    <MESSAGE value="uprava herosection, pridani dalsich kategorii pro index" />
+    <option name="LAST_COMMIT_MESSAGE" value="uprava herosection, pridani dalsich kategorii pro index" />
   </component>
 </project>
