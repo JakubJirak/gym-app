@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani notFound componentu">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="vytvoreni pridavani cviku do treninku">
+      <change afterPath="$PROJECT_DIR$/src/components/treninky/Training.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/accordion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/Excercice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/Excercice.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,7 @@
       <list>
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -68,6 +71,7 @@
     "javascript.nodejs.core.library.configured.version": "22.14.0",
     "javascript.nodejs.core.library.typings.version": "22.14.1",
     "last_opened_file_path": "C:/Users/Kuba/WebstormProjects/gym/src/components/register",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -109,7 +113,7 @@
       <workItem from="1752506650062" duration="4267000" />
       <workItem from="1752569474917" duration="951000" />
       <workItem from="1752570457045" duration="475000" />
-      <workItem from="1752584570584" duration="9307000" />
+      <workItem from="1752584570584" duration="15213000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -167,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752586521507</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="vytvoreni pridavani cviku do treninku">
+      <option name="closed" value="true" />
+      <created>1752605109154</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1752605109154</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +193,7 @@
     <MESSAGE value="uprava herosection, pridani dalsich kategorii pro index" />
     <MESSAGE value="pridani aboutme sekce" />
     <MESSAGE value="pridani notFound componentu" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani notFound componentu" />
+    <MESSAGE value="vytvoreni pridavani cviku do treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="vytvoreni pridavani cviku do treninku" />
   </component>
 </project>
