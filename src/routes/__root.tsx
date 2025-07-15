@@ -1,8 +1,9 @@
-import {createRootRouteWithContext, HeadContent, Outlet, Scripts,} from "@tanstack/react-router";
+import {createRootRouteWithContext, HeadContent, Link, Outlet, Scripts,} from "@tanstack/react-router";
 import {TanStackRouterDevtools} from "@tanstack/react-router-devtools";
 
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 
+import {Button} from "@/components/ui/button.tsx";
 import {ThemeProvider, useTheme} from "@/data/providers/theme-provider.tsx";
 import {getThemeServerFn} from "@/lib/theme.ts";
 import type {QueryClient} from "@tanstack/react-query";
@@ -47,6 +48,20 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
           <TanStackQueryLayout />
         </RootDocument>
       </ThemeProvider>
+    );
+  },
+  notFoundComponent: () => {
+    return (
+      <>
+        <p className="mt-10 mb-5 text-red-500 text-center">
+          Tato stránka nebyla nalezena
+        </p>
+        <div className="flex items-center justify-center">
+          <Link to={"/"}>
+            <Button>Domovská stránka</Button>
+          </Link>
+        </div>
+      </>
     );
   },
 });
