@@ -18,10 +18,14 @@ interface ExcerciceProps {
   setTrainings: React.Dispatch<React.SetStateAction<TrainingProp[]>>;
 }
 
-interface TrainingProp {
-  name: string;
+interface Set {
   weight: number;
   reps: number;
+}
+
+interface TrainingProp {
+  name: string;
+  sets: Set[];
 }
 
 const ExcerciceInputs = ({
@@ -41,8 +45,12 @@ const ExcerciceInputs = ({
 
     const newTraining = {
       name: cvik,
-      weight: Number(vaha),
-      reps: Number(opak),
+      sets: [
+        {
+          weight: Number(vaha),
+          reps: Number(opak),
+        },
+      ],
     };
 
     setTrainings([...trainings, newTraining]);
@@ -56,10 +64,7 @@ const ExcerciceInputs = ({
   return (
     <Card className=" grid grid-cols-[15px_1fr] items-center justify-items-start px-4 py-3 gap-4">
       <p>{number}.</p>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-[2fr_1fr_1fr_12px] gap-3 items-center"
-      >
+      <div className="grid grid-cols-[2fr_1fr_1fr_12px] gap-3 items-center">
         <div className="grid gap-2 justify-items-center">
           <Label htmlFor="cvik" className="text-muted-foreground">
             CVIK
@@ -70,7 +75,6 @@ const ExcerciceInputs = ({
             type="text"
             id="cvik"
             name="cvik"
-            required
           />
         </div>
         <div className="grid gap-2 justify-items-center">
@@ -85,7 +89,6 @@ const ExcerciceInputs = ({
             id="vaha"
             name="vaha"
             min={1}
-            required
           />
         </div>
         <div className="grid gap-2 justify-items-center">
@@ -100,13 +103,12 @@ const ExcerciceInputs = ({
             id="opak"
             name="opak"
             min={1}
-            required
           />
         </div>
-        <Button type="submit" size="icon-xs">
+        <Button onClick={handleSubmit} size="icon-xs">
           <MdDone />
         </Button>
-      </form>
+      </div>
     </Card>
   );
 };

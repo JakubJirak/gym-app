@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="vytvoreni pridavani cviku do treninku">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/Training.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/accordion.css" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +70,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Settings.Biome",
+    "settings.editor.selected.configurable": "configurable.tailwindcss",
     "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -113,7 +107,11 @@
       <workItem from="1752506650062" duration="4267000" />
       <workItem from="1752569474917" duration="951000" />
       <workItem from="1752570457045" duration="475000" />
-      <workItem from="1752584570584" duration="15213000" />
+      <workItem from="1752584570584" duration="15479000" />
+      <workItem from="1752680574906" duration="309000" />
+      <workItem from="1752680908191" duration="134000" />
+      <workItem from="1752681055332" duration="420000" />
+      <workItem from="1752681501031" duration="1357000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -179,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752605109154</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku">
+      <option name="closed" value="true" />
+      <created>1752619221381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752619221381</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +200,7 @@
     <MESSAGE value="pridani aboutme sekce" />
     <MESSAGE value="pridani notFound componentu" />
     <MESSAGE value="vytvoreni pridavani cviku do treninku" />
-    <option name="LAST_COMMIT_MESSAGE" value="vytvoreni pridavani cviku do treninku" />
+    <MESSAGE value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
   </component>
 </project>
