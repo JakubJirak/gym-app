@@ -1,57 +1,50 @@
-import {Button} from "@/components/ui/button.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {Label} from "@/components/ui/label.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { useTrainingContext } from "@/data/providers/training-provider.tsx";
 import type React from "react";
-import {FaPlus} from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 
 interface Set {
   weight: number;
   reps: number;
 }
 
-interface TrainingProp {
-  name: string;
-  sets: Set[];
-}
-
 interface ExcerciceProps {
   vaha: string;
   opak: string;
-  trainings: TrainingProp[];
   index: number;
   setVaha: React.Dispatch<React.SetStateAction<string>>;
   setOpak: React.Dispatch<React.SetStateAction<string>>;
-  setTrainings: React.Dispatch<React.SetStateAction<TrainingProp[]>>;
   setShowInputs: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ExcerciceRowInputs = ({
   vaha,
   opak,
-  trainings,
   index,
   setVaha,
   setOpak,
-  setTrainings,
   setShowInputs,
 }: ExcerciceProps) => {
+  const { exercices, setExercices } = useTrainingContext();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowInputs(false);
 
     const set: Set = {
       weight: Number(vaha),
       reps: Number(opak),
     };
 
-    const setsBefore = trainings.filter((_, i) => i < index);
-    const setsAfter = trainings.filter((_, i) => i > index);
-    const setArray = trainings[index].sets;
-    trainings[index].sets = [...setArray, set];
+    const setsBefore = exercices.filter((_, i) => i < index);
+    const setsAfter = exercices.filter((_, i) => i > index);
+    const setArray = exercices[index].sets;
+    exercices[index].sets = [...setArray, set];
 
-    setTrainings([...setsBefore, trainings[index], ...setsAfter]);
+    setExercices([...setsBefore, exercices[index], ...setsAfter]);
     setVaha("");
     setOpak("");
+    setShowInputs(false);
   };
 
   return (

@@ -1,13 +1,20 @@
-import {createRootRouteWithContext, HeadContent, Link, Outlet, Scripts,} from "@tanstack/react-router";
-import {TanStackRouterDevtools} from "@tanstack/react-router-devtools";
+import {
+  HeadContent,
+  Link,
+  Outlet,
+  Scripts,
+  createRootRouteWithContext,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 
-import {Button} from "@/components/ui/button.tsx";
-import {ThemeProvider, useTheme} from "@/data/providers/theme-provider.tsx";
-import {getThemeServerFn} from "@/lib/theme.ts";
-import type {QueryClient} from "@tanstack/react-query";
-import type {ReactNode} from "react";
+import { Button } from "@/components/ui/button.tsx";
+import { ThemeProvider, useTheme } from "@/data/providers/theme-provider.tsx";
+import { TrainingProvider } from "@/data/providers/training-provider.tsx";
+import { getThemeServerFn } from "@/lib/theme.ts";
+import type { QueryClient } from "@tanstack/react-query";
+import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {
@@ -41,12 +48,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const data = Route.useLoaderData();
     return (
       <ThemeProvider theme={data}>
-        <RootDocument>
-          <Outlet />
-          <TanStackRouterDevtools />
+        <TrainingProvider>
+          <RootDocument>
+            <Outlet />
+            <TanStackRouterDevtools />
 
-          <TanStackQueryLayout />
-        </RootDocument>
+            <TanStackQueryLayout />
+          </RootDocument>
+        </TrainingProvider>
       </ThemeProvider>
     );
   },

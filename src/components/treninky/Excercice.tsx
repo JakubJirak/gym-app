@@ -1,17 +1,11 @@
 import ExcerciceRow from "@/components/treninky/ExcerciceRow.tsx";
 import ExcerciceRowInputs from "@/components/treninky/ExcerciceRowInputs.tsx";
-import type React from "react";
-import {useState} from "react";
-import {Card} from "../ui/card";
+import { useState } from "react";
+import { Card } from "../ui/card";
 
 interface Set {
   weight: number;
   reps: number;
-}
-
-interface TrainingProp {
-  name: string;
-  sets: Set[];
 }
 
 interface ExcerciceProps {
@@ -19,18 +13,9 @@ interface ExcerciceProps {
   title: string;
   sets: Set[];
   index: number;
-  trainings: TrainingProp[];
-  setTrainings: React.Dispatch<React.SetStateAction<TrainingProp[]>>;
 }
 
-const Excercice = ({
-  number,
-  title,
-  sets,
-  index,
-  trainings,
-  setTrainings,
-}: ExcerciceProps) => {
+const Excercice = ({ number, title, sets, index }: ExcerciceProps) => {
   const [showInputs, setShowInputs] = useState<boolean>(false);
   const [vaha, setVaha] = useState<string>("");
   const [opak, setOpak] = useState<string>("");
@@ -65,11 +50,9 @@ const Excercice = ({
         <ExcerciceRowInputs
           vaha={vaha}
           opak={opak}
-          trainings={trainings}
           index={index}
           setVaha={setVaha}
           setOpak={setOpak}
-          setTrainings={setTrainings}
           setShowInputs={setShowInputs}
         />
       )}

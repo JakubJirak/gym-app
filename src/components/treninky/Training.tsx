@@ -1,33 +1,21 @@
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "@/components/ui/accordion";
 import TrainingsExcercice from "@/components/treninky/TrainingsListComp/TrainingsExcercice.tsx";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { useTrainingContext } from "@/data/providers/training-provider.tsx";
 
-interface Set {
-  weight: number;
-  reps: number;
-}
-
-interface ExcercisesProp {
-  name: string;
-  sets: Set[];
-}
-
-type TrainingObj = {
-  name: string;
-  date: string;
-  excercises: ExcercisesProp[];
-};
-
-interface TrainingProp {
-  training: TrainingObj[] | undefined;
-}
-
-const Training = ({ training }: TrainingProp) => {
-  if (training === undefined || training === null) return <p>Zadny trenink</p>;
+const Training = () => {
+  const { trainings } = useTrainingContext();
+  if (trainings === undefined || trainings === null || trainings.length === 0)
+    return <p>Zadny trenink</p>;
 
   return (
     <div className="space-y-4">
       <Accordion type="multiple" className="w-full space-y-2">
-        {training.map((item) => (
+        {trainings.map((item) => (
           <AccordionItem
             value={item.name}
             key={item.name}

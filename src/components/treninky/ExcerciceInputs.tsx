@@ -1,45 +1,29 @@
-import {Button} from "@/components/ui/button.tsx";
-import {Card} from "@/components/ui/card.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {Label} from "@/components/ui/label.tsx";
-import type React from 'react'
-import {MdDone} from "react-icons/md";
+import { Button } from "@/components/ui/button.tsx";
+import { Card } from "@/components/ui/card.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { useTrainingContext } from "@/data/providers/training-provider.tsx";
+import type React from "react";
+import { MdDone } from "react-icons/md";
 
 interface ExcerciceProps {
-  cvik: string;
   vaha: string;
   opak: string;
-  trainings: TrainingProp[];
   number: number;
-  setCvik: React.Dispatch<React.SetStateAction<string>>;
   setVaha: React.Dispatch<React.SetStateAction<string>>;
   setOpak: React.Dispatch<React.SetStateAction<string>>;
   setAdd: React.Dispatch<React.SetStateAction<boolean>>;
-  setTrainings: React.Dispatch<React.SetStateAction<TrainingProp[]>>;
-}
-
-interface Set {
-  weight: number;
-  reps: number;
-}
-
-interface TrainingProp {
-  name: string;
-  sets: Set[];
 }
 
 const ExcerciceInputs = ({
-  cvik,
   vaha,
   opak,
-  trainings,
   number,
-  setCvik,
   setVaha,
   setOpak,
   setAdd,
-  setTrainings,
 }: ExcerciceProps) => {
+  const { exercices, cvik, setExercices, setCvik } = useTrainingContext();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -53,7 +37,7 @@ const ExcerciceInputs = ({
       ],
     };
 
-    setTrainings([...trainings, newTraining]);
+    setExercices([...exercices, newTraining]);
 
     setAdd(false);
     setCvik("");

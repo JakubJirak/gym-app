@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="treninky se ukladaji a zobrazuji se na sekci treninky">
+      <change afterPath="$PROJECT_DIR$/src/data/providers/training-provider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/Excercice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/Excercice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceRowInputs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExcerciceRowInputs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/Training.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/Training.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -37,9 +44,6 @@
     &quot;accountId&quot;: &quot;3dfdee38-022d-4c6c-9300-8ed0961c1df6&quot;
   }
 }</component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -60,7 +64,6 @@
     "Notification.DoNotAsk-Biome": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "code.cleanup.on.save": "true",
     "git-widget-placeholder": "master",
     "javascript.nodejs.core.library.configured.version": "22.14.0",
     "javascript.nodejs.core.library.typings.version": "22.14.1",
@@ -70,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.tailwindcss",
+    "settings.editor.selected.configurable": "actions.on.save",
     "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -112,6 +115,8 @@
       <workItem from="1752680908191" duration="134000" />
       <workItem from="1752681055332" duration="420000" />
       <workItem from="1752681501031" duration="1357000" />
+      <workItem from="1752695519687" duration="7718000" />
+      <workItem from="1752737486536" duration="2964000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -185,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752619221381</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="treninky se ukladaji a zobrazuji se na sekci treninky">
+      <option name="closed" value="true" />
+      <created>1752703827459</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1752703827459</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +214,7 @@
     <MESSAGE value="pridani notFound componentu" />
     <MESSAGE value="vytvoreni pridavani cviku do treninku" />
     <MESSAGE value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
-    <option name="LAST_COMMIT_MESSAGE" value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
+    <MESSAGE value="treninky se ukladaji a zobrazuji se na sekci treninky" />
+    <option name="LAST_COMMIT_MESSAGE" value="treninky se ukladaji a zobrazuji se na sekci treninky" />
   </component>
 </project>

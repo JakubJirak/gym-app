@@ -1,13 +1,20 @@
 import ExcerciceInputs from "@/components/treninky/ExcerciceInputs.tsx";
-import {Card} from "@/components/ui/card.tsx";
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,} from "@/components/ui/dialog";
+import { Card } from "@/components/ui/card.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useTrainingContext } from "@/data/providers/training-provider.tsx";
 import type React from "react";
-import {useState} from "react";
-import {FaPlus} from "react-icons/fa6";
-import {MdOutlineModeEdit} from "react-icons/md";
-import {Button} from "../ui/button";
-import {Input} from "../ui/input";
-import {Label} from "../ui/label";
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import Excercice from "./Excercice";
 
 interface Set {
@@ -26,31 +33,26 @@ type TrainingObj = {
   excercises: ExcercisesProp[];
 };
 
-interface AddTrainingProps {
-  training: TrainingObj[] | undefined;
-  setTraining: React.Dispatch<React.SetStateAction<TrainingObj[] | undefined>>;
-}
-
-const AddTraining = ({ training, setTraining }: AddTrainingProps) => {
-  const [cvik, setCvik] = useState<string>("");
+const AddTraining = () => {
+  const { trainings, exercices, setTrainings } = useTrainingContext();
   const [vaha, setVaha] = useState<string>("");
   const [opak, setOpak] = useState<string>("");
   const [add, setAdd] = useState<boolean>(false);
-  const [trainings, setTrainings] = useState<ExcercisesProp[]>([]);
+
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    if (trainings.length > 0) {
+    if (exercices.length > 0) {
       e.preventDefault();
       const newTraining: TrainingObj = {
         name: name,
         date: date,
-        excercises: trainings,
+        excercises: exercices,
       };
       console.log(newTraining);
 
-      setTraining([newTraining, ...(training ?? [])]);
+      setTrainings([newTraining, ...(trainings ?? [])]);
     }
   };
 
@@ -97,10 +99,8 @@ const AddTraining = ({ training, setTraining }: AddTrainingProps) => {
                 </Button>
               </div>
               <div className="flex flex-col gap-3">
-                {trainings.map((training, index) => (
+                {exercices.map((training, index) => (
                   <Excercice
-                    trainings={trainings}
-                    setTrainings={setTrainings}
                     index={index}
                     number={index + 1}
                     title={training.name}
@@ -110,16 +110,12 @@ const AddTraining = ({ training, setTraining }: AddTrainingProps) => {
                 ))}
                 {add && (
                   <ExcerciceInputs
-                    cvik={cvik}
                     vaha={vaha}
                     opak={opak}
-                    number={trainings.length + 1}
-                    trainings={trainings}
-                    setCvik={setCvik}
+                    number={exercices.length + 1}
                     setVaha={setVaha}
                     setOpak={setOpak}
                     setAdd={setAdd}
-                    setTrainings={setTrainings}
                   />
                 )}
                 {!add && (
