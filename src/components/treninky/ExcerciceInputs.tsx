@@ -13,6 +13,7 @@ interface ExcerciceProps {
   setVaha: React.Dispatch<React.SetStateAction<string>>;
   setOpak: React.Dispatch<React.SetStateAction<string>>;
   setAdd: React.Dispatch<React.SetStateAction<boolean>>;
+  setNoneExercice: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ExcerciceInputs = ({
@@ -22,27 +23,30 @@ const ExcerciceInputs = ({
   setVaha,
   setOpak,
   setAdd,
+  setNoneExercice,
 }: ExcerciceProps) => {
   const { exercices, cvik, setExercices, setCvik } = useTrainingContext();
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const addEx = () => {
+    if (cvik !== "" && vaha !== "" && opak !== "") {
+      if (Number(vaha) > 0 && Number(opak) > 0) {
+        setNoneExercice(false);
 
-    const newTraining = {
-      name: cvik,
-      sets: [
-        {
-          weight: Number(vaha),
-          reps: Number(opak),
-        },
-      ],
-    };
-
-    setExercices([...exercices, newTraining]);
-
-    setAdd(false);
-    setCvik("");
-    setVaha("");
-    setOpak("");
+        const newTraining = {
+          name: cvik,
+          sets: [
+            {
+              weight: Number(vaha),
+              reps: Number(opak),
+            },
+          ],
+        };
+        setExercices([...exercices, newTraining]);
+        setAdd(false);
+        setCvik("");
+        setVaha("");
+        setOpak("");
+      }
+    }
   };
 
   return (
@@ -89,7 +93,7 @@ const ExcerciceInputs = ({
             min={1}
           />
         </div>
-        <Button onClick={handleSubmit} size="icon-xs">
+        <Button onClick={addEx} type="button" size="icon-xs">
           <MdDone />
         </Button>
       </div>

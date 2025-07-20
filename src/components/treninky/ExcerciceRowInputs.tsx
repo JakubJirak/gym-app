@@ -28,23 +28,26 @@ const ExcerciceRowInputs = ({
   setShowInputs,
 }: ExcerciceProps) => {
   const { exercices, setExercices } = useTrainingContext();
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
 
-    const set: Set = {
-      weight: Number(vaha),
-      reps: Number(opak),
-    };
+  const addSet = () => {
+    if (vaha !== "" && opak !== "") {
+      if (Number(vaha) > 0 && Number(opak) > 0) {
+        const set: Set = {
+          weight: Number(vaha),
+          reps: Number(opak),
+        };
 
-    const setsBefore = exercices.filter((_, i) => i < index);
-    const setsAfter = exercices.filter((_, i) => i > index);
-    const setArray = exercices[index].sets;
-    exercices[index].sets = [...setArray, set];
+        const setsBefore = exercices.filter((_, i) => i < index);
+        const setsAfter = exercices.filter((_, i) => i > index);
+        const setArray = exercices[index].sets;
+        exercices[index].sets = [...setArray, set];
 
-    setExercices([...setsBefore, exercices[index], ...setsAfter]);
-    setVaha("");
-    setOpak("");
-    setShowInputs(false);
+        setExercices([...setsBefore, exercices[index], ...setsAfter]);
+        setVaha("");
+        setOpak("");
+        setShowInputs(false);
+      }
+    }
   };
 
   return (
@@ -80,7 +83,7 @@ const ExcerciceRowInputs = ({
             min={1}
           />
         </div>
-        <Button onClick={handleSubmit} size="icon-xs">
+        <Button onClick={addSet} type="button" size="icon-xs">
           <FaPlus />
         </Button>
       </div>

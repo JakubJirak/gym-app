@@ -22,10 +22,10 @@ const Training = () => {
             className="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-xl border px-4 py-1 outline-none last:border-b has-focus-visible:ring-[3px]"
           >
             <AccordionTrigger className="py-2 text-[15px] leading-6 hover:no-underline focus-visible:ring-0">
-              {item.name}
+              <p>{item.name}</p>
               {item.date}
             </AccordionTrigger>
-            <AccordionContent className="AccordionContent pb-3 text-muted-foreground space-y-3 overflow-hidden">
+            <AccordionContent className="pb-3 text-muted-foreground space-y-3 overflow-hidden">
               <TrainingsExcercice
                 number={1}
                 title={item.excercises[0].name}

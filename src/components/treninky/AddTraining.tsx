@@ -1,5 +1,4 @@
 import ExcerciceInputs from "@/components/treninky/ExcerciceInputs.tsx";
-import { Card } from "@/components/ui/card.tsx";
 import {
   Dialog,
   DialogContent,
@@ -38,13 +37,18 @@ const AddTraining = () => {
   const [vaha, setVaha] = useState<string>("");
   const [opak, setOpak] = useState<string>("");
   const [add, setAdd] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+
+  const [noneExcercise, setNoneExcercise] = useState<boolean>(false);
 
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (exercices.length > 0) {
-      e.preventDefault();
+      setNoneExcercise(false);
+
       const newTraining: TrainingObj = {
         name: name,
         date: date,
@@ -53,14 +57,19 @@ const AddTraining = () => {
       console.log(newTraining);
 
       setTrainings([newTraining, ...(trainings ?? [])]);
+      setOpen(false);
+    } else {
+      setNoneExcercise(true);
     }
   };
 
   return (
     <div className="max-w-[500px] flex flex-col mx-auto">
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="w-auto ml-auto mr-6">Přidat trénink</Button>
+          <Button type="button" className="w-auto ml-auto mr-6">
+            Přidat trénink
+          </Button>
         </DialogTrigger>
         <DialogContent aria-describedby={undefined} className="p-5">
           <DialogHeader>
@@ -98,7 +107,7 @@ const AddTraining = () => {
                   <MdOutlineModeEdit />
                 </Button>
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 max-h-[60dvh] overflow-y-auto">
                 {exercices.map((training, index) => (
                   <Excercice
                     index={index}
@@ -116,23 +125,28 @@ const AddTraining = () => {
                     setVaha={setVaha}
                     setOpak={setOpak}
                     setAdd={setAdd}
+                    setNoneExercice={setNoneExcercise}
                   />
                 )}
                 {!add && (
-                  <Card className="h-10 flex items-center justify-center">
-                    <Button
-                      onClick={() => setAdd(true)}
-                      size="icon-lg"
-                      variant="muted"
-                    >
-                      <FaPlus size={50} />
-                    </Button>
-                  </Card>
+                  <Button
+                    onClick={() => setAdd(true)}
+                    size="icon-lg"
+                    variant="outline"
+                    className="w-full text-muted-foreground h-[50px]"
+                  >
+                    <FaPlus size={50} />
+                  </Button>
                 )}
+                <p
+                  className={`${noneExcercise ? "block" : "hidden"} text-destructive-foreground`}
+                >
+                  Přidej alespoň jeden cvik
+                </p>
               </div>
-              <button className="flex mt-auto" type="submit">
-                pridat
-              </button>
+              <Button className="mt-auto" size="lg" type="submit">
+                Přidat trénink
+              </Button>
             </form>
           </DialogHeader>
         </DialogContent>
