@@ -329,7 +329,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
 
             {/* Exercises */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between sticky">
+              <div className="flex items-center justify-between top-100 z-1000 w-full">
                 <Label className="text-base font-semibold">Cviky *</Label>
                 <Button onClick={addExercise} size="sm">
                   <Plus className="h-4 w-4 mr-2" />
@@ -342,7 +342,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                   {training.exercises.map((exercise, exerciseIndex) => (
                     <div
                       key={exercise.id}
-                      className="border rounded-lg bg-secondary p-4 space-y-4 relative"
+                      className="border rounded-lg bg-secondary p-4 space-y-4 pb-5 relative"
                     >
                       <div className="flex items-start gap-2">
                         <div className="flex-1 space-y-2">
@@ -563,6 +563,15 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                           className="min-h-[60px] resize-none"
                         />
                       </div>
+                      <Button
+                        onClick={addExercise}
+                        variant="outline"
+                        size="xs"
+                        className="absolute bottom-1.5 right-4"
+                      >
+                        <Plus className="mr-1" />
+                        Další cvik
+                      </Button>
                     </div>
                   ))}
                 </div>

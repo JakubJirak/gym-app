@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani training contextu pro prehlednejsi kod a mene props">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/badge.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/calendar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/command.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/popover.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/scroll-area.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/separator.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/textarea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceRowInputs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExcerciceRowInputs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/Training.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/Training.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="kompletni predelani pridavani treninku a zobrazovani vsech treninku">
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +113,7 @@
       <workItem from="1752737486536" duration="4021000" />
       <workItem from="1752826094766" duration="11533000" />
       <workItem from="1752852037883" duration="25000" />
-      <workItem from="1753016401731" duration="2282000" />
+      <workItem from="1753016401731" duration="2723000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -219,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752740768722</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="kompletni predelani pridavani treninku a zobrazovani vsech treninku">
+      <option name="closed" value="true" />
+      <created>1753018786199</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1753018786199</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +229,7 @@
     <MESSAGE value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
     <MESSAGE value="treninky se ukladaji a zobrazuji se na sekci treninky" />
     <MESSAGE value="pridani training contextu pro prehlednejsi kod a mene props" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani training contextu pro prehlednejsi kod a mene props" />
+    <MESSAGE value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
   </component>
 </project>
