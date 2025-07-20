@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="kompletni predelani pridavani treninku a zobrazovani vsech treninku">
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku">
+      <change afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/api/auth/$.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +118,7 @@
       <workItem from="1752737486536" duration="4021000" />
       <workItem from="1752826094766" duration="11533000" />
       <workItem from="1752852037883" duration="25000" />
-      <workItem from="1753016401731" duration="2723000" />
+      <workItem from="1753016401731" duration="3790000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -211,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753018786199</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku">
+      <option name="closed" value="true" />
+      <created>1753019261577</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1753019261577</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +243,7 @@
     <MESSAGE value="treninky se ukladaji a zobrazuji se na sekci treninky" />
     <MESSAGE value="pridani training contextu pro prehlednejsi kod a mene props" />
     <MESSAGE value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
-    <option name="LAST_COMMIT_MESSAGE" value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
+    <MESSAGE value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
   </component>
 </project>
