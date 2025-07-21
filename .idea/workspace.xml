@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku">
-      <change afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/api/auth/$.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integrations/tanstack-query/root-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrations/tanstack-query/root-provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/login/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +117,10 @@
       <workItem from="1752826094766" duration="11533000" />
       <workItem from="1752852037883" duration="25000" />
       <workItem from="1753016401731" duration="3790000" />
+      <workItem from="1753020287254" duration="2359000" />
+      <workItem from="1753022861030" duration="5000" />
+      <workItem from="1753102365897" duration="3934000" />
+      <workItem from="1753133386349" duration="910000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -224,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753019261577</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni">
+      <option name="closed" value="true" />
+      <created>1753022727193</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1753022727193</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +254,7 @@
     <MESSAGE value="pridani training contextu pro prehlednejsi kod a mene props" />
     <MESSAGE value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
     <MESSAGE value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
+    <MESSAGE value="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni" />
   </component>
 </project>

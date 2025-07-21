@@ -12,6 +12,7 @@ import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { ThemeProvider, useTheme } from "@/data/providers/theme-provider.tsx";
 import { TrainingProvider } from "@/data/providers/training-provider.tsx";
+import { getUserSession } from "@/lib/auth-server.ts";
 import { getThemeServerFn } from "@/lib/theme.ts";
 import type { QueryClient } from "@tanstack/react-query";
 import type { ReactNode } from "react";
@@ -42,6 +43,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
+  beforeLoad: async () => {
+    const session = await getUserSession();
+    return { session };
+  },
   loader: () => getThemeServerFn(),
 
   component: () => {
