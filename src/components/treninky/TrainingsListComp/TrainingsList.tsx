@@ -139,7 +139,7 @@ const TrainingsList = () => {
             </Accordion>
           </div>
         ) : (
-          <Card>
+          <Card className="max-w-[500px] mx-auto">
             <CardContent className="flex flex-col items-center justify-center py-6">
               <GiWeightLiftingUp size={55} />
               <h3 className="text-lg font-semibold my-3">

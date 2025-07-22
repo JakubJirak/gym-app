@@ -227,7 +227,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     return training.exercises.every((exercise) => {
       if (!exercise.name.trim()) return false;
       return exercise.sets.some(
-        (set) => set.reps.trim() !== "" || set.weight.trim() !== "",
+        (set) => set.reps.trim() !== "" && set.weight.trim() !== "",
       );
     });
   };
@@ -507,6 +507,9 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                 <Input
                                   type="number"
                                   value={set.weight}
+                                  min={1}
+                                  max={10000}
+                                  step={0.01}
                                   onChange={(e) =>
                                     updateSet(
                                       exercise.id,
@@ -524,6 +527,9 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                 </div>
                                 <Input
                                   type="number"
+                                  min={1}
+                                  max={10000}
+                                  step={0.01}
                                   value={set.reps}
                                   onChange={(e) =>
                                     updateSet(
