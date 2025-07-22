@@ -20,8 +20,9 @@ import {
 import { Separator } from "@/components/ui/separator.tsx";
 
 import { db } from "@/db";
-import { workouts } from "@/db/schema.ts";
+import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
+import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import { useMutation } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { GiWeightLiftingUp } from "react-icons/gi";
@@ -37,18 +38,42 @@ interface TrainingsListProp {
   userId: string;
 }
 
+interface exerciseDbType {
+  id: string;
+  workoutId: string;
+  exerciseId: number;
+  note: string;
+}
+
+interface setsDbType {
+  id: string;
+  workoutExerciseId: string;
+  weight: string;
+  reps: number;
+}
+
 const addTraining = createServerFn({ method: "POST" })
-  .validator((data: { userId: string; name: string; date: string }) => data)
+  .validator(
+    (data: {
+      training: Training;
+      exercisesDb: exerciseDbType[];
+      setsDb: setsDbType[];
+      userId: string;
+      date: string;
+    }) => data,
+  )
   .handler(async ({ data }) => {
-    const [workout] = await db
-      .insert(workouts)
-      .values({
+    await db.transaction(async (trx) => {
+      await trx.insert(workouts).values({
+        id: data.training.id,
         userId: data.userId,
-        name: data.name,
+        name: data.training.name,
         workoutDate: data.date,
-      })
-      .returning();
-    return workout.id;
+      });
+
+      await trx.insert(workoutExercises).values(data.exercisesDb);
+      await trx.insert(sets).values(data.setsDb);
+    });
   });
 
 const TrainingsList = ({ userId }: TrainingsListProp) => {
@@ -62,9 +87,8 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error: Error) => console.error(error),
   });
 
-  const handleSaveTraining = (training: Training) => {
+  const handleSaveTraining = async (training: Training) => {
     console.log(training);
-
     handleAddTraining(training);
 
     setTrainings((prev) =>
@@ -74,10 +98,15 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
 
   function handleAddTraining(training: Training) {
     const ISOdate = toLocalISODateString(training.date);
+    const exercises = exerciseDb(training.exercises);
+    const sets = setsDb(training.exercises);
+
     mutationTrainings.mutate({
       data: {
+        training: training,
+        exercisesDb: exercises,
+        setsDb: sets,
         userId: userId,
-        name: training.name,
         date: ISOdate,
       },
     });
@@ -91,7 +120,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl max-w-[500px]">
+    <div className="container mx-auto p-4 max-w-[500px]">
       <div className="space-y-4">
         {/* Trainings List */}
         {trainings.length > 0 ? (

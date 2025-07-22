@@ -40,6 +40,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { v4 as uuidv4 } from "uuid";
 
 interface ExerciseOption {
   id: number;
@@ -66,12 +67,14 @@ const exerciseOptions: ExerciseOption[] = [
 
 export interface Set {
   id: string;
+  exerciseId: string; // přidáno - každá série má exerciseId
   reps: string;
   weight: string;
 }
 
 export interface Exercise {
-  id: number | string;
+  id: string;
+  workoutId: string;
   name: string;
   exerciseId: number | null;
   notes: string;
@@ -103,13 +106,30 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   );
   const [searchValues, setSearchValues] = useState<Record<string, string>>({});
 
+  // Uchovávej si id tréninku během otevření dialogu, aby bylo stejné pro všechny cviky
+  const [localTrainingId, setLocalTrainingId] = useState<string | null>(null);
+
   const addExercise = () => {
+    let workoutId = localTrainingId;
+    if (!workoutId) {
+      workoutId = uuidv4();
+      setLocalTrainingId(workoutId);
+    }
+    const exerciseId = uuidv4();
     const newExercise: Exercise = {
-      id: Date.now().toString(),
+      id: exerciseId,
+      workoutId: workoutId,
       name: "",
       exerciseId: null,
       notes: "",
-      sets: [{ id: Date.now().toString(), reps: "", weight: "" }],
+      sets: [
+        {
+          id: uuidv4(),
+          exerciseId: exerciseId,
+          reps: "",
+          weight: "",
+        },
+      ],
     };
     setTraining((prev) => ({
       ...prev,
@@ -148,15 +168,23 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   };
 
   const addSet = (exerciseId: string | number) => {
-    const newSet: Set = {
-      id: Date.now().toString(),
-      reps: "",
-      weight: "",
-    };
     setTraining((prev) => ({
       ...prev,
       exercises: prev.exercises.map((ex) =>
-        ex.id === exerciseId ? { ...ex, sets: [...ex.sets, newSet] } : ex,
+        ex.id === exerciseId
+          ? {
+              ...ex,
+              sets: [
+                ...ex.sets,
+                {
+                  id: uuidv4(),
+                  exerciseId: ex.id,
+                  reps: "",
+                  weight: "",
+                },
+              ],
+            }
+          : ex,
       ),
     }));
   };
@@ -248,11 +276,32 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   const handleSave = () => {
     if (!isValidTraining() || !training.date) return;
 
+    // Pokud nemáme id tréninku, vygenerujeme ho a doplníme do všech cviků a sérií
+    let workoutId = localTrainingId;
+    if (!workoutId) {
+      workoutId = uuidv4();
+      setLocalTrainingId(workoutId);
+    }
+
+    // Při ukládání doplníme id do cviků a sérií, kdyby byl editován/odebrán poslední cvik
+    const exercisesWithIds = training.exercises.map((ex) => {
+      const exerciseId = ex.id || uuidv4();
+      return {
+        ...ex,
+        id: exerciseId,
+        workoutId,
+        sets: ex.sets.map((set) => ({
+          ...set,
+          exerciseId,
+        })),
+      };
+    });
+
     const newTraining: Training = {
-      id: Date.now().toString(),
+      id: workoutId,
       name: training.name,
       date: training.date,
-      exercises: training.exercises,
+      exercises: exercisesWithIds,
     };
 
     onSave(newTraining);
@@ -264,6 +313,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     });
     setOpenComboboxes({});
     setSearchValues({});
+    setLocalTrainingId(null);
   };
 
   const handleCancel = () => {
@@ -275,6 +325,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     });
     setOpenComboboxes({});
     setSearchValues({});
+    setLocalTrainingId(null);
   };
 
   const allExercises: ExerciseOption[] = [

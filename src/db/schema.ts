@@ -77,16 +77,16 @@ export const exercises = pgTable("exercises", {
 });
 
 export const workouts = pgTable("workouts", {
-  id: serial("id").primaryKey(),
-  userId: text("user_id").references(() => user.id), // FK na users
+  id: text("id").primaryKey(),
+  userId: text("user_id").references(() => user.id),
   name: varchar("name", { length: 100 }).notNull(),
   workoutDate: date("workout_date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const workoutExercises = pgTable("workout_exercises", {
-  id: serial("id").primaryKey(),
-  workoutId: integer("workout_id").references(() => workouts.id, {
+  id: text("id").primaryKey(),
+  workoutId: text("workout_id").references(() => workouts.id, {
     onDelete: "cascade",
   }),
   exerciseId: integer("exercise_id").references(() => exercises.id),
@@ -94,8 +94,8 @@ export const workoutExercises = pgTable("workout_exercises", {
 });
 
 export const sets = pgTable("sets", {
-  id: serial("id").primaryKey(),
-  workoutExerciseId: integer("workout_exercise_id").references(
+  id: text("id").primaryKey(),
+  workoutExerciseId: text("workout_exercise_id").references(
     () => workoutExercises.id,
     { onDelete: "cascade" },
   ),
@@ -103,28 +103,24 @@ export const sets = pgTable("sets", {
   reps: integer("reps"),
 });
 
-/* ---------- RELATIONS ---------- */
+/* --- Relations --- */
 
-// USER relations
-export const usersRelations = relations(user, ({ many }) => ({
-  workouts: many(workouts),
-}));
+export const users = pgTable("user", {
+  id: text("id").primaryKey(),
+});
 
-// WORKOUT relations
-export const workoutsRelations = relations(workouts, ({ one, many }) => ({
-  user: one(user, {
-    fields: [workouts.userId],
-    references: [user.id],
-  }),
-  workoutExercises: many(workoutExercises),
-}));
-
-// EXERCISE relations
 export const exercisesRelations = relations(exercises, ({ many }) => ({
   workoutExercises: many(workoutExercises),
 }));
 
-// WORKOUT_EXERCISE relations
+export const workoutsRelations = relations(workouts, ({ many, one }) => ({
+  workoutExercises: many(workoutExercises),
+  user: one(users, {
+    fields: [workouts.userId],
+    references: [users.id],
+  }),
+}));
+
 export const workoutExercisesRelations = relations(
   workoutExercises,
   ({ one, many }) => ({
@@ -140,7 +136,6 @@ export const workoutExercisesRelations = relations(
   }),
 );
 
-// SETS relations
 export const setsRelations = relations(sets, ({ one }) => ({
   workoutExercise: one(workoutExercises, {
     fields: [sets.workoutExerciseId],
