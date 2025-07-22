@@ -8,19 +8,24 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
+} from "@/components/ui/accordion.tsx";
+import { Badge } from "@/components/ui/badge.tsx";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+} from "@/components/ui/card.tsx";
+import { Separator } from "@/components/ui/separator.tsx";
 
+import { db } from "@/db";
+import { workouts } from "@/db/schema.ts";
+import { toLocalISODateString } from "@/utils/date-utils.ts";
+import { useMutation } from "@tanstack/react-query";
+import { createServerFn } from "@tanstack/react-start";
 import { GiWeightLiftingUp } from "react-icons/gi";
-import TrainingDialog, { type Training } from "../AddNewTraining.tsx";
+import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 
 export interface Set {
   id: string;
@@ -28,14 +33,55 @@ export interface Set {
   weight: string;
 }
 
-const TrainingsList = () => {
+interface TrainingsListProp {
+  userId: string;
+}
+
+const addTraining = createServerFn({ method: "POST" })
+  .validator((data: { userId: string; name: string; date: string }) => data)
+  .handler(async ({ data }) => {
+    const [workout] = await db
+      .insert(workouts)
+      .values({
+        userId: data.userId,
+        name: data.name,
+        workoutDate: data.date,
+      })
+      .returning();
+    return workout.id;
+  });
+
+const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [trainings, setTrainings] = useState<Training[]>([]);
 
+  const mutationTrainings = useMutation({
+    mutationFn: addTraining,
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error: Error) => console.error(error),
+  });
+
   const handleSaveTraining = (training: Training) => {
+    console.log(training);
+
+    handleAddTraining(training);
+
     setTrainings((prev) =>
       [training, ...prev].sort((a, b) => b.date.getTime() - a.date.getTime()),
     );
   };
+
+  function handleAddTraining(training: Training) {
+    const ISOdate = toLocalISODateString(training.date);
+    mutationTrainings.mutate({
+      data: {
+        userId: userId,
+        name: training.name,
+        date: ISOdate,
+      },
+    });
+  }
 
   const formatSetInfo = (set: Set) => {
     const parts = [];
@@ -45,7 +91,7 @@ const TrainingsList = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
+    <div className="container mx-auto p-4 max-w-4xl max-w-[500px]">
       <div className="space-y-4">
         {/* Trainings List */}
         {trainings.length > 0 ? (

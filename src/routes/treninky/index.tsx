@@ -1,5 +1,5 @@
 import Header from "@/components/Header.tsx";
-import TrainingsList from "@/components/treninky/TrainingsListComp/TrainingsList.tsx";
+import TrainingsList from "@/components/treninky/TrainingsList.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
@@ -21,7 +21,7 @@ function RouteComponent() {
   return (
     <div>
       <Header page="TRÉNINKY" />
-      <TrainingsList />
+      <TrainingsList userId={session.user.id} />
     </div>
   );
 }

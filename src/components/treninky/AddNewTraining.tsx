@@ -41,28 +41,27 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
-// Sample exercise options
-const exerciseOptions = [
-  "Bench Press",
-  "Squat",
-  "Deadlift",
-  "Pull-ups",
-  "Push-ups",
-  "Overhead Press",
-  "Barbell Row",
-  "Dumbbell Curl",
-  "Tricep Dips",
-  "Lunges",
-  "Plank",
-  "Burpees",
-  "Leg Press",
-  "Lat Pulldown",
-  "Shoulder Press",
-  "Leg Curl",
-  "Leg Extension",
-  "Calf Raises",
-  "Face Pulls",
-  "Hip Thrust",
+interface ExerciseOption {
+  id: number;
+  name: string;
+}
+
+const exerciseOptions: ExerciseOption[] = [
+  { id: 1, name: "Push-ups" },
+  { id: 2, name: "Pull-ups" },
+  { id: 3, name: "Squats" },
+  { id: 4, name: "Deadlifts" },
+  { id: 5, name: "Bench Press" },
+  { id: 6, name: "Shoulder Press" },
+  { id: 7, name: "Bicep Curls" },
+  { id: 8, name: "Tricep Dips" },
+  { id: 9, name: "Lunges" },
+  { id: 10, name: "Plank" },
+  { id: 11, name: "Burpees" },
+  { id: 12, name: "Mountain Climbers" },
+  { id: 13, name: "Jumping Jacks" },
+  { id: 14, name: "Russian Twists" },
+  { id: 15, name: "Leg Press" },
 ];
 
 export interface Set {
@@ -72,8 +71,9 @@ export interface Set {
 }
 
 export interface Exercise {
-  id: string;
+  id: number | string;
   name: string;
+  exerciseId: number | null;
   notes: string;
   sets: Set[];
 }
@@ -90,25 +90,24 @@ interface TrainingDialogProps {
 }
 
 const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [training, setTraining] = useState({
     name: "",
     date: undefined as Date | undefined,
     exercises: [] as Exercise[],
   });
 
-  const [customExercises, setCustomExercises] = useState<string[]>([]);
-  const [openComboboxes, setOpenComboboxes] = useState<{
-    [key: string]: boolean;
-  }>({});
-  const [searchValues, setSearchValues] = useState<{ [key: string]: string }>(
+  const [customExercises, setCustomExercises] = useState<ExerciseOption[]>([]);
+  const [openComboboxes, setOpenComboboxes] = useState<Record<string, boolean>>(
     {},
   );
+  const [searchValues, setSearchValues] = useState<Record<string, string>>({});
 
   const addExercise = () => {
     const newExercise: Exercise = {
       id: Date.now().toString(),
       name: "",
+      exerciseId: null,
       notes: "",
       sets: [{ id: Date.now().toString(), reps: "", weight: "" }],
     };
@@ -118,28 +117,27 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const removeExercise = (exerciseId: string) => {
+  const removeExercise = (exerciseId: string | number) => {
     setTraining((prev) => ({
       ...prev,
       exercises: prev.exercises.filter((ex) => ex.id !== exerciseId),
     }));
-    // Clean up combobox states
     setOpenComboboxes((prev) => {
       const newState = { ...prev };
-      delete newState[exerciseId];
+      delete newState[exerciseId as string];
       return newState;
     });
     setSearchValues((prev) => {
       const newState = { ...prev };
-      delete newState[exerciseId];
+      delete newState[exerciseId as string];
       return newState;
     });
   };
 
-  const updateExercise = (
-    exerciseId: string,
-    field: keyof Exercise,
-    value: string,
+  const updateExercise = <K extends keyof Exercise>(
+    exerciseId: string | number,
+    field: K,
+    value: Exercise[K],
   ) => {
     setTraining((prev) => ({
       ...prev,
@@ -149,7 +147,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const addSet = (exerciseId: string) => {
+  const addSet = (exerciseId: string | number) => {
     const newSet: Set = {
       id: Date.now().toString(),
       reps: "",
@@ -163,7 +161,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const removeSet = (exerciseId: string, setId: string) => {
+  const removeSet = (exerciseId: string | number, setId: string) => {
     setTraining((prev) => ({
       ...prev,
       exercises: prev.exercises.map((ex) =>
@@ -174,11 +172,11 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const updateSet = (
-    exerciseId: string,
+  const updateSet = <K extends keyof Set>(
+    exerciseId: string | number,
     setId: string,
-    field: keyof Set,
-    value: string,
+    field: K,
+    value: Set[K],
   ) => {
     setTraining((prev) => ({
       ...prev,
@@ -195,27 +193,43 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const addCustomExercise = (exerciseId: string, exerciseName: string) => {
+  const addCustomExercise = (
+    exerciseId: string | number,
+    exerciseName: string,
+  ) => {
     const trimmedName = exerciseName.trim();
     if (
       trimmedName &&
-      !customExercises.includes(trimmedName) &&
-      !exerciseOptions.includes(trimmedName)
+      !customExercises.find(
+        (e) => e.name.toLowerCase() === trimmedName.toLowerCase(),
+      ) &&
+      !exerciseOptions.find(
+        (e) => e.name.toLowerCase() === trimmedName.toLowerCase(),
+      )
     ) {
-      setCustomExercises((prev) => [...prev, trimmedName]);
-      updateExercise(exerciseId, "name", trimmedName);
-      setOpenComboboxes((prev) => ({ ...prev, [exerciseId]: false }));
-      setSearchValues((prev) => ({ ...prev, [exerciseId]: "" }));
+      const customExercise: ExerciseOption = {
+        id: -Date.now(),
+        name: trimmedName,
+      };
+      setCustomExercises((prev) => [...prev, customExercise]);
+      updateExercise(exerciseId, "name", customExercise.name);
+      updateExercise(exerciseId, "exerciseId", customExercise.id);
+      setOpenComboboxes((prev) => ({ ...prev, [exerciseId as string]: false }));
+      setSearchValues((prev) => ({ ...prev, [exerciseId as string]: "" }));
     }
   };
 
-  const selectExercise = (exerciseId: string, exerciseName: string) => {
-    updateExercise(exerciseId, "name", exerciseName);
-    setOpenComboboxes((prev) => ({ ...prev, [exerciseId]: false }));
-    setSearchValues((prev) => ({ ...prev, [exerciseId]: "" }));
+  const selectExercise = (
+    exerciseId: string | number,
+    selected: ExerciseOption,
+  ) => {
+    updateExercise(exerciseId, "name", selected.name);
+    updateExercise(exerciseId, "exerciseId", selected.id);
+    setOpenComboboxes((prev) => ({ ...prev, [exerciseId as string]: false }));
+    setSearchValues((prev) => ({ ...prev, [exerciseId as string]: "" }));
   };
 
-  const isValidTraining = () => {
+  const isValidTraining = (): boolean => {
     if (
       !training.name.trim() ||
       !training.date ||
@@ -223,9 +237,8 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     ) {
       return false;
     }
-
     return training.exercises.every((exercise) => {
-      if (!exercise.name.trim()) return false;
+      if (!exercise.name.trim() || exercise.exerciseId == null) return false;
       return exercise.sets.some(
         (set) => set.reps.trim() !== "" && set.weight.trim() !== "",
       );
@@ -244,7 +257,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
 
     onSave(newTraining);
     setOpen(false);
-    // Reset form
     setTraining({
       name: "",
       date: undefined,
@@ -256,7 +268,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
 
   const handleCancel = () => {
     setOpen(false);
-    // Reset form
     setTraining({
       name: "",
       date: undefined,
@@ -266,7 +277,10 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     setSearchValues({});
   };
 
-  const allExercises = [...exerciseOptions, ...customExercises];
+  const allExercises: ExerciseOption[] = [
+    ...exerciseOptions,
+    ...customExercises,
+  ];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -283,7 +297,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
 
         <ScrollArea className="max-h-[68dvh] min-h-[60dvh] pr-4">
           <div className="space-y-6">
-            {/* Training Name */}
             <div className="space-y-2">
               <Label htmlFor="training-name">Název tréninku *</Label>
               <Input
@@ -295,8 +308,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                 }
               />
             </div>
-
-            {/* Date Picker */}
             <div className="space-y-2">
               <Label>Datum tréninku *</Label>
               <Popover>
@@ -326,8 +337,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                 </PopoverContent>
               </Popover>
             </div>
-
-            {/* Exercises */}
             <div className="space-y-4">
               <div className="flex items-center justify-between top-100 z-1000 w-full">
                 <Label className="text-base font-semibold">Cviky *</Label>
@@ -336,7 +345,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                   Přidat cvik
                 </Button>
               </div>
-
               {training.exercises.length > 0 && (
                 <div className="space-y-4">
                   {training.exercises.map((exercise, exerciseIndex) => (
@@ -350,11 +358,11 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                             {exerciseIndex + 1}. Cvik
                           </Label>
                           <Popover
-                            open={openComboboxes[exercise.id] || false}
+                            open={openComboboxes[String(exercise.id)] || false}
                             onOpenChange={(open) =>
                               setOpenComboboxes((prev) => ({
                                 ...prev,
-                                [exercise.id]: open,
+                                [exercise.id as string]: open,
                               }))
                             }
                           >
@@ -362,7 +370,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                               <Button
                                 variant="outline"
                                 aria-expanded={
-                                  openComboboxes[exercise.id] || false
+                                  openComboboxes[String(exercise.id)] || false
                                 }
                                 className="w-full justify-between bg-transparent"
                               >
@@ -371,36 +379,41 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                               </Button>
                             </PopoverTrigger>
                             <PopoverContent
-                              className="w-full p-0"
+                              className="w-full p-0 pointer-events-auto"
                               align="start"
                             >
                               <Command>
                                 <CommandInput
                                   placeholder="Hledat nebo přidat cvik..."
-                                  value={searchValues[exercise.id] || ""}
+                                  value={
+                                    searchValues[String(exercise.id)] || ""
+                                  }
                                   onValueChange={(value) =>
                                     setSearchValues((prev) => ({
                                       ...prev,
-                                      [exercise.id]: value,
+                                      [exercise.id as string]: value,
                                     }))
                                   }
                                 />
                                 <CommandList>
-                                  <ScrollArea className="h-[200px]">
+                                  <ScrollArea className="h-[300px] overflow-auto pointer-events-auto">
                                     <CommandEmpty>
                                       <div className="p-2 space-y-2">
                                         <p className="text-sm text-muted-foreground">
                                           Cvik nenalezen.
                                         </p>
                                         {(
-                                          searchValues[exercise.id] || ""
+                                          searchValues[String(exercise.id)] ||
+                                          ""
                                         ).trim() && (
                                           <Button
                                             size="sm"
                                             onClick={() =>
                                               addCustomExercise(
                                                 exercise.id,
-                                                searchValues[exercise.id] || "",
+                                                searchValues[
+                                                  String(exercise.id)
+                                                ] || "",
                                               )
                                             }
                                             className="w-full"
@@ -408,7 +421,9 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                             <Plus className="h-3 w-3 mr-1" />
                                             Přidat "
                                             {(
-                                              searchValues[exercise.id] || ""
+                                              searchValues[
+                                                String(exercise.id)
+                                              ] || ""
                                             ).trim()}
                                             "
                                           </Button>
@@ -418,18 +433,20 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                     <CommandGroup>
                                       {allExercises
                                         .filter((option) =>
-                                          option
+                                          option.name
                                             .toLowerCase()
                                             .includes(
                                               (
-                                                searchValues[exercise.id] || ""
+                                                searchValues[
+                                                  String(exercise.id)
+                                                ] || ""
                                               ).toLowerCase(),
                                             ),
                                         )
                                         .map((option) => (
                                           <CommandItem
-                                            key={option}
-                                            value={option}
+                                            key={option.id}
+                                            value={option.name}
                                             onSelect={() =>
                                               selectExercise(
                                                 exercise.id,
@@ -440,14 +457,15 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                             <Check
                                               className={cn(
                                                 "mr-2 h-4 w-4",
-                                                exercise.name === option
+                                                exercise.exerciseId ===
+                                                  option.id
                                                   ? "opacity-100"
                                                   : "opacity-0",
                                               )}
                                             />
-                                            {option}
-                                            {customExercises.includes(
-                                              option,
+                                            {option.name}
+                                            {customExercises.find(
+                                              (c) => c.id === option.id,
                                             ) && (
                                               <span className="ml-auto text-xs text-muted-foreground">
                                                 (Vlastní)
@@ -471,8 +489,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                           <X className="h-4 w-4" />
                         </Button>
                       </div>
-
-                      {/* Serie */}
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <Label className="text-sm font-medium">Série</Label>
@@ -485,7 +501,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                             Přidat sérii
                           </Button>
                         </div>
-
                         <div className="space-y-2">
                           {exercise.sets.map((set, setIndex) => (
                             <div
@@ -554,8 +569,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                           ))}
                         </div>
                       </div>
-
-                      {/* Poznamky */}
                       <div className="space-y-2">
                         <Label className="text-sm font-medium">
                           Poznámky (volitelné)
@@ -563,7 +576,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                         <Textarea
                           placeholder="Přidejte poznámky k tomuto cviku..."
                           value={exercise.notes}
-                          onChange={(e: { target: { value: string } }) =>
+                          onChange={(e) =>
                             updateExercise(exercise.id, "notes", e.target.value)
                           }
                           className="min-h-[60px] resize-none"
@@ -582,7 +595,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                   ))}
                 </div>
               )}
-
               {training.exercises.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground border rounded-lg">
                   <p>Zatím nebyly přidány žádné cviky.</p>
@@ -594,9 +606,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
             </div>
           </div>
         </ScrollArea>
-
         <Separator />
-
         <DialogFooter className="flex-col sm:flex-row gap-4 mt-auto">
           <Button
             variant="outline"

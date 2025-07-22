@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod">
+      <change afterPath="$PROJECT_DIR$/src/utils/date-utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/register/RegisterForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddTraining.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/Excercice.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceInputs.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceRow.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExcerciceRowInputs.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/Training.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsExcercice.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsExerciceRow.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsListComp/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/treninky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/treninky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +136,7 @@
       <workItem from="1753133386349" duration="910000" />
       <workItem from="1753134545325" duration="937000" />
       <workItem from="1753177919878" duration="3578000" />
-      <workItem from="1753182245727" duration="1253000" />
+      <workItem from="1753182245727" duration="10428000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -250,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753134948254</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod">
+      <option name="closed" value="true" />
+      <created>1753184259788</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1753184259788</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,6 +288,7 @@
     <MESSAGE value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
     <MESSAGE value="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni" />
     <MESSAGE value="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen" />
+    <MESSAGE value="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod" />
+    <option name="LAST_COMMIT_MESSAGE" value="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod" />
   </component>
 </project>
