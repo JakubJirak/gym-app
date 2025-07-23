@@ -48,21 +48,23 @@ interface ExerciseOption {
 }
 
 const exerciseOptions: ExerciseOption[] = [
-  { id: 1, name: "Push-ups" },
-  { id: 2, name: "Pull-ups" },
-  { id: 3, name: "Squats" },
-  { id: 4, name: "Deadlifts" },
-  { id: 5, name: "Bench Press" },
-  { id: 6, name: "Shoulder Press" },
-  { id: 7, name: "Bicep Curls" },
-  { id: 8, name: "Tricep Dips" },
-  { id: 9, name: "Lunges" },
-  { id: 10, name: "Plank" },
-  { id: 11, name: "Burpees" },
-  { id: 12, name: "Mountain Climbers" },
-  { id: 13, name: "Jumping Jacks" },
-  { id: 14, name: "Russian Twists" },
-  { id: 15, name: "Leg Press" },
+  { id: 1, name: "Squat" },
+  { id: 2, name: "Bench Press" },
+  { id: 3, name: "Deadlift" },
+  { id: 4, name: "Paused Squat" },
+  { id: 5, name: "Paused BP" },
+  { id: 6, name: "Clean & Jerk" },
+  { id: 7, name: "Lat. raises" },
+  { id: 8, name: "Db. rear delts" },
+  { id: 9, name: "EZ Bar curls" },
+  { id: 10, name: "Hammer curls" },
+  { id: 11, name: "Shoulder db. press" },
+  { id: 12, name: "Pull up" },
+  { id: 13, name: "HS Row" },
+  { id: 14, name: "Chest press" },
+  { id: 15, name: "Lat. pulldown Neut." },
+  { id: 16, name: "Triceps ex." },
+  { id: 17, name: "Abs wheel" },
 ];
 
 export interface Set {
