@@ -18,7 +18,9 @@ import {
 } from "@/components/ui/card.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 
-import DialogDelete from "@/components/treninky/DialogDelete.tsx";
+import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
+import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
+import { Button } from "@/components/ui/button.tsx";
 import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
@@ -26,6 +28,7 @@ import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
+import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 
@@ -105,6 +108,15 @@ const deleteTraining = createServerFn()
     await db.delete(workouts).where(eq(workouts.id, data.trainingId)).execute();
   });
 
+const deleteExercise = createServerFn()
+  .validator((data: { exerciseId: string }) => data)
+  .handler(async ({ data }) => {
+    await db
+      .delete(workoutExercises)
+      .where(eq(workoutExercises.id, data.exerciseId))
+      .execute();
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
@@ -147,7 +159,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     });
   }
 
-  const deleteMutation = useMutation({
+  const deleteMutationTraining = useMutation({
     mutationFn: deleteTraining,
     onSuccess: () => {
       refetch();
@@ -155,9 +167,23 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const deleteMutationExercise = useMutation({
+    mutationFn: deleteExercise,
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
-    deleteMutation.mutate({
+    deleteMutationTraining.mutate({
       data: { trainingId: id },
+    });
+  }
+
+  function handleDeleteExericse(id: string) {
+    deleteMutationExercise.mutate({
+      data: { exerciseId: id },
     });
   }
 
@@ -232,10 +258,14 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           key={exercise.id}
                           className="border rounded-lg p-4 space-y-3"
                         >
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center">
                             <h4 className="font-semibold text-lg">
                               {exercise?.exercise?.name}
                             </h4>
+                            <DialogDeleteExercise
+                              handleDeleteExercise={handleDeleteExericse}
+                              id={exercise.id}
+                            />
                             <Badge variant="outline">
                               Série: {exercise.sets.length}
                             </Badge>
@@ -246,14 +276,17 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                               {exercise.sets.map((set, setIndex) => (
                                 <div
                                   key={set.id}
-                                  className="flex items-center justify-between bg-secondary rounded-md py-2 px-3"
+                                  className="flex items-center bg-secondary rounded-md py-2 px-3"
                                 >
-                                  <span className="text-sm font-medium">
+                                  <span className="text-sm font-medium flex-1">
                                     {setIndex + 1}. série
                                   </span>
-                                  <span className="text-sm">
+                                  <span className="text-sm mr-2">
                                     {formatSetInfo(set)}
                                   </span>
+                                  <Button variant="outline" size="icon-sm">
+                                    <FaPencilAlt />
+                                  </Button>
                                 </div>
                               ))}
                             </div>

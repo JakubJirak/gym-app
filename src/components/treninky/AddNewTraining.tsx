@@ -398,13 +398,24 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                   {training.exercises.map((exercise, exerciseIndex) => (
                     <div
                       key={exercise.id}
-                      className="border rounded-lg bg-secondary p-4 space-y-4 pb-5 relative"
+                      className="border rounded-lg bg-secondary p-4 space-y-4 relative"
                     >
                       <div className="flex items-start gap-2">
                         <div className="flex-1 space-y-2">
-                          <Label className="text-sm font-medium">
-                            {exerciseIndex + 1}. Cvik
-                          </Label>
+                          <div className="flex w-full">
+                            <Label className="text-sm font-medium flex-1">
+                              {exerciseIndex + 1}. Cvik
+                            </Label>
+                            <Button
+                              variant="muted"
+                              size="icon-sm"
+                              onClick={() => removeExercise(exercise.id)}
+                              className="shrink-0"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+
                           <Popover
                             open={openComboboxes[String(exercise.id)] || false}
                             onOpenChange={(open) =>
@@ -528,14 +539,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                             </PopoverContent>
                           </Popover>
                         </div>
-                        <Button
-                          variant="muted"
-                          size="icon-sm"
-                          onClick={() => removeExercise(exercise.id)}
-                          className="shrink-0 absolute top-2 right-2"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
                       </div>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
@@ -617,7 +620,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                           ))}
                         </div>
                       </div>
-                      <div className="space-y-2">
+                      <div className="flex flex-col gap-2">
                         <Label className="text-sm font-medium">
                           Poznámky (volitelné)
                         </Label>
@@ -629,16 +632,18 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                           }
                           className="min-h-[60px] resize-none"
                         />
+                        <div className="self-end">
+                          <Button
+                            onClick={addExercise}
+                            variant="outline"
+                            className="inline-flex mt-2"
+                            size="sm"
+                          >
+                            <Plus className="mr-1" />
+                            Další cvik
+                          </Button>
+                        </div>
                       </div>
-                      <Button
-                        onClick={addExercise}
-                        variant="outline"
-                        size="xs"
-                        className="absolute bottom-1.5 right-4"
-                      >
-                        <Plus className="mr-1" />
-                        Další cvik
-                      </Button>
                     </div>
                   ))}
                 </div>
