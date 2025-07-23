@@ -91,6 +91,7 @@ export const workoutExercises = pgTable("workout_exercises", {
   }),
   exerciseId: integer("exercise_id").references(() => exercises.id),
   note: text("note"),
+  order: integer("order"),
 });
 
 export const sets = pgTable("sets", {
@@ -101,6 +102,7 @@ export const sets = pgTable("sets", {
   ),
   weight: numeric("weight", { precision: 8, scale: 2 }),
   reps: integer("reps"),
+  order: integer("order"),
 });
 
 /* --- Relations --- */

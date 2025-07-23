@@ -5,6 +5,7 @@ interface exerciseDbType {
   workoutId: string;
   exerciseId: number;
   note: string;
+  order: number;
 }
 
 interface setsDbType {
@@ -12,18 +13,19 @@ interface setsDbType {
   workoutExerciseId: string;
   weight: string;
   reps: number;
+  order: number;
 }
 
 export function exerciseDb(exercise: Exercise[]) {
   const newArr: exerciseDbType[] = [];
-  // biome-ignore lint/complexity/noForEach: <explanation>
-  exercise.forEach((ex) => {
+  exercise.forEach((ex, i) => {
     if (!ex.exerciseId) ex.exerciseId = 0;
     const newObj: exerciseDbType = {
       id: ex.id,
       workoutId: ex.workoutId,
       exerciseId: ex.exerciseId,
       note: ex.notes,
+      order: i,
     };
     newArr.push(newObj);
   });
@@ -34,13 +36,13 @@ export function setsDb(exercise: Exercise[]) {
   const setsDb: setsDbType[] = [];
   // biome-ignore lint/complexity/noForEach: <explanation>
   exercise.forEach((ex) => {
-    // biome-ignore lint/complexity/noForEach: <explanation>
-    ex.sets.forEach((set) => {
+    ex.sets.forEach((set, i) => {
       const newSet: setsDbType = {
         id: set.id,
         workoutExerciseId: set.exerciseId,
         weight: set.weight,
         reps: Number(set.reps),
+        order: i,
       };
       setsDb.push(newSet);
     });

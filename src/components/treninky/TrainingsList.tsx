@@ -20,7 +20,7 @@ import { Separator } from "@/components/ui/separator.tsx";
 
 import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
 import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
-import { Button } from "@/components/ui/button.tsx";
+import { DialogEditSet } from "@/components/treninky/DialogEditSet.tsx";
 import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
@@ -28,7 +28,7 @@ import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
-import { FaPencilAlt } from "react-icons/fa";
+import { useState } from "react";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 
@@ -48,6 +48,7 @@ interface exerciseDbType {
   workoutId: string;
   exerciseId: number;
   note: string;
+  order: number;
 }
 
 interface setsDbType {
@@ -55,6 +56,7 @@ interface setsDbType {
   workoutExerciseId: string;
   weight: string;
   reps: number;
+  order: number;
 }
 
 const addTraining = createServerFn({ method: "POST" })
@@ -85,21 +87,21 @@ const fetchTrainings = createServerFn({ method: "GET" })
   .validator((data: { userId: string }) => data)
   .handler(async ({ data }) => {
     const trainings = await db.query.workouts.findMany({
+      orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
       where: (workout, { eq }) => eq(workout.userId, data.userId),
       with: {
         workoutExercises: {
+          orderBy: (set, { asc }) => [asc(set.order)],
           with: {
-            sets: true,
+            sets: {
+              orderBy: (set, { asc }) => [asc(set.order)],
+            },
             exercise: true,
           },
         },
       },
     });
-
-    return trainings.sort(
-      // @ts-ignore
-      (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
-    );
+    return trainings;
   });
 
 const deleteTraining = createServerFn()
@@ -117,7 +119,29 @@ const deleteExercise = createServerFn()
       .execute();
   });
 
+const deleteSet = createServerFn()
+  .validator((data: { setId: string }) => data)
+  .handler(async ({ data }) => {
+    await db.delete(sets).where(eq(sets.id, data.setId)).execute();
+  });
+
+const updateSet = createServerFn()
+  .validator(
+    (data: { setId: string; editSetWeight: string; editSetReps: number }) =>
+      data,
+  )
+  .handler(async ({ data }) => {
+    await db
+      .update(sets)
+      .set({ weight: data.editSetWeight, reps: data.editSetReps })
+      .where(eq(sets.id, data.setId))
+      .execute();
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
+  const [editSetWeight, setEditSetWeight] = useState<string>("");
+  const [editSetReps, setEditSetReps] = useState<string>("");
+
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
     onSuccess: () => {
@@ -175,6 +199,22 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const deleteMutationSet = useMutation({
+    mutationFn: deleteSet,
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => console.log(error),
+  });
+
+  const updateMutationSet = useMutation({
+    mutationFn: updateSet,
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -184,6 +224,22 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   function handleDeleteExericse(id: string) {
     deleteMutationExercise.mutate({
       data: { exerciseId: id },
+    });
+  }
+
+  function handleDeleteSet(id: string) {
+    deleteMutationSet.mutate({
+      data: { setId: id },
+    });
+  }
+
+  function handleEditSet(id: string) {
+    updateMutationSet.mutate({
+      data: {
+        setId: id,
+        editSetWeight: editSetWeight,
+        editSetReps: Number(editSetReps),
+      },
     });
   }
 
@@ -242,7 +298,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           <div className="font-semibold">{training.name}</div>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Calendar className="h-4 w-4" />
-                            {formatDate(training.createdAt, "PPPP")}
+                            {formatDate(new Date(training.workoutDate), "PPPP")}
                           </div>
                         </div>
                       </div>
@@ -284,9 +340,17 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                                   <span className="text-sm mr-2">
                                     {formatSetInfo(set)}
                                   </span>
-                                  <Button variant="outline" size="icon-sm">
-                                    <FaPencilAlt />
-                                  </Button>
+                                  <DialogEditSet
+                                    repsBefore={set.reps}
+                                    weightBefore={set.weight}
+                                    setId={set.id}
+                                    handleDeleteSet={handleDeleteSet}
+                                    editSetReps={editSetReps}
+                                    editSetWeight={editSetWeight}
+                                    setEditSetReps={setEditSetReps}
+                                    setEditSetWeight={setEditSetWeight}
+                                    handleEditSet={handleEditSet}
+                                  />
                                 </div>
                               ))}
                             </div>
