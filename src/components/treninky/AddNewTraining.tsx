@@ -351,6 +351,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
               <Input
                 id="training-name"
                 placeholder="Zadejte název tréninku"
+                className="placeholder:text-sm text-sm"
                 value={training.name}
                 onChange={(e) =>
                   setTraining((prev) => ({ ...prev, name: e.target.value }))
@@ -628,6 +629,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                         <Input
                           placeholder="Přidejte poznámky k tomuto cviku..."
                           value={exercise.notes}
+                          className="placeholder:text-sm text-sm"
                           onChange={(e) =>
                             updateExercise(exercise.id, "notes", e.target.value)
                           }

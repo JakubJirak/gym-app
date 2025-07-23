@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="change of exercises">
-      <change afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/textarea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +135,7 @@
       <workItem from="1753197707943" duration="4339000" />
       <workItem from="1753213393536" duration="4767000" />
       <workItem from="1753262359324" duration="15551000" />
-      <workItem from="1753305409599" duration="2043000" />
+      <workItem from="1753305409599" duration="2368000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -410,14 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753280567035</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku">
+      <option name="closed" value="true" />
+      <created>1753307724651</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1753307724651</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="vytvoreni pridavani cviku do treninku" />
     <MESSAGE value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
     <MESSAGE value="treninky se ukladaji a zobrazuji se na sekci treninky" />
     <MESSAGE value="pridani training contextu pro prehlednejsi kod a mene props" />
@@ -442,6 +440,7 @@
     <MESSAGE value="fix: centering forms for login and register" />
     <MESSAGE value="remove temporary menu button from index page" />
     <MESSAGE value="change of exercises" />
-    <option name="LAST_COMMIT_MESSAGE" value="change of exercises" />
+    <MESSAGE value="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku" />
   </component>
 </project>
