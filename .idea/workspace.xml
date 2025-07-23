@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="change of exercises">
+      <change afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -52,37 +58,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
-    "Notification.DoNotAsk-Biome": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "javascript.nodejs.core.library.configured.version": "22.14.0",
-    "javascript.nodejs.core.library.typings.version": "22.14.1",
-    "last_opened_file_path": "C:/Users/Kuba/WebstormProjects/gym/src/components/register",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
+    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.14.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.14.1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/WebstormProjects/gym&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kuba\WebstormProjects\gym" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\login" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -128,6 +143,8 @@
       <workItem from="1753194865626" duration="91000" />
       <workItem from="1753197707943" duration="4339000" />
       <workItem from="1753213393536" duration="4767000" />
+      <workItem from="1753262359324" duration="15551000" />
+      <workItem from="1753305409599" duration="2043000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -273,20 +290,133 @@
       <option name="project" value="LOCAL" />
       <updated>1753217339346</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state">
+      <option name="closed" value="true" />
+      <created>1753267259191</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1753267259191</updated>
+    </task>
+    <task id="LOCAL-00020" summary="pridani moznosti smazat trenink s ochranou alert dialogu">
+      <option name="closed" value="true" />
+      <created>1753271019685</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1753271019685</updated>
+    </task>
+    <task id="LOCAL-00021" summary="pridani moznosti smazat jednotlivy cvik se zabezpecenim pomoci alert dialogu">
+      <option name="closed" value="true" />
+      <created>1753273531811</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1753273531811</updated>
+    </task>
+    <task id="LOCAL-00022" summary="pridani order logiky, upravovani setu a odstraneni setu pomoci popup dialogu">
+      <option name="closed" value="true" />
+      <created>1753276699170</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1753276699170</updated>
+    </task>
+    <task id="LOCAL-00023" summary="pridani hover state pro destructive button">
+      <option name="closed" value="true" />
+      <created>1753277203174</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1753277203174</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add dockerfiles">
+      <option name="closed" value="true" />
+      <created>1753277298587</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1753277298587</updated>
+    </task>
+    <task id="LOCAL-00025" summary="edit port">
+      <option name="closed" value="true" />
+      <created>1753277643694</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1753277643694</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fix: update packages">
+      <option name="closed" value="true" />
+      <created>1753277961679</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1753277961679</updated>
+    </task>
+    <task id="LOCAL-00027" summary="change version of betterauth">
+      <option name="closed" value="true" />
+      <created>1753278380163</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1753278380163</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add bunlock">
+      <option name="closed" value="true" />
+      <created>1753278436249</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1753278436249</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix: update bundler">
+      <option name="closed" value="true" />
+      <created>1753278990599</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1753278990599</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix: centering forms for login and register">
+      <option name="closed" value="true" />
+      <created>1753279380959</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1753279380959</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fix: centering forms for login and register">
+      <option name="closed" value="true" />
+      <created>1753279477575</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1753279477575</updated>
+    </task>
+    <task id="LOCAL-00032" summary="remove temporary menu button from index page">
+      <option name="closed" value="true" />
+      <created>1753279582784</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1753279582784</updated>
+    </task>
+    <task id="LOCAL-00033" summary="change of exercises">
+      <option name="closed" value="true" />
+      <created>1753280567035</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1753280567035</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial commit" />
-    <MESSAGE value="pridani buttonu, register a login form, light dark switch" />
-    <MESSAGE value="pridani hlavniho menu, headeru a novych sekci v route" />
-    <MESSAGE value="oprava theme, pridani herosection" />
-    <MESSAGE value="uprava herosection, pridani dalsich kategorii pro index" />
-    <MESSAGE value="pridani aboutme sekce" />
-    <MESSAGE value="pridani notFound componentu" />
     <MESSAGE value="vytvoreni pridavani cviku do treninku" />
     <MESSAGE value="konecne oprava tailwind animaci u accordionu, pridani defaultniho accordionu z origin ui do treninku pro zobrazovani treninku" />
     <MESSAGE value="treninky se ukladaji a zobrazuji se na sekci treninky" />
@@ -298,6 +428,20 @@
     <MESSAGE value="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod" />
     <MESSAGE value="zatim se pridava jen training name a date s userId" />
     <MESSAGE value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
+    <MESSAGE value="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state" />
+    <MESSAGE value="pridani moznosti smazat trenink s ochranou alert dialogu" />
+    <MESSAGE value="pridani moznosti smazat jednotlivy cvik se zabezpecenim pomoci alert dialogu" />
+    <MESSAGE value="pridani order logiky, upravovani setu a odstraneni setu pomoci popup dialogu" />
+    <MESSAGE value="pridani hover state pro destructive button" />
+    <MESSAGE value="add dockerfiles" />
+    <MESSAGE value="edit port" />
+    <MESSAGE value="fix: update packages" />
+    <MESSAGE value="change version of betterauth" />
+    <MESSAGE value="add bunlock" />
+    <MESSAGE value="fix: update bundler" />
+    <MESSAGE value="fix: centering forms for login and register" />
+    <MESSAGE value="remove temporary menu button from index page" />
+    <MESSAGE value="change of exercises" />
+    <option name="LAST_COMMIT_MESSAGE" value="change of exercises" />
   </component>
 </project>

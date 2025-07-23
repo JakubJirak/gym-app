@@ -38,7 +38,6 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { v4 as uuidv4 } from "uuid";
 
@@ -335,7 +334,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Přidat trénink</Button>
+        <Button size="sm">Přidat trénink</Button>
       </DialogTrigger>
       <DialogContent className="max-w-4xl p-4 pt-6 max-h-[98vh] w-[95vw] sm:w-full">
         <DialogHeader>
@@ -626,13 +625,12 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                         <Label className="text-sm font-medium">
                           Poznámky (volitelné)
                         </Label>
-                        <Textarea
+                        <Input
                           placeholder="Přidejte poznámky k tomuto cviku..."
                           value={exercise.notes}
                           onChange={(e) =>
                             updateExercise(exercise.id, "notes", e.target.value)
                           }
-                          className="min-h-[60px] resize-none"
                         />
                         <div className="self-end">
                           <Button

@@ -269,19 +269,23 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
       <div className="space-y-4">
         {/* Trainings List */}
         {trainings.length > 0 ? (
-          <div className="space-y-3">
-            <div className="flex items-center justify-end mt-[-20px]">
-              <TrainingDialog onSave={handleSaveTraining} />
-            </div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Dumbbell className="h-5 w-5" />
-                  Seznam tréninků
-                </CardTitle>
-                <CardDescription>
-                  Celkem {trainings.length} tréninků
-                </CardDescription>
+          <div className="space-y-3 mt-[-24px]">
+            <Card className="py-4">
+              <CardHeader className="px-4">
+                <div className="flex flex-row gap-1 items-center mb-[-8px]">
+                  <div className="flex-1">
+                    <CardTitle className="flex items-center gap-2">
+                      <Dumbbell className="h-5 w-5" />
+                      Vaše tréninky
+                    </CardTitle>
+                    <CardDescription>
+                      Celkem {trainings.length} tréninků
+                    </CardDescription>
+                  </div>
+                  <div className="">
+                    <TrainingDialog onSave={handleSaveTraining} />
+                  </div>
+                </div>
               </CardHeader>
             </Card>
             <Accordion type="multiple" className="w-full space-y-2">
@@ -307,12 +311,12 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                       </Badge>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col gap-4 items-stretch pt-4 relative">
+                  <AccordionContent className="pb-2">
+                    <div className="flex flex-col gap-2 items-stretch relative">
                       {training.workoutExercises.map((exercise) => (
                         <div
                           key={exercise.id}
-                          className="border rounded-lg p-4 space-y-3"
+                          className="border rounded-lg p-3 space-y-3"
                         >
                           <div className="flex items-center">
                             <h4 className="font-semibold text-lg">
@@ -359,7 +363,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           {exercise.note && <Separator />}
 
                           {exercise.note && (
-                            <div className="bg-secondary rounded-md p-3">
+                            <div className="bg-secondary rounded-md p-2 px-3">
                               <p className="text-base text-muted-foreground">
                                 {exercise.note}
                               </p>

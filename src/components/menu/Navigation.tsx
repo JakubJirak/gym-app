@@ -1,9 +1,9 @@
-import {Card} from "@/components/ui/card.tsx";
-import {Link} from "@tanstack/react-router";
-import {GiWeightLiftingUp} from "react-icons/gi";
-import {IoIosStats} from "react-icons/io";
-import {LuClipboardList} from "react-icons/lu";
-import {FaUser} from "react-icons/fa6";
+import { Card } from "@/components/ui/card.tsx";
+import { Link } from "@tanstack/react-router";
+import { FaUser } from "react-icons/fa6";
+import { GiWeightLiftingUp } from "react-icons/gi";
+import { IoIosStats } from "react-icons/io";
+import { LuClipboardList, LuDumbbell } from "react-icons/lu";
 
 const Navigation = () => {
   return (
@@ -24,6 +24,12 @@ const Navigation = () => {
         <Card className="flex flex-row px-8 items-center">
           <LuClipboardList size={40} />
           <p className="text-2xl ml-2">RUTINY</p>
+        </Card>
+      </Link>
+      <Link to={"/cviky"}>
+        <Card className="flex flex-row px-8 items-center">
+          <LuDumbbell size={40} />
+          <p className="text-2xl ml-2">CVIKY</p>
         </Card>
       </Link>
       <Link to={"/profil"}>
