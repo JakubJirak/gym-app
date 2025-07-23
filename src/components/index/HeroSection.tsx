@@ -24,9 +24,6 @@ const HeroSection = () => {
           </Button>
         </Link>
       </div>
-      <Link to={"/menu"} className="inline-flex mt-10 absolute">
-        <Button className="cursor-pointer">Menu</Button>
-      </Link>
     </div>
   );
 };
