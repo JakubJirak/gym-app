@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar, Dumbbell } from "lucide-react";
-import { useState } from "react";
 
 import {
   Accordion,
@@ -23,15 +22,16 @@ import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 
 export interface Set {
   id: string;
-  reps: string;
-  weight: string;
+  reps: number | null;
+  weight: string | null;
+  workoutExerciseId: string | null;
 }
 
 interface TrainingsListProp {
@@ -76,25 +76,52 @@ const addTraining = createServerFn({ method: "POST" })
     });
   });
 
-const TrainingsList = ({ userId }: TrainingsListProp) => {
-  const [trainings, setTrainings] = useState<Training[]>([]);
+const fetchTrainings = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    const trainings = await db.query.workouts.findMany({
+      where: (workout, { eq }) => eq(workout.userId, data.userId),
+      with: {
+        workoutExercises: {
+          with: {
+            sets: true,
+            exercise: true,
+          },
+        },
+      },
+    });
 
+    return trainings.sort(
+      // @ts-ignore
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+    );
+  });
+
+const TrainingsList = ({ userId }: TrainingsListProp) => {
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      refetch();
     },
     onError: (error: Error) => console.error(error),
   });
 
-  const handleSaveTraining = async (training: Training) => {
-    console.log(training);
-    handleAddTraining(training);
+  const { data: trainings, refetch } = useQuery({
+    queryKey: ["workouts", userId],
+    queryFn: () => fetchTrainings({ data: { userId } }),
+    enabled: true,
+  });
 
-    setTrainings((prev) =>
-      [training, ...prev].sort((a, b) => b.date.getTime() - a.date.getTime()),
-    );
+  const handleSaveTraining = async (training: Training) => {
+    handleAddTraining(training);
   };
+
+  function formatDate(date: Date | null, formatString: string) {
+    if (date) {
+      return format(date, formatString, { locale: cs });
+    }
+    return "neplatne datum";
+  }
 
   function handleAddTraining(training: Training) {
     const ISOdate = toLocalISODateString(training.date);
@@ -118,6 +145,20 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     if (set.reps) parts.push(`${set.reps}`);
     return parts.join(" × ") || "Prázdná série";
   };
+
+  if (trainings === undefined)
+    return (
+      <Card className="max-w-[500px] mx-auto">
+        <CardContent className="flex flex-col items-center justify-center py-6">
+          <GiWeightLiftingUp size={55} />
+          <h3 className="text-lg font-semibold my-3">Zatím žádné tréninky</h3>
+          <p className="text-muted-foreground text-center mb-5">
+            Začněte sledovat své tréninky přidáním prvního tréninku.
+          </p>
+          <TrainingDialog onSave={handleSaveTraining} />
+        </CardContent>
+      </Card>
+    );
 
   return (
     <div className="container mx-auto p-4 max-w-[500px]">
@@ -153,25 +194,25 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           <div className="font-semibold">{training.name}</div>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Calendar className="h-4 w-4" />
-                            {format(training.date, "PPPP", { locale: cs })}
+                            {formatDate(training.createdAt, "PPPP")}
                           </div>
                         </div>
                       </div>
                       <Badge variant="secondary">
-                        Cviky: {training.exercises.length}
+                        Cviky: {training.workoutExercises.length}
                       </Badge>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-4 pt-4">
-                      {training.exercises.map((exercise) => (
+                      {training.workoutExercises.map((exercise) => (
                         <div
                           key={exercise.id}
                           className="border rounded-lg p-4 space-y-3"
                         >
                           <div className="flex items-center justify-between">
                             <h4 className="font-semibold text-lg">
-                              {exercise.name}
+                              {exercise?.exercise?.name}
                             </h4>
                             <Badge variant="outline">
                               Série: {exercise.sets.length}
@@ -196,12 +237,12 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                             </div>
                           </div>
 
-                          {exercise.notes && <Separator />}
+                          {exercise.note && <Separator />}
 
-                          {exercise.notes && (
+                          {exercise.note && (
                             <div className="bg-secondary rounded-md p-3">
                               <p className="text-base text-muted-foreground">
-                                {exercise.notes}
+                                {exercise.note}
                               </p>
                             </div>
                           )}

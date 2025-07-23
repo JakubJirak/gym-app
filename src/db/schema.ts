@@ -105,19 +105,15 @@ export const sets = pgTable("sets", {
 
 /* --- Relations --- */
 
-export const users = pgTable("user", {
-  id: text("id").primaryKey(),
-});
-
 export const exercisesRelations = relations(exercises, ({ many }) => ({
   workoutExercises: many(workoutExercises),
 }));
 
 export const workoutsRelations = relations(workouts, ({ many, one }) => ({
   workoutExercises: many(workoutExercises),
-  user: one(users, {
+  user: one(user, {
     fields: [workouts.userId],
-    references: [users.id],
+    references: [user.id],
   }),
 }));
 

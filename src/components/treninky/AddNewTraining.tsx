@@ -67,7 +67,7 @@ const exerciseOptions: ExerciseOption[] = [
 
 export interface Set {
   id: string;
-  exerciseId: string; // přidáno - každá série má exerciseId
+  exerciseId: string;
   reps: string;
   weight: string;
 }
@@ -106,7 +106,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   );
   const [searchValues, setSearchValues] = useState<Record<string, string>>({});
 
-  // Uchovávej si id tréninku během otevření dialogu, aby bylo stejné pro všechny cviky
   const [localTrainingId, setLocalTrainingId] = useState<string | null>(null);
 
   const addExercise = () => {
@@ -276,14 +275,12 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   const handleSave = () => {
     if (!isValidTraining() || !training.date) return;
 
-    // Pokud nemáme id tréninku, vygenerujeme ho a doplníme do všech cviků a sérií
     let workoutId = localTrainingId;
     if (!workoutId) {
       workoutId = uuidv4();
       setLocalTrainingId(workoutId);
     }
 
-    // Při ukládání doplníme id do cviků a sérií, kdyby byl editován/odebrán poslední cvik
     const exercisesWithIds = training.exercises.map((ex) => {
       const exerciseId = ex.id || uuidv4();
       return {

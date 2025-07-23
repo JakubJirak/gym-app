@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="zatim se pridava jen training name a date s userId">
-      <change afterPath="$PROJECT_DIR$/src/utils/db-format-utils.ts" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,28 +52,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
-    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.14.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.14.1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/WebstormProjects/gym/src/components/register&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
+    "Notification.DoNotAsk-Biome": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "22.14.0",
+    "javascript.nodejs.core.library.typings.version": "22.14.1",
+    "last_opened_file_path": "C:/Users/Kuba/WebstormProjects/gym/src/components/register",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
@@ -131,7 +127,7 @@
       <workItem from="1753182245727" duration="10428000" />
       <workItem from="1753194865626" duration="91000" />
       <workItem from="1753197707943" duration="4339000" />
-      <workItem from="1753213393536" duration="3420000" />
+      <workItem from="1753213393536" duration="4767000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -269,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753194941836</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny">
+      <option name="closed" value="true" />
+      <created>1753217339345</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1753217339346</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +297,7 @@
     <MESSAGE value="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen" />
     <MESSAGE value="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod" />
     <MESSAGE value="zatim se pridava jen training name a date s userId" />
-    <option name="LAST_COMMIT_MESSAGE" value="zatim se pridava jen training name a date s userId" />
+    <MESSAGE value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
   </component>
 </project>
