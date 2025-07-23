@@ -18,12 +18,14 @@ import {
 } from "@/components/ui/card.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 
+import DialogDelete from "@/components/treninky/DialogDelete.tsx";
 import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
+import { eq } from "drizzle-orm";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 
@@ -97,6 +99,12 @@ const fetchTrainings = createServerFn({ method: "GET" })
     );
   });
 
+const deleteTraining = createServerFn()
+  .validator((data: { trainingId: string }) => data)
+  .handler(async ({ data }) => {
+    await db.delete(workouts).where(eq(workouts.id, data.trainingId)).execute();
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
@@ -136,6 +144,20 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
         userId: userId,
         date: ISOdate,
       },
+    });
+  }
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteTraining,
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => console.log(error),
+  });
+
+  function handleDeleteTraining(id: string) {
+    deleteMutation.mutate({
+      data: { trainingId: id },
     });
   }
 
@@ -204,7 +226,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="space-y-4 pt-4">
+                    <div className="flex flex-col gap-4 items-stretch pt-4 relative">
                       {training.workoutExercises.map((exercise) => (
                         <div
                           key={exercise.id}
@@ -248,6 +270,12 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           )}
                         </div>
                       ))}
+                      <div className="inline-flex self-end">
+                        <DialogDelete
+                          handleDeleteTraining={handleDeleteTraining}
+                          id={training.id}
+                        />
+                      </div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
