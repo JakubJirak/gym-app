@@ -7,7 +7,7 @@ export const Route = createFileRoute("/register/")({
 
 function RouteComponent() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex mt-10 items-center justify-center">
       <RegisterForm />
     </div>
   );
