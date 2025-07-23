@@ -1,5 +1,5 @@
-import {RegisterForm} from "@/components/register/RegisterForm.tsx";
-import {createFileRoute} from "@tanstack/react-router";
+import { RegisterForm } from "@/components/register/RegisterForm.tsx";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/register/")({
   component: RouteComponent,
@@ -7,8 +7,8 @@ export const Route = createFileRoute("/register/")({
 
 function RouteComponent() {
   return (
-    <div className="mt-20 flex justify-center">
-      <RegisterForm/>
+    <div className="flex items-center justify-center">
+      <RegisterForm />
     </div>
   );
 }
