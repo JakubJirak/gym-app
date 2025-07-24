@@ -10,7 +10,6 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import TanStackQueryLayout from "../integrations/tanstack-query/layout.tsx";
 
 import { Button } from "@/components/ui/button.tsx";
-import { StatsProvider } from "@/data/providers/stats-provider.tsx";
 import { ThemeProvider, useTheme } from "@/data/providers/theme-provider.tsx";
 import { getUserSession } from "@/lib/auth-server.ts";
 import { getThemeServerFn } from "@/lib/theme.ts";
@@ -53,14 +52,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const data = Route.useLoaderData();
     return (
       <ThemeProvider theme={data}>
-        <StatsProvider>
-          <RootDocument>
-            <Outlet />
-            <TanStackRouterDevtools />
+        <RootDocument>
+          <Outlet />
+          <TanStackRouterDevtools />
 
-            <TanStackQueryLayout />
-          </RootDocument>
-        </StatsProvider>
+          <TanStackQueryLayout />
+        </RootDocument>
       </ThemeProvider>
     );
   },
