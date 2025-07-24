@@ -74,7 +74,7 @@ export function ExerciseCombobox({
         <DrawerTitle className="hidden">title</DrawerTitle>
         <DrawerDescription className="hidden">description</DrawerDescription>
         <DrawerContent className="h-[70vh] max-h-[50vh]">
-          <div className="h-full overflow-auto max-w-[500px] lg:min-w-[500px] mx-auto">
+          <div className="h-full overflow-auto max-w-[500px] lg:min-w-[500px] lg:mx-auto">
             <StatusList
               setOpen={setOpen}
               setSelectedStatus={setSelectedStatus}
