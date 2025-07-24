@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani stranky profil">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/drawer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/use-media-query.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/command.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="uprava draweru pro mobil" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +136,7 @@
       <workItem from="1753213393536" duration="4767000" />
       <workItem from="1753262359324" duration="15551000" />
       <workItem from="1753305409599" duration="3327000" />
-      <workItem from="1753345346332" duration="7269000" />
+      <workItem from="1753345346332" duration="8149000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -436,15 +426,29 @@
       <option name="project" value="LOCAL" />
       <updated>1753357652370</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Pridani custom draweru pro pridavani cviku do treninku">
+      <option name="closed" value="true" />
+      <created>1753362216816</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1753362216816</updated>
+    </task>
+    <task id="LOCAL-00038" summary="uprava draweru pro mobil">
+      <option name="closed" value="true" />
+      <created>1753362871253</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1753362871253</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani training contextu pro prehlednejsi kod a mene props" />
-    <MESSAGE value="kompletni predelani pridavani treninku a zobrazovani vsech treninku" />
     <MESSAGE value="pridani tlacitka dalsi cvik pro jednodussi pridavani vice cviku" />
     <MESSAGE value="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni" />
     <MESSAGE value="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen" />
@@ -468,6 +472,8 @@
     <MESSAGE value="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku" />
     <MESSAGE value="uprava fontu kalendare a velikosti inputu pro nazev treninku a poznamku" />
     <MESSAGE value="pridani stranky profil" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani stranky profil" />
+    <MESSAGE value="Pridani custom draweru pro pridavani cviku do treninku" />
+    <MESSAGE value="uprava draweru pro mobil" />
+    <option name="LAST_COMMIT_MESSAGE" value="uprava draweru pro mobil" />
   </component>
 </project>

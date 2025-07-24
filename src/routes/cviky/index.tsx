@@ -1,5 +1,4 @@
 import Header from "@/components/Header.tsx";
-import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
@@ -21,7 +20,6 @@ function RouteComponent() {
   return (
     <div>
       <Header page="CVIKY" />
-      <ExerciseCombobox />
     </div>
   );
 }
