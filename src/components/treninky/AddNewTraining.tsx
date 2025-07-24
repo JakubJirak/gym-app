@@ -1,25 +1,11 @@
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
-import {
-  CalendarIcon,
-  Check,
-  ChevronsUpDown,
-  Plus,
-  Trash2,
-  X,
-} from "lucide-react";
+import { CalendarIcon, Plus, Trash2, X } from "lucide-react";
 import { useState } from "react";
 
+import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import {
   Dialog,
   DialogContent,
@@ -39,32 +25,13 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface ExerciseOption {
   id: number;
   name: string;
 }
-
-const exerciseOptions: ExerciseOption[] = [
-  { id: 1, name: "Squat" },
-  { id: 2, name: "Bench Press" },
-  { id: 3, name: "Deadlift" },
-  { id: 4, name: "Paused Squat" },
-  { id: 5, name: "Paused BP" },
-  { id: 6, name: "Clean & Jerk" },
-  { id: 7, name: "Lat. raises" },
-  { id: 8, name: "Db. rear delts" },
-  { id: 9, name: "EZ Bar curls" },
-  { id: 10, name: "Hammer curls" },
-  { id: 11, name: "Shoulder db. press" },
-  { id: 12, name: "Pull up" },
-  { id: 13, name: "HS Row" },
-  { id: 14, name: "Chest press" },
-  { id: 15, name: "Lat. pulldown Neut." },
-  { id: 16, name: "Triceps ex." },
-  { id: 17, name: "Abs wheel" },
-];
 
 export interface Set {
   id: string;
@@ -89,6 +56,11 @@ export interface Training {
   exercises: Exercise[];
 }
 
+type ExerciseSelect = {
+  id: number;
+  name: string;
+};
+
 interface TrainingDialogProps {
   onSave: (training: Training) => void;
 }
@@ -100,12 +72,8 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     date: undefined as Date | undefined,
     exercises: [] as Exercise[],
   });
-
-  const [customExercises, setCustomExercises] = useState<ExerciseOption[]>([]);
-  const [openComboboxes, setOpenComboboxes] = useState<Record<string, boolean>>(
-    {},
-  );
-  const [searchValues, setSearchValues] = useState<Record<string, string>>({});
+  const [selectedStatus, setSelectedStatus] =
+    React.useState<ExerciseSelect | null>(null);
 
   const [localTrainingId, setLocalTrainingId] = useState<string | null>(null);
 
@@ -142,16 +110,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       ...prev,
       exercises: prev.exercises.filter((ex) => ex.id !== exerciseId),
     }));
-    setOpenComboboxes((prev) => {
-      const newState = { ...prev };
-      delete newState[exerciseId as string];
-      return newState;
-    });
-    setSearchValues((prev) => {
-      const newState = { ...prev };
-      delete newState[exerciseId as string];
-      return newState;
-    });
   };
 
   const updateExercise = <K extends keyof Exercise>(
@@ -221,40 +179,12 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
-  const addCustomExercise = (
-    exerciseId: string | number,
-    exerciseName: string,
-  ) => {
-    const trimmedName = exerciseName.trim();
-    if (
-      trimmedName &&
-      !customExercises.find(
-        (e) => e.name.toLowerCase() === trimmedName.toLowerCase(),
-      ) &&
-      !exerciseOptions.find(
-        (e) => e.name.toLowerCase() === trimmedName.toLowerCase(),
-      )
-    ) {
-      const customExercise: ExerciseOption = {
-        id: -Date.now(),
-        name: trimmedName,
-      };
-      setCustomExercises((prev) => [...prev, customExercise]);
-      updateExercise(exerciseId, "name", customExercise.name);
-      updateExercise(exerciseId, "exerciseId", customExercise.id);
-      setOpenComboboxes((prev) => ({ ...prev, [exerciseId as string]: false }));
-      setSearchValues((prev) => ({ ...prev, [exerciseId as string]: "" }));
-    }
-  };
-
   const selectExercise = (
     exerciseId: string | number,
     selected: ExerciseOption,
   ) => {
     updateExercise(exerciseId, "name", selected.name);
     updateExercise(exerciseId, "exerciseId", selected.id);
-    setOpenComboboxes((prev) => ({ ...prev, [exerciseId as string]: false }));
-    setSearchValues((prev) => ({ ...prev, [exerciseId as string]: "" }));
   };
 
   const isValidTraining = (): boolean => {
@@ -309,8 +239,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       date: undefined,
       exercises: [],
     });
-    setOpenComboboxes({});
-    setSearchValues({});
+    setSelectedStatus(null);
     setLocalTrainingId(null);
   };
 
@@ -321,15 +250,9 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       date: undefined,
       exercises: [],
     });
-    setOpenComboboxes({});
-    setSearchValues({});
+    setSelectedStatus(null);
     setLocalTrainingId(null);
   };
-
-  const allExercises: ExerciseOption[] = [
-    ...exerciseOptions,
-    ...customExercises,
-  ];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -417,129 +340,12 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                               <X className="h-4 w-4" />
                             </Button>
                           </div>
-
-                          <Popover
-                            open={openComboboxes[String(exercise.id)] || false}
-                            onOpenChange={(open) =>
-                              setOpenComboboxes((prev) => ({
-                                ...prev,
-                                [exercise.id as string]: open,
-                              }))
-                            }
-                          >
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="outline"
-                                aria-expanded={
-                                  openComboboxes[String(exercise.id)] || false
-                                }
-                                className="w-full justify-between bg-transparent"
-                              >
-                                {exercise.name || "Vyberte cvik..."}
-                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                              className="w-full p-0 pointer-events-auto"
-                              align="start"
-                            >
-                              <Command>
-                                <CommandInput
-                                  placeholder="Hledat nebo přidat cvik..."
-                                  value={
-                                    searchValues[String(exercise.id)] || ""
-                                  }
-                                  onValueChange={(value) =>
-                                    setSearchValues((prev) => ({
-                                      ...prev,
-                                      [exercise.id as string]: value,
-                                    }))
-                                  }
-                                />
-                                <CommandList>
-                                  <ScrollArea className="h-[300px] overflow-auto pointer-events-auto">
-                                    <CommandEmpty>
-                                      <div className="p-2 space-y-2">
-                                        <p className="text-sm text-muted-foreground">
-                                          Cvik nenalezen.
-                                        </p>
-                                        {(
-                                          searchValues[String(exercise.id)] ||
-                                          ""
-                                        ).trim() && (
-                                          <Button
-                                            size="sm"
-                                            onClick={() =>
-                                              addCustomExercise(
-                                                exercise.id,
-                                                searchValues[
-                                                  String(exercise.id)
-                                                ] || "",
-                                              )
-                                            }
-                                            className="w-full"
-                                          >
-                                            <Plus className="h-3 w-3 mr-1" />
-                                            Přidat "
-                                            {(
-                                              searchValues[
-                                                String(exercise.id)
-                                              ] || ""
-                                            ).trim()}
-                                            "
-                                          </Button>
-                                        )}
-                                      </div>
-                                    </CommandEmpty>
-                                    <CommandGroup>
-                                      {allExercises
-                                        .filter((option) =>
-                                          option.name
-                                            .toLowerCase()
-                                            .includes(
-                                              (
-                                                searchValues[
-                                                  String(exercise.id)
-                                                ] || ""
-                                              ).toLowerCase(),
-                                            ),
-                                        )
-                                        .map((option) => (
-                                          <CommandItem
-                                            key={option.id}
-                                            value={option.name}
-                                            onSelect={() =>
-                                              selectExercise(
-                                                exercise.id,
-                                                option,
-                                              )
-                                            }
-                                          >
-                                            <Check
-                                              className={cn(
-                                                "mr-2 h-4 w-4",
-                                                exercise.exerciseId ===
-                                                  option.id
-                                                  ? "opacity-100"
-                                                  : "opacity-0",
-                                              )}
-                                            />
-                                            {option.name}
-                                            {customExercises.find(
-                                              (c) => c.id === option.id,
-                                            ) && (
-                                              <span className="ml-auto text-xs text-muted-foreground">
-                                                (Vlastní)
-                                              </span>
-                                            )}
-                                          </CommandItem>
-                                        ))}
-                                    </CommandGroup>
-                                  </ScrollArea>
-                                </CommandList>
-                              </Command>
-                            </PopoverContent>
-                          </Popover>
+                          <ExerciseCombobox
+                            selectedStatus={selectedStatus}
+                            setSelectedStatus={setSelectedStatus}
+                            exerciseId={exercise.id}
+                            selectExercise={selectExercise}
+                          />
                         </div>
                       </div>
                       <div className="space-y-3">
