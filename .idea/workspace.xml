@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: remove testing component from cviky">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/toggle.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony">
+      <change afterPath="$PROJECT_DIR$/src/data/providers/stats-provider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/providers/training-provider.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +142,8 @@
       <workItem from="1753213393536" duration="4767000" />
       <workItem from="1753262359324" duration="15551000" />
       <workItem from="1753305409599" duration="3327000" />
-      <workItem from="1753345346332" duration="10452000" />
+      <workItem from="1753345346332" duration="11952000" />
+      <workItem from="1753368839771" duration="2709000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -461,14 +457,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753363127772</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony">
+      <option name="closed" value="true" />
+      <created>1753365647806</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1753365647806</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni" />
     <MESSAGE value="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen" />
     <MESSAGE value="predelani formularu pro prihalsovani a registraci pomoci tanstack form, pridani validace pomoci zod" />
     <MESSAGE value="zatim se pridava jen training name a date s userId" />
@@ -493,6 +496,7 @@
     <MESSAGE value="Pridani custom draweru pro pridavani cviku do treninku" />
     <MESSAGE value="uprava draweru pro mobil" />
     <MESSAGE value="fix: remove testing component from cviky" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: remove testing component from cviky" />
+    <MESSAGE value="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony" />
+    <option name="LAST_COMMIT_MESSAGE" value="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony" />
   </component>
 </project>
