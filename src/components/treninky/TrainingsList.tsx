@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar, Dumbbell } from "lucide-react";
 
+import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
 import {
   Accordion,
   AccordionContent,
@@ -16,11 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import { Separator } from "@/components/ui/separator.tsx";
-
-import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
-import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
-import { DialogEditSet } from "@/components/treninky/DialogEditSet.tsx";
+import { Toggle } from "@/components/ui/toggle.tsx";
 import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
@@ -29,8 +26,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
+import TrainingLi from "./TrainingLi.tsx";
 
 export interface Set {
   id: string;
@@ -141,6 +140,7 @@ const updateSet = createServerFn()
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [editSetWeight, setEditSetWeight] = useState<string>("");
   const [editSetReps, setEditSetReps] = useState<string>("");
+  const [toggleEdit, setToggleEdit] = useState(false);
 
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
@@ -314,68 +314,35 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                   <AccordionContent className="pb-2">
                     <div className="flex flex-col gap-2 items-stretch relative">
                       {training.workoutExercises.map((exercise) => (
-                        <div
+                        <TrainingLi
                           key={exercise.id}
-                          className="border rounded-lg p-3 space-y-3"
-                        >
-                          <div className="flex items-center">
-                            <h4 className="font-semibold text-lg">
-                              {exercise?.exercise?.name}
-                            </h4>
-                            <DialogDeleteExercise
-                              handleDeleteExercise={handleDeleteExericse}
-                              id={exercise.id}
-                            />
-                            <Badge variant="outline">
-                              Série: {exercise.sets.length}
-                            </Badge>
-                          </div>
-
-                          <div>
-                            <div className="grid gap-2">
-                              {exercise.sets.map((set, setIndex) => (
-                                <div
-                                  key={set.id}
-                                  className="flex items-center bg-secondary rounded-md py-2 px-3"
-                                >
-                                  <span className="text-sm font-medium flex-1">
-                                    {setIndex + 1}. série
-                                  </span>
-                                  <span className="text-sm mr-2">
-                                    {formatSetInfo(set)}
-                                  </span>
-                                  <DialogEditSet
-                                    repsBefore={set.reps}
-                                    weightBefore={set.weight}
-                                    setId={set.id}
-                                    handleDeleteSet={handleDeleteSet}
-                                    editSetReps={editSetReps}
-                                    editSetWeight={editSetWeight}
-                                    setEditSetReps={setEditSetReps}
-                                    setEditSetWeight={setEditSetWeight}
-                                    handleEditSet={handleEditSet}
-                                  />
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {exercise.note && <Separator />}
-
-                          {exercise.note && (
-                            <div className="bg-secondary rounded-md p-2 px-3">
-                              <p className="text-base text-muted-foreground">
-                                {exercise.note}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                      <div className="inline-flex self-end">
-                        <DialogDelete
-                          handleDeleteTraining={handleDeleteTraining}
-                          id={training.id}
+                          exercise={exercise}
+                          formatSetInfo={formatSetInfo}
+                          editSetWeight={editSetWeight}
+                          editSetReps={editSetReps}
+                          setEditSetWeight={setEditSetWeight}
+                          setEditSetReps={setEditSetReps}
+                          handleDeleteSet={handleDeleteSet}
+                          handleDeleteExercise={handleDeleteExericse}
+                          handleEditSet={handleEditSet}
+                          toggleEdit={toggleEdit}
                         />
+                      ))}
+                      <div className="flex justify-between items-center">
+                        <div className="">
+                          <Toggle
+                            variant="outline"
+                            onClick={() => setToggleEdit(!toggleEdit)}
+                          >
+                            <FaPencilAlt /> Upravit
+                          </Toggle>
+                        </div>
+                        <div className="inline-flex self-end">
+                          <DialogDelete
+                            handleDeleteTraining={handleDeleteTraining}
+                            id={training.id}
+                          />
+                        </div>
                       </div>
                     </div>
                   </AccordionContent>

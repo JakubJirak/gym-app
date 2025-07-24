@@ -56,7 +56,7 @@ export function DialogEditSet({
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon-sm">
+          <Button variant="outline" size="icon-xs">
             <FaPencilAlt />
           </Button>
         </DialogTrigger>
@@ -72,6 +72,7 @@ export function DialogEditSet({
               <div className="grid gap-3">
                 <Label htmlFor="vaha">Váha (kg)</Label>
                 <Input
+                  placeholder={weightBefore}
                   value={editSetWeight}
                   onChange={(e) => setEditSetWeight(e.target.value)}
                   id="vaha"
@@ -85,6 +86,7 @@ export function DialogEditSet({
               <div className="grid gap-3">
                 <Label htmlFor="opak">Počet opakování</Label>
                 <Input
+                  placeholder={String(repsBefore)}
                   value={editSetReps}
                   onChange={(e) => setEditSetReps(e.target.value)}
                   id="opak"
