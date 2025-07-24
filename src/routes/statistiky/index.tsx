@@ -67,7 +67,7 @@ function RouteComponent() {
     return (
       <>
         <Header page="STATISTIKY" />
-        <div className="max-w-[500px] mx-auto">
+        <div className="max-w-[500px] mx-auto w-[90%]">
           <Card className="p-4">
             <p>Pro zobrazeni statistik nejprve musite vytvorit trenink</p>
           </Card>
@@ -78,7 +78,7 @@ function RouteComponent() {
   return (
     <div>
       <Header page="STATISTIKY" />
-      <div className="max-w-[500px] mx-auto">
+      <div className="max-w-[500px] mx-auto w-[90%]">
         <Card className="p-4">
           <CardContent className="px-2">
             <div className="space-y-2">

@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/drawer";
 import { useEffect } from "react";
 
-type Status = {
+type ExerciseSelect = {
   id: number;
   name: string;
 };
 
-const exerciseOptions: Status[] = [
+const exerciseOptions: ExerciseSelect[] = [
   { id: 1, name: "Squat" },
   { id: 2, name: "Bench Press" },
   { id: 3, name: "Deadlift" },
@@ -44,10 +44,15 @@ const exerciseOptions: Status[] = [
 ];
 
 interface ExerciseComboboxProps {
-  selectedStatus: Status | null;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<Status | null>>;
+  selectedStatus: ExerciseSelect | null;
+  setSelectedStatus: React.Dispatch<
+    React.SetStateAction<ExerciseSelect | null>
+  >;
   exerciseId: string;
-  selectExercise: (exerciseId: string | number, selected: Status) => void;
+  selectExercise: (
+    exerciseId: string | number,
+    selected: ExerciseSelect,
+  ) => void;
 }
 
 export function ExerciseCombobox({
@@ -91,7 +96,7 @@ function StatusList({
   setSelectedStatus,
 }: {
   setOpen: (open: boolean) => void;
-  setSelectedStatus: (status: Status | null) => void;
+  setSelectedStatus: (status: ExerciseSelect | null) => void;
 }) {
   return (
     <Command className="w-full">

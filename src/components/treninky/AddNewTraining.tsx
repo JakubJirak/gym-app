@@ -25,7 +25,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface ExerciseOption {
@@ -72,9 +71,11 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     date: undefined as Date | undefined,
     exercises: [] as Exercise[],
   });
-  const [selectedStatus, setSelectedStatus] =
-    React.useState<ExerciseSelect | null>(null);
 
+  // Ukládání vybraného statusu pro každý cvik zvlášť podle jeho id
+  const [selectedStatuses, setSelectedStatuses] = useState<
+    Record<string, ExerciseSelect | null>
+  >({});
   const [localTrainingId, setLocalTrainingId] = useState<string | null>(null);
 
   const addExercise = () => {
@@ -103,6 +104,10 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       ...prev,
       exercises: [...prev.exercises, newExercise],
     }));
+    setSelectedStatuses((prev) => ({
+      ...prev,
+      [exerciseId]: null,
+    }));
   };
 
   const removeExercise = (exerciseId: string | number) => {
@@ -110,6 +115,11 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       ...prev,
       exercises: prev.exercises.filter((ex) => ex.id !== exerciseId),
     }));
+    setSelectedStatuses((prev) => {
+      const newStatuses = { ...prev };
+      delete newStatuses[exerciseId.toString()];
+      return newStatuses;
+    });
   };
 
   const updateExercise = <K extends keyof Exercise>(
@@ -179,12 +189,25 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     }));
   };
 
+  // Nastaví selectedStatus jen pro konkrétní cvik podle id
+  const handleSetSelectedStatus = (
+    exerciseId: string,
+    value: ExerciseSelect | null,
+  ) => {
+    setSelectedStatuses((prev) => ({
+      ...prev,
+      [exerciseId]: value,
+    }));
+  };
+
+  // Při volbě cviku uloží stav pro konkrétní cvik
   const selectExercise = (
     exerciseId: string | number,
     selected: ExerciseOption,
   ) => {
     updateExercise(exerciseId, "name", selected.name);
     updateExercise(exerciseId, "exerciseId", selected.id);
+    handleSetSelectedStatus(exerciseId.toString(), selected);
   };
 
   const isValidTraining = (): boolean => {
@@ -239,7 +262,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       date: undefined,
       exercises: [],
     });
-    setSelectedStatus(null);
+    setSelectedStatuses({});
     setLocalTrainingId(null);
   };
 
@@ -250,7 +273,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
       date: undefined,
       exercises: [],
     });
-    setSelectedStatus(null);
+    setSelectedStatuses({});
     setLocalTrainingId(null);
   };
 
@@ -341,8 +364,12 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                             </Button>
                           </div>
                           <ExerciseCombobox
-                            selectedStatus={selectedStatus}
-                            setSelectedStatus={setSelectedStatus}
+                            selectedStatus={
+                              selectedStatuses[exercise.id] ?? null
+                            }
+                            setSelectedStatus={(value) =>
+                              handleSetSelectedStatus(exercise.id, value)
+                            }
                             exerciseId={exercise.id}
                             selectExercise={selectExercise}
                           />
