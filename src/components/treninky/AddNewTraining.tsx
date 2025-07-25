@@ -406,7 +406,6 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                                   Váha (kg)
                                 </div>
                                 <Input
-                                  autoFocus
                                   type="number"
                                   value={set.weight}
                                   min={1}

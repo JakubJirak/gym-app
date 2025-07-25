@@ -85,7 +85,7 @@ export function ExerciseCombobox({
     <>
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Button variant="outline" className="w-full justify-start">
+          <Button variant="outline" className="w-full justify-start" autoFocus>
             {selectedStatus ? <>{selectedStatus.name}</> : <>Vyber cvik</>}
           </Button>
         </DrawerTrigger>
@@ -116,7 +116,7 @@ function StatusList({
 }) {
   return (
     <Command className="w-full">
-      <CommandInput placeholder="Vyhledej cvik..." />
+      <CommandInput placeholder="Vyhledej cvik..." autoFocus />
       <CommandList className="max-h-[55vh]">
         <CommandEmpty className="p-4 text-muted-foreground text-sm text-center">
           Nezoufej, v kategorii cviky si můžeš přidat svůj oblíbený cvik!
