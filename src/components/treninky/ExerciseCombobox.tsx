@@ -24,15 +24,20 @@ import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { useEffect } from "react";
 
-type ExerciseSelect = {
+type ExerciseSelectWithID = {
   id: string;
   userId: string | null;
   name: string;
 };
 
+type ExerciseSelect = {
+  id: string;
+  name: string;
+};
+
 interface ExerciseComboboxProps {
   selectedStatus: ExerciseSelect | null;
-  setSelectedStatus: (status: ExerciseSelect | null) => void; // ZMĚNA TADY
+  setSelectedStatus: (status: ExerciseSelect | null) => void;
   exerciseId: string;
   selectExercise: (
     exerciseId: string | number,
@@ -66,7 +71,7 @@ export function ExerciseCombobox({
     enabled: !!session,
   });
 
-  const exercises: ExerciseSelect[] = [
+  const exercises: ExerciseSelectWithID[] = [
     ...(customExercises ?? []),
     ...(defaultExercises ?? []),
   ];
@@ -107,7 +112,7 @@ function StatusList({
 }: {
   setOpen: (open: boolean) => void;
   setSelectedStatus: (status: ExerciseSelect | null) => void;
-  exercises: ExerciseSelect[];
+  exercises: ExerciseSelectWithID[];
 }) {
   return (
     <Command className="w-full">

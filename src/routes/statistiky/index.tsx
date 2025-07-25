@@ -97,7 +97,13 @@ function RouteComponent() {
     0,
   );
 
-  if (isLoading) return <p>Načítání dat</p>;
+  if (isLoading)
+    return (
+      <>
+        <Header page="STATISTIKY" />
+        <p>Načítání dat</p>
+      </>
+    );
 
   if (trainings === undefined || trainings.length === 0)
     return (

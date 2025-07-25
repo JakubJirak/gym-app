@@ -78,7 +78,13 @@ function RouteComponent() {
   };
 
   if (!session || isDefaultLoading || isCustomLoading)
-    return <div>Načítám...</div>;
+    return (
+      <>
+        <Header page="CVIKY" />
+        <p>Načítání dat</p>
+      </>
+    );
+
   if (defaultExercises === undefined || customExercises === undefined)
     return null;
 

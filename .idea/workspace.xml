@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani karet funkci do hlavni stranky">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani statistik k celkovym statistikam">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -145,15 +148,7 @@
       <workItem from="1753345346332" duration="11952000" />
       <workItem from="1753368839771" duration="5306000" />
       <workItem from="1753437795188" duration="5967000" />
-      <workItem from="1753473117256" duration="5726000" />
-    </task>
-    <task id="LOCAL-00002" summary="pridani buttonu, register a login form, light dark switch">
-      <option name="closed" value="true" />
-      <created>1752403090297</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1752403090297</updated>
+      <workItem from="1753473117256" duration="6535000" />
     </task>
     <task id="LOCAL-00003" summary="pridani hlavniho menu, headeru a novych sekci v route">
       <option name="closed" value="true" />
@@ -539,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753478581437</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="pridani statistik k celkovym statistikam">
+      <option name="closed" value="true" />
+      <created>1753479225068</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1753479225069</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +560,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add dockerfiles" />
     <MESSAGE value="edit port" />
     <MESSAGE value="fix: update packages" />
     <MESSAGE value="change version of betterauth" />
@@ -582,6 +584,7 @@
     <MESSAGE value="pridani autofocusu na novy cvik a serii" />
     <MESSAGE value="pridani moznosti pridat vlastni cviky, cviky na vyber jsou nyni ciste z databaze a je to default + uzivatelske cviky" />
     <MESSAGE value="pridani karet funkci do hlavni stranky" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani karet funkci do hlavni stranky" />
+    <MESSAGE value="pridani statistik k celkovym statistikam" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridani statistik k celkovym statistikam" />
   </component>
 </project>
