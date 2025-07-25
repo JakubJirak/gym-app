@@ -149,7 +149,11 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error: Error) => console.error(error),
   });
 
-  const { data: trainings, refetch } = useQuery({
+  const {
+    data: trainings,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["workouts", userId],
     queryFn: () => fetchTrainings({ data: { userId } }),
     enabled: true,
@@ -248,6 +252,8 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     if (set.reps) parts.push(`${set.reps}`);
     return parts.join(" × ") || "Prázdná série";
   };
+
+  if (isLoading) return <p>Načítání dat</p>;
 
   if (trainings === undefined)
     return (

@@ -72,6 +72,7 @@ export const verification = pgTable("verification", {
 
 export const exercises = pgTable("exercises", {
   id: text("id").primaryKey(),
+  userId: text("user_id"),
   name: varchar("name", { length: 100 }).notNull().unique(),
 });
 

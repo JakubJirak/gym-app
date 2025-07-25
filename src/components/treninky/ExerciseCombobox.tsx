@@ -16,32 +16,19 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { db } from "@/db";
+import { exercises } from "@/db/schema.ts";
+import { authClient } from "@/lib/auth-client.ts";
+import { useQuery } from "@tanstack/react-query";
+import { createServerFn } from "@tanstack/react-start";
+import { eq } from "drizzle-orm";
 import { useEffect } from "react";
 
 type ExerciseSelect = {
   id: string;
+  userId: string | null;
   name: string;
 };
-
-const exerciseOptions: ExerciseSelect[] = [
-  { id: "sq", name: "Squat" },
-  { id: "bp", name: "Bench Press" },
-  { id: "dl", name: "Deadlift" },
-  { id: "psq", name: "Paused Squat" },
-  { id: "pbp", name: "Paused BP" },
-  { id: "caj", name: "Clean & Jerk" },
-  { id: "latr", name: "Lat. raises" },
-  { id: "dbrear", name: "Db. rear delts" },
-  { id: "ezbar", name: "EZ Bar curls" },
-  { id: "hamc", name: "Hammer curls" },
-  { id: "shdb", name: "Shoulder db. press" },
-  { id: "pullup", name: "Pull up" },
-  { id: "hsrow", name: "HS Row" },
-  { id: "chpr", name: "Chest press" },
-  { id: "latpdwn", name: "Lat. pulldown Neut." },
-  { id: "trex", name: "Triceps ex." },
-  { id: "absw", name: "Abs wheel" },
-];
 
 interface ExerciseComboboxProps {
   selectedStatus: ExerciseSelect | null;
@@ -53,13 +40,36 @@ interface ExerciseComboboxProps {
   ) => void;
 }
 
+const getExById = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+  });
+
 export function ExerciseCombobox({
   selectedStatus,
   setSelectedStatus,
   exerciseId,
   selectExercise,
 }: ExerciseComboboxProps) {
+  const { data: session } = authClient.useSession();
   const [open, setOpen] = React.useState(false);
+
+  const { data: defaultExercises } = useQuery({
+    queryKey: ["defaultExercises"],
+    queryFn: () => getExById({ data: { userId: "default" } }),
+  });
+
+  const { data: customExercises } = useQuery({
+    queryKey: ["customExercises", session?.user.id],
+    queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
+  });
+
+  const exercises: ExerciseSelect[] = [
+    ...(customExercises ?? []),
+    ...(defaultExercises ?? []),
+  ];
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
@@ -81,6 +91,7 @@ export function ExerciseCombobox({
             <StatusList
               setOpen={setOpen}
               setSelectedStatus={setSelectedStatus}
+              exercises={exercises}
             />
           </div>
         </DrawerContent>
@@ -92,9 +103,11 @@ export function ExerciseCombobox({
 function StatusList({
   setOpen,
   setSelectedStatus,
+  exercises,
 }: {
   setOpen: (open: boolean) => void;
   setSelectedStatus: (status: ExerciseSelect | null) => void;
+  exercises: ExerciseSelect[];
 }) {
   return (
     <Command className="w-full">
@@ -102,15 +115,14 @@ function StatusList({
       <CommandList className="max-h-[55vh]">
         <CommandEmpty>Žádný cvik se nenašel.</CommandEmpty>
         <CommandGroup>
-          {exerciseOptions.map((status) => (
+          {exercises.map((status) => (
             <CommandItem
               className="text-base p-2"
               key={status.name}
               value={status.name}
               onSelect={(value) => {
                 setSelectedStatus(
-                  exerciseOptions.find((priority) => priority.name === value) ||
-                    null,
+                  exercises.find((priority) => priority.name === value) || null,
                 );
                 setOpen(false);
               }}

@@ -45,7 +45,7 @@ const fetchTrainings = createServerFn({ method: "GET" })
 function RouteComponent() {
   const { data: session } = authClient.useSession();
 
-  const { data: trainings } = useQuery({
+  const { data: trainings, isLoading } = useQuery({
     queryKey: ["workouts", session?.user.id],
     queryFn: () => fetchTrainings({ data: { userId: session?.user.id ?? "" } }),
     enabled: true,
@@ -65,6 +65,8 @@ function RouteComponent() {
       ),
     0,
   );
+
+  if (isLoading) return <p>Načítání dat</p>;
 
   if (trainings === undefined || trainings.length === 0)
     return (
