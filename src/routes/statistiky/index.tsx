@@ -71,8 +71,8 @@ function RouteComponent() {
       <>
         <Header page="STATISTIKY" />
         <div className="max-w-[500px] mx-auto w-[90%]">
-          <Card className="p-4">
-            <p>Pro zobrazeni statistik nejprve musite vytvorit trenink</p>
+          <Card className="p-4 text-center">
+            <p>Pro zobrazení statistik musíte nejprve vytvořit trénink</p>
           </Card>
         </div>
       </>
