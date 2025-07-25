@@ -7,33 +7,33 @@ import { LuClipboardList, LuDumbbell } from "react-icons/lu";
 
 const Navigation = () => {
   return (
-    <div className="flex max-w-[500px] w-[90%] mx-auto gap-6 mt-3 flex-col mb-6">
+    <div className="flex max-w-[500px] w-[90%] mx-auto gap-4 mt-3 flex-col mb-6">
       <Link to={"/treninky"}>
-        <Card className="flex flex-row px-8 items-center">
+        <Card className="flex flex-row p-5 items-center">
           <GiWeightLiftingUp size={40} />
           <p className="text-2xl ml-2">TRÉNINKY</p>
         </Card>
       </Link>
       <Link to={"/statistiky"}>
-        <Card className="flex flex-row px-8 items-center">
+        <Card className="flex flex-row p-5 items-center">
           <IoIosStats size={40} />
           <p className="text-2xl ml-2">STATISTIKY</p>
         </Card>
       </Link>
       <Link to={"/rutiny"}>
-        <Card className="flex flex-row px-8 items-center">
+        <Card className="flex flex-row p-5 items-center">
           <LuClipboardList size={40} />
           <p className="text-2xl ml-2">RUTINY</p>
         </Card>
       </Link>
       <Link to={"/cviky"}>
-        <Card className="flex flex-row px-8 items-center">
+        <Card className="flex flex-row p-5 items-center">
           <LuDumbbell size={40} />
           <p className="text-2xl ml-2">CVIKY</p>
         </Card>
       </Link>
       <Link to={"/profil"}>
-        <Card className="flex flex-row px-8 items-center">
+        <Card className="flex flex-row p-5 items-center">
           <FaUser size={40} />
           <p className="text-2xl ml-2">PROFIL</p>
         </Card>

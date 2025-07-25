@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: vybirani cviku funguje pro kazdy cvik zvlast">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: oprava starych typu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +145,7 @@
       <workItem from="1753305409599" duration="3327000" />
       <workItem from="1753345346332" duration="11952000" />
       <workItem from="1753368839771" duration="5306000" />
-      <workItem from="1753437795188" duration="2176000" />
+      <workItem from="1753437795188" duration="2907000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -501,15 +499,40 @@
       <option name="project" value="LOCAL" />
       <updated>1753380796217</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="zmena exercise id na text misto integer">
+      <option name="closed" value="true" />
+      <created>1753446846119</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1753446846119</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix: oprava starych typu">
+      <option name="closed" value="true" />
+      <created>1753447015640</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1753447015640</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
-    <MESSAGE value="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state" />
     <MESSAGE value="pridani moznosti smazat trenink s ochranou alert dialogu" />
     <MESSAGE value="pridani moznosti smazat jednotlivy cvik se zabezpecenim pomoci alert dialogu" />
     <MESSAGE value="pridani order logiky, upravovani setu a odstraneni setu pomoci popup dialogu" />
@@ -533,6 +556,8 @@
     <MESSAGE value="pridani zakladnich statistik" />
     <MESSAGE value="odstraneni zbytecneho providera" />
     <MESSAGE value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
+    <MESSAGE value="zmena exercise id na text misto integer" />
+    <MESSAGE value="fix: oprava starych typu" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: oprava starych typu" />
   </component>
 </project>

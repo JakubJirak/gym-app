@@ -264,7 +264,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     );
 
   return (
-    <div className="container mx-auto p-4 max-w-[500px]">
+    <div className="container mx-auto w-[90%] mt-12 max-w-[500px]">
       <div className="space-y-4">
         {/* Trainings List */}
         {trainings.length > 0 ? (
@@ -278,7 +278,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                       Vaše tréninky
                     </CardTitle>
                     <CardDescription>
-                      Celkem {trainings.length} tréninků
+                      Celkem tréninků: {trainings.length}
                     </CardDescription>
                   </div>
                   <div className="">
@@ -294,20 +294,16 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                   value={training.id}
                   className="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-xl border px-4 outline-none last:border-b has-focus-visible:ring-[3px]"
                 >
-                  <AccordionTrigger className="hover:no-underline flex items-center">
-                    <div className="flex items-center justify-between w-full pr-4">
-                      <div className="flex items-center gap-3">
-                        <div className="text-left">
-                          <div className="font-semibold">{training.name}</div>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Calendar className="h-4 w-4" />
-                            {formatDate(new Date(training.workoutDate), "PPPP")}
-                          </div>
-                        </div>
-                      </div>
+                  <AccordionTrigger className="hover:no-underline flex items-center py-3 gap-2">
+                    <div className="w-full grid grid-cols-[5fr_2fr] items-center grid-rows-2">
+                      <div className="font-semibold">{training.name}</div>
                       <Badge variant="secondary">
                         Cviky: {training.workoutExercises.length}
                       </Badge>
+                      <div className="flex col-span-2 items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        {formatDate(new Date(training.workoutDate), "PPPP")}
+                      </div>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
