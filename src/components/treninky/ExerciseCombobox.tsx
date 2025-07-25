@@ -113,7 +113,9 @@ function StatusList({
     <Command className="w-full">
       <CommandInput placeholder="Vyhledej cvik..." />
       <CommandList className="max-h-[55vh]">
-        <CommandEmpty>Žádný cvik se nenašel.</CommandEmpty>
+        <CommandEmpty className="p-4 text-muted-foreground text-sm text-center">
+          Nezoufej, v kategorii cviky si můžeš přidat svůj oblíbený cvik!
+        </CommandEmpty>
         <CommandGroup>
           {exercises.map((status) => (
             <CommandItem

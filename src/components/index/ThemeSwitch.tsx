@@ -1,14 +1,19 @@
-import {Moon, Sun} from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
-import {Button} from "@/components/ui/button";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu";
-import {useTheme} from "@/data/providers/theme-provider.tsx";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useTheme } from "@/data/providers/theme-provider.tsx";
 
 export function ThemeSwitch() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="absolute right-2 top-2">
+    <div className="absolute right-5 top-5">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">
