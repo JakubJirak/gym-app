@@ -3,7 +3,7 @@ import type { Exercise } from "@/components/treninky/AddNewTraining.tsx";
 interface exerciseDbType {
   id: string;
   workoutId: string;
-  exerciseId: number;
+  exerciseId: string;
   note: string;
   order: number;
 }
@@ -19,7 +19,7 @@ interface setsDbType {
 export function exerciseDb(exercise: Exercise[]) {
   const newArr: exerciseDbType[] = [];
   exercise.forEach((ex, i) => {
-    if (!ex.exerciseId) ex.exerciseId = 0;
+    if (!ex.exerciseId) ex.exerciseId = "";
     const newObj: exerciseDbType = {
       id: ex.id,
       workoutId: ex.workoutId,

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/statistiky/")({
 const fetchTrainings = createServerFn({ method: "GET" })
   .validator((data: { userId: string }) => data)
   .handler(async ({ data }) => {
-    const trainings = await db.query.workouts.findMany({
+    return await db.query.workouts.findMany({
       orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
       where: (workout, { eq }) => eq(workout.userId, data.userId),
       with: {
@@ -36,7 +36,6 @@ const fetchTrainings = createServerFn({ method: "GET" })
         },
       },
     });
-    return trainings;
   });
 
 // const fetchByExercise = createServerFn({ method: "GET" }).validator(

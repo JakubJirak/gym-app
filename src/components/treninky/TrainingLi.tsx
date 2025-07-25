@@ -16,10 +16,10 @@ interface TrainingLiProps {
     id: string;
     note: string | null;
     workoutId: string | null;
-    exerciseId: number | null;
+    exerciseId: string | null;
     order: number | null;
     exercise: {
-      id: number;
+      id: string;
       name: string;
     } | null;
     sets: {

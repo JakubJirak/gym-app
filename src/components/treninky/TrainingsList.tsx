@@ -45,7 +45,7 @@ interface TrainingsListProp {
 interface exerciseDbType {
   id: string;
   workoutId: string;
-  exerciseId: number;
+  exerciseId: string;
   note: string;
   order: number;
 }
@@ -85,7 +85,7 @@ const addTraining = createServerFn({ method: "POST" })
 const fetchTrainings = createServerFn({ method: "GET" })
   .validator((data: { userId: string }) => data)
   .handler(async ({ data }) => {
-    const trainings = await db.query.workouts.findMany({
+    return await db.query.workouts.findMany({
       orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
       where: (workout, { eq }) => eq(workout.userId, data.userId),
       with: {
@@ -100,7 +100,6 @@ const fetchTrainings = createServerFn({ method: "GET" })
         },
       },
     });
-    return trainings;
   });
 
 const deleteTraining = createServerFn()
