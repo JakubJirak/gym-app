@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 import { v4 as uuidv4 } from "uuid";
 
 interface ExerciseOption {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -43,7 +43,7 @@ export interface Exercise {
   id: string;
   workoutId: string;
   name: string;
-  exerciseId: number | null;
+  exerciseId: string | null;
   notes: string;
   sets: Set[];
 }
@@ -56,7 +56,7 @@ export interface Training {
 }
 
 type ExerciseSelect = {
-  id: number;
+  id: string;
   name: string;
 };
 

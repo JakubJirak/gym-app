@@ -19,35 +19,33 @@ import {
 import { useEffect } from "react";
 
 type ExerciseSelect = {
-  id: number;
+  id: string;
   name: string;
 };
 
 const exerciseOptions: ExerciseSelect[] = [
-  { id: 1, name: "Squat" },
-  { id: 2, name: "Bench Press" },
-  { id: 3, name: "Deadlift" },
-  { id: 4, name: "Paused Squat" },
-  { id: 5, name: "Paused BP" },
-  { id: 6, name: "Clean & Jerk" },
-  { id: 7, name: "Lat. raises" },
-  { id: 8, name: "Db. rear delts" },
-  { id: 9, name: "EZ Bar curls" },
-  { id: 10, name: "Hammer curls" },
-  { id: 11, name: "Shoulder db. press" },
-  { id: 12, name: "Pull up" },
-  { id: 13, name: "HS Row" },
-  { id: 14, name: "Chest press" },
-  { id: 15, name: "Lat. pulldown Neut." },
-  { id: 16, name: "Triceps ex." },
-  { id: 17, name: "Abs wheel" },
+  { id: "sq", name: "Squat" },
+  { id: "bp", name: "Bench Press" },
+  { id: "dl", name: "Deadlift" },
+  { id: "psq", name: "Paused Squat" },
+  { id: "pbp", name: "Paused BP" },
+  { id: "caj", name: "Clean & Jerk" },
+  { id: "latr", name: "Lat. raises" },
+  { id: "dbrear", name: "Db. rear delts" },
+  { id: "ezbar", name: "EZ Bar curls" },
+  { id: "hamc", name: "Hammer curls" },
+  { id: "shdb", name: "Shoulder db. press" },
+  { id: "pullup", name: "Pull up" },
+  { id: "hsrow", name: "HS Row" },
+  { id: "chpr", name: "Chest press" },
+  { id: "latpdwn", name: "Lat. pulldown Neut." },
+  { id: "trex", name: "Triceps ex." },
+  { id: "absw", name: "Abs wheel" },
 ];
 
 interface ExerciseComboboxProps {
   selectedStatus: ExerciseSelect | null;
-  setSelectedStatus: React.Dispatch<
-    React.SetStateAction<ExerciseSelect | null>
-  >;
+  setSelectedStatus: (status: ExerciseSelect | null) => void; // ZMĚNA TADY
   exerciseId: string;
   selectExercise: (
     exerciseId: string | number,

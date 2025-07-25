@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="odstraneni zbytecneho providera">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: vybirani cviku funguje pro kazdy cvik zvlast">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +146,8 @@
       <workItem from="1753262359324" duration="15551000" />
       <workItem from="1753305409599" duration="3327000" />
       <workItem from="1753345346332" duration="11952000" />
-      <workItem from="1753368839771" duration="4259000" />
+      <workItem from="1753368839771" duration="5306000" />
+      <workItem from="1753437795188" duration="2176000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -481,14 +485,29 @@
       <option name="project" value="LOCAL" />
       <updated>1753371824209</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix: vybirani cviku funguje pro kazdy cvik zvlast">
+      <option name="closed" value="true" />
+      <created>1753380781420</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1753380781420</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix: vybirani cviku funguje pro kazdy cvik zvlast">
+      <option name="closed" value="true" />
+      <created>1753380796217</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1753380796217</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="zatim se pridava jen training name a date s userId" />
     <MESSAGE value="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny" />
     <MESSAGE value="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state" />
     <MESSAGE value="pridani moznosti smazat trenink s ochranou alert dialogu" />
@@ -513,6 +532,7 @@
     <MESSAGE value="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony" />
     <MESSAGE value="pridani zakladnich statistik" />
     <MESSAGE value="odstraneni zbytecneho providera" />
-    <option name="LAST_COMMIT_MESSAGE" value="odstraneni zbytecneho providera" />
+    <MESSAGE value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
   </component>
 </project>

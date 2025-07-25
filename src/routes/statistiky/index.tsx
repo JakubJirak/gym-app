@@ -39,6 +39,10 @@ const fetchTrainings = createServerFn({ method: "GET" })
     return trainings;
   });
 
+// const fetchByExercise = createServerFn({ method: "GET" }).validator(
+//   (data: { userId: string; exerciseId: string }) => data,
+// );
+
 function RouteComponent() {
   const { data: session } = authClient.useSession();
 

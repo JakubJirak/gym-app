@@ -5,7 +5,6 @@ import {
   integer,
   numeric,
   pgTable,
-  serial,
   text,
   timestamp,
   varchar,
@@ -72,7 +71,7 @@ export const verification = pgTable("verification", {
 });
 
 export const exercises = pgTable("exercises", {
-  id: serial("id").primaryKey(),
+  id: text("id").primaryKey(),
   name: varchar("name", { length: 100 }).notNull().unique(),
 });
 
@@ -89,7 +88,7 @@ export const workoutExercises = pgTable("workout_exercises", {
   workoutId: text("workout_id").references(() => workouts.id, {
     onDelete: "cascade",
   }),
-  exerciseId: integer("exercise_id").references(() => exercises.id),
+  exerciseId: text("exercise_id").references(() => exercises.id),
   note: text("note"),
   order: integer("order"),
 });
