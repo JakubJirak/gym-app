@@ -1,5 +1,10 @@
 import Header from "@/components/Header.tsx";
-import { Card, CardContent } from "@/components/ui/card.tsx";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 import { db } from "@/db";
 import { authClient } from "@/lib/auth-client.ts";
@@ -38,10 +43,6 @@ const fetchTrainings = createServerFn({ method: "GET" })
     });
   });
 
-// const fetchByExercise = createServerFn({ method: "GET" }).validator(
-//   (data: { userId: string; exerciseId: string }) => data,
-// );
-
 function RouteComponent() {
   const { data: session } = authClient.useSession();
 
@@ -66,6 +67,36 @@ function RouteComponent() {
     0,
   );
 
+  const allWeight = trainings?.reduce(
+    (acc, training) =>
+      acc +
+      training.workoutExercises.reduce(
+        (exAcc, exercise) =>
+          exAcc +
+          exercise.sets.reduce(
+            (setAcc, set) => setAcc + Number(set.weight ?? 0),
+            0,
+          ),
+        0,
+      ),
+    0,
+  );
+
+  const allReps = trainings?.reduce(
+    (acc, training) =>
+      acc +
+      training.workoutExercises.reduce(
+        (exAcc, exercise) =>
+          exAcc +
+          exercise.sets.reduce(
+            (setAcc, set) => setAcc + Number(set.reps ?? 0),
+            0,
+          ),
+        0,
+      ),
+    0,
+  );
+
   if (isLoading) return <p>Načítání dat</p>;
 
   if (trainings === undefined || trainings.length === 0)
@@ -84,22 +115,35 @@ function RouteComponent() {
     <div>
       <Header page="STATISTIKY" />
       <div className="max-w-[500px] mx-auto w-[90%]">
-        <Card className="p-4">
-          <CardContent className="px-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Celkové statistiky</CardTitle>
+          </CardHeader>
+          <CardContent>
             <div className="space-y-2">
               <div>
-                <p className="text-muted-foreground">Počet tréninků</p>
+                <p className="text-muted-foreground">Počet všech tréninků</p>
                 <p>{trainings.length}</p>
               </div>
               <Separator />
               <div>
-                <p className="text-muted-foreground">Počet cviků</p>
+                <p className="text-muted-foreground">Počet všech cviků</p>
                 <p>{allExercises}</p>
               </div>
               <Separator />
               <div>
-                <p className="text-muted-foreground">Počet sérií</p>
+                <p className="text-muted-foreground">Počet všech sérií</p>
                 <p>{allSets}</p>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-muted-foreground">Celková zvednutá váha</p>
+                <p>{allWeight}kg</p>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-muted-foreground">Celkový počet opakování</p>
+                <p>{allReps}</p>
               </div>
             </div>
           </CardContent>
