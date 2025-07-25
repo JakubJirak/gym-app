@@ -74,7 +74,7 @@ function RouteComponent() {
         (exAcc, exercise) =>
           exAcc +
           exercise.sets.reduce(
-            (setAcc, set) => setAcc + Number(set.weight ?? 0),
+            (setAcc, set) => setAcc + Number(set.weight ?? 0) * (set.reps ?? 0),
             0,
           ),
         0,
