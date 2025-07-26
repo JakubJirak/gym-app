@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
@@ -44,6 +44,7 @@ export const Route = createFileRoute("/cviky/")({
 });
 
 function RouteComponent() {
+  const queryClient = useQueryClient();
   const { data: session } = authClient.useSession();
   const [exName, setExName] = useState<string>("");
 
@@ -52,11 +53,7 @@ function RouteComponent() {
     queryFn: () => getExById({ data: { userId: "default" } }),
   });
 
-  const {
-    data: customExercises,
-    isLoading: isCustomLoading,
-    refetch,
-  } = useQuery({
+  const { data: customExercises, isLoading: isCustomLoading } = useQuery({
     queryKey: ["customExercises", session?.user.id],
     queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
     enabled: !!session,
@@ -64,7 +61,8 @@ function RouteComponent() {
 
   const addExMutation = useMutation({
     mutationFn: addCustomEx,
-    onSuccess: () => refetch(),
+    onSuccess: () =>
+      void queryClient.invalidateQueries({ queryKey: ["customExercises"] }),
   });
 
   const handleAddExercise = (exN: string) => {

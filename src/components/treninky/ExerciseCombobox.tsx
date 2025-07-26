@@ -19,10 +19,10 @@ import {
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
-import { useEffect } from "react";
+import { nanoid } from "nanoid";
+import { useEffect, useState } from "react";
 
 type ExerciseSelectWithID = {
   id: string;
@@ -43,12 +43,15 @@ interface ExerciseComboboxProps {
     exerciseId: string | number,
     selected: ExerciseSelect,
   ) => void;
+  exercises: ExerciseSelectWithID[];
 }
 
-const getExById = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
+const addCustomEx = createServerFn({ method: "POST" })
+  .validator((data: { userId: string; id: string; name: string }) => data)
   .handler(async ({ data }) => {
-    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+    await db
+      .insert(exercises)
+      .values({ id: data.id, name: data.name, userId: data.userId });
   });
 
 export function ExerciseCombobox({
@@ -56,25 +59,9 @@ export function ExerciseCombobox({
   setSelectedStatus,
   exerciseId,
   selectExercise,
+  exercises,
 }: ExerciseComboboxProps) {
-  const { data: session } = authClient.useSession();
   const [open, setOpen] = React.useState(false);
-
-  const { data: defaultExercises } = useQuery({
-    queryKey: ["defaultExercises"],
-    queryFn: () => getExById({ data: { userId: "default" } }),
-  });
-
-  const { data: customExercises } = useQuery({
-    queryKey: ["customExercises", session?.user.id],
-    queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
-    enabled: !!session,
-  });
-
-  const exercises: ExerciseSelectWithID[] = [
-    ...(customExercises ?? []),
-    ...(defaultExercises ?? []),
-  ];
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
@@ -114,12 +101,40 @@ function StatusList({
   setSelectedStatus: (status: ExerciseSelect | null) => void;
   exercises: ExerciseSelectWithID[];
 }) {
+  const queryClient = useQueryClient();
+  const [searchVal, setSearchVal] = useState<string>("");
+  const { data: session } = authClient.useSession();
+
+  const addExMutation = useMutation({
+    mutationFn: addCustomEx,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["customExercises"] });
+    },
+  });
+
+  const handleAddExercise = (exN: string) => {
+    addExMutation.mutate({
+      data: {
+        id: nanoid(10),
+        name: exN,
+        userId: session?.user.id ?? "",
+      },
+    });
+  };
+
   return (
     <Command className="w-full">
-      <CommandInput placeholder="Vyhledej cvik..." autoFocus />
+      <CommandInput
+        placeholder="Vyhledej cvik..."
+        autoFocus
+        value={searchVal}
+        onValueChange={(e) => setSearchVal(e)}
+      />
       <CommandList className="max-h-[55vh]">
         <CommandEmpty className="p-4 text-muted-foreground text-sm text-center">
-          Nezoufej, v kategorii cviky si můžeš přidat svůj oblíbený cvik!
+          <Button onClick={() => handleAddExercise(searchVal)}>
+            Přidat jako vlastní cvik
+          </Button>
         </CommandEmpty>
         <CommandGroup>
           {exercises.map((status) => (

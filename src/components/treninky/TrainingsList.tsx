@@ -22,7 +22,7 @@ import { db } from "@/db";
 import { sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { useState } from "react";
@@ -140,20 +140,17 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [editSetWeight, setEditSetWeight] = useState<string>("");
   const [editSetReps, setEditSetReps] = useState<string>("");
   const [toggleEdit, setToggleEdit] = useState(false);
+  const queryClient = useQueryClient();
 
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
     onSuccess: () => {
-      refetch();
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
     },
     onError: (error: Error) => console.error(error),
   });
 
-  const {
-    data: trainings,
-    refetch,
-    isLoading,
-  } = useQuery({
+  const { data: trainings, isLoading } = useQuery({
     queryKey: ["workouts", userId],
     queryFn: () => fetchTrainings({ data: { userId } }),
     enabled: true,
@@ -189,7 +186,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const deleteMutationTraining = useMutation({
     mutationFn: deleteTraining,
     onSuccess: () => {
-      refetch();
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
     },
     onError: (error) => console.log(error),
   });
@@ -197,7 +194,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const deleteMutationExercise = useMutation({
     mutationFn: deleteExercise,
     onSuccess: () => {
-      refetch();
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
     },
     onError: (error) => console.log(error),
   });
@@ -205,7 +202,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const deleteMutationSet = useMutation({
     mutationFn: deleteSet,
     onSuccess: () => {
-      refetch();
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
     },
     onError: (error) => console.log(error),
   });
@@ -213,7 +210,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const updateMutationSet = useMutation({
     mutationFn: updateSet,
     onSuccess: () => {
-      refetch();
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
     },
     onError: (error) => console.log(error),
   });

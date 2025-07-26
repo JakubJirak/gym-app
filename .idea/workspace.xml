@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="uprava proti problikavani pro loadingu" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani autofocusu na input pro hledani cviku">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,22 +151,8 @@
       <workItem from="1753368839771" duration="5306000" />
       <workItem from="1753437795188" duration="5967000" />
       <workItem from="1753473117256" duration="6983000" />
-    </task>
-    <task id="LOCAL-00004" summary="oprava theme, pridani herosection">
-      <option name="closed" value="true" />
-      <created>1752507309065</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1752507309065</updated>
-    </task>
-    <task id="LOCAL-00005" summary="uprava herosection, pridani dalsich kategorii pro index">
-      <option name="closed" value="true" />
-      <created>1752509204334</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1752509204334</updated>
+      <workItem from="1753480756089" duration="546000" />
+      <workItem from="1753517468740" duration="2788000" />
     </task>
     <task id="LOCAL-00006" summary="pridani aboutme sekce">
       <option name="closed" value="true" />
@@ -537,7 +530,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753479966706</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="oprava v logice vypoctu celkove vahy">
+      <option name="closed" value="true" />
+      <created>1753480896096</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1753480896096</updated>
+    </task>
+    <task id="LOCAL-00054" summary="pridani autofocusu na input pro hledani cviku">
+      <option name="closed" value="true" />
+      <created>1753481023446</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1753481023446</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,8 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: update packages" />
-    <MESSAGE value="change version of betterauth" />
     <MESSAGE value="add bunlock" />
     <MESSAGE value="fix: update bundler" />
     <MESSAGE value="fix: centering forms for login and register" />
@@ -580,6 +587,8 @@
     <MESSAGE value="pridani karet funkci do hlavni stranky" />
     <MESSAGE value="pridani statistik k celkovym statistikam" />
     <MESSAGE value="uprava proti problikavani pro loadingu" />
-    <option name="LAST_COMMIT_MESSAGE" value="uprava proti problikavani pro loadingu" />
+    <MESSAGE value="oprava v logice vypoctu celkove vahy" />
+    <MESSAGE value="pridani autofocusu na input pro hledani cviku" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridani autofocusu na input pro hledani cviku" />
   </component>
 </project>

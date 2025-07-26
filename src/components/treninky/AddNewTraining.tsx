@@ -24,7 +24,13 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { db } from "@/db";
+import { exercises } from "@/db/schema.ts";
+import { authClient } from "@/lib/auth-client.ts";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { createServerFn } from "@tanstack/react-start";
+import { eq } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
 
 interface ExerciseOption {
@@ -55,6 +61,12 @@ export interface Training {
   exercises: Exercise[];
 }
 
+type ExerciseSelectWithID = {
+  id: string;
+  userId: string | null;
+  name: string;
+};
+
 type ExerciseSelect = {
   id: string;
   name: string;
@@ -64,6 +76,12 @@ interface TrainingDialogProps {
   onSave: (training: Training) => void;
 }
 
+const getExById = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+  });
+
 const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [training, setTraining] = useState({
@@ -71,12 +89,30 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
     date: undefined as Date | undefined,
     exercises: [] as Exercise[],
   });
+  const { data: session } = authClient.useSession();
 
   // Ukládání vybraného statusu pro každý cvik zvlášť podle jeho id
   const [selectedStatuses, setSelectedStatuses] = useState<
     Record<string, ExerciseSelect | null>
   >({});
   const [localTrainingId, setLocalTrainingId] = useState<string | null>(null);
+  const [openDatePicker, setOpenDatePicker] = useState<boolean>(false);
+
+  const { data: defaultExercises } = useQuery({
+    queryKey: ["defaultExercises"],
+    queryFn: () => getExById({ data: { userId: "default" } }),
+  });
+
+  const { data: customExercises } = useQuery({
+    queryKey: ["customExercises", session?.user.id],
+    queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
+  });
+
+  const exercises: ExerciseSelectWithID[] = [
+    ...(customExercises ?? []),
+    ...(defaultExercises ?? []),
+  ];
 
   const addExercise = () => {
     let workoutId = localTrainingId;
@@ -306,7 +342,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
             </div>
             <div className="space-y-2">
               <Label>Datum tréninku *</Label>
-              <Popover>
+              <Popover open={openDatePicker} onOpenChange={setOpenDatePicker}>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
@@ -323,11 +359,13 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
+                    className="bg-secondary"
                     mode="single"
                     selected={training.date}
-                    onSelect={(date) =>
-                      setTraining((prev) => ({ ...prev, date }))
-                    }
+                    onSelect={(date) => {
+                      setTraining((prev) => ({ ...prev, date }));
+                      setOpenDatePicker(false);
+                    }}
                     locale={cs}
                   />
                 </PopoverContent>
@@ -372,6 +410,7 @@ const AddNewTraining = ({ onSave }: TrainingDialogProps) => {
                             }
                             exerciseId={exercise.id}
                             selectExercise={selectExercise}
+                            exercises={exercises}
                           />
                         </div>
                       </div>
