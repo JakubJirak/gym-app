@@ -105,6 +105,11 @@ export const sets = pgTable("sets", {
   order: integer("order"),
 });
 
+export const userWeight = pgTable("user_weight", {
+  userId: text("user_id").notNull(),
+  weight: numeric("weight", { precision: 8, scale: 2 }).notNull(),
+});
+
 /* --- Relations --- */
 
 export const exercisesRelations = relations(exercises, ({ many }) => ({
@@ -138,5 +143,12 @@ export const setsRelations = relations(sets, ({ one }) => ({
   workoutExercise: one(workoutExercises, {
     fields: [sets.workoutExerciseId],
     references: [workoutExercises.id],
+  }),
+}));
+
+export const userWeightRelations = relations(userWeight, ({ one }) => ({
+  user: one(user, {
+    fields: [userWeight.userId],
+    references: [user.id],
   }),
 }));
