@@ -60,7 +60,6 @@ function RouteComponent() {
     return (
       <>
         <Header page="STATISTIKY" />
-        <p>Načítání dat</p>
       </>
     );
 
@@ -80,8 +79,8 @@ function RouteComponent() {
     <div>
       <Header page="STATISTIKY" />
       <div className="max-w-[500px] mx-auto w-[90%] space-y-4">
-        <OverallStats trainings={trainings} />
         <PowerliftingStats trainings={trainings} />
+        <OverallStats trainings={trainings} />
       </div>
     </div>
   );
