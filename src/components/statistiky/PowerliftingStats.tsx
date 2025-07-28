@@ -56,7 +56,7 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
       <CardHeader>
         <CardTitle>
           {weightData === undefined || weightData.length === 0
-            ? "Powerlifting PR"
+            ? "Powerlifting PR (zadejte svoji váhu v profilu)"
             : `Powerlifting PR (${weightData[0].weight}kg BW)`}
         </CardTitle>
       </CardHeader>

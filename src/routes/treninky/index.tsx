@@ -25,7 +25,7 @@ function RouteComponent() {
   if (!session) return null;
 
   return (
-    <div>
+    <div className="pb-8">
       <Header page="TRÉNINKY" />
       <TrainingsList userId={session.user.id} />
     </div>

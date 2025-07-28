@@ -7,7 +7,7 @@ import { LuClipboardList, LuDumbbell } from "react-icons/lu";
 
 const Navigation = () => {
   return (
-    <div className="flex max-w-[500px] w-[90%] mx-auto gap-4 mt-3 flex-col mb-6">
+    <div className="flex max-w-[500px] w-[90%] mx-auto gap-4 mt-3 flex-col pb-8">
       <Link to={"/treninky"}>
         <Card className="flex flex-row p-5 items-center">
           <GiWeightLiftingUp size={40} />

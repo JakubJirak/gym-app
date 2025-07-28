@@ -98,7 +98,7 @@ function RouteComponent() {
   return (
     <div>
       <Header page="CVIKY" />
-      <div className="w-[90%] max-w-[500px] mx-auto space-y-4">
+      <div className="w-[90%] max-w-[500px] mx-auto space-y-4 pb-8">
         <Card>
           <CardHeader>
             <CardTitle>Vaše vlastní cviky</CardTitle>

@@ -78,7 +78,7 @@ function RouteComponent() {
   return (
     <div>
       <Header page="STATISTIKY" />
-      <div className="max-w-[500px] mx-auto w-[90%] space-y-4">
+      <div className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8">
         <PowerliftingStats trainings={trainings} />
         <OverallStats trainings={trainings} />
       </div>
