@@ -41,6 +41,15 @@ export const Route = createFileRoute("/cviky/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Cviky | GYM APPLICATION" },
+      {
+        name: "description",
+        content: "Seznam všech základních a vlastních cviků uživatele",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {

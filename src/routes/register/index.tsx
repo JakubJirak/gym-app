@@ -3,6 +3,12 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/register/")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Vytvoření účtu | GYM APPLICATION" },
+      { name: "description", content: "Formulář pro vytvoření nového účtu" },
+    ],
+  }),
 });
 
 function RouteComponent() {

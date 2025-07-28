@@ -11,6 +11,12 @@ export const Route = createFileRoute("/rutiny/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Rutiny | GYM APPLICATION" },
+      { name: "description", content: "Seznam všech rutin uživatele" },
+    ],
+  }),
 });
 
 function RouteComponent() {

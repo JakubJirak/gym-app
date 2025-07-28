@@ -12,6 +12,12 @@ export const Route = createFileRoute("/menu/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Menu | GYM APPLICATION" },
+      { name: "description", content: "Menu s funkcemi aplikace" },
+    ],
+  }),
 });
 
 function RouteComponent() {

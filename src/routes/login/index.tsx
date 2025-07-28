@@ -10,6 +10,12 @@ export const Route = createFileRoute("/login/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Přihásit se | GYM APPLICATION" },
+      { name: "description", content: "Formulář pro přihlášení uživatele" },
+    ],
+  }),
 });
 
 function RouteComponent() {

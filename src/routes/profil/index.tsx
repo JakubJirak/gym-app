@@ -13,6 +13,12 @@ export const Route = createFileRoute("/profil/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Profil | GYM APPLICATION" },
+      { name: "description", content: "Informace o profilu uživatele" },
+    ],
+  }),
 });
 
 function RouteComponent() {

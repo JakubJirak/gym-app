@@ -21,6 +21,12 @@ export const Route = createFileRoute("/statistiky/")({
     }
   },
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Statistiky | GYM APPLICATION" },
+      { name: "description", content: "Seznam všech statistik uživatele" },
+    ],
+  }),
 });
 
 const fetchTrainings = createServerFn({ method: "GET" })
