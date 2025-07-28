@@ -1,11 +1,7 @@
 import Header from "@/components/Header.tsx";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
-import { Separator } from "@/components/ui/separator.tsx";
+import OverallStats from "@/components/statistiky/OverallStats.tsx";
+import PowerliftingStats from "@/components/statistiky/PowerliftingStats.tsx";
+import { Card } from "@/components/ui/card.tsx";
 import { db } from "@/db";
 import { authClient } from "@/lib/auth-client.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -49,6 +45,8 @@ const fetchTrainings = createServerFn({ method: "GET" })
     });
   });
 
+export type TrainingsType = Awaited<ReturnType<typeof fetchTrainings>>;
+
 function RouteComponent() {
   const { data: session } = authClient.useSession();
 
@@ -57,51 +55,6 @@ function RouteComponent() {
     queryFn: () => fetchTrainings({ data: { userId: session?.user.id ?? "" } }),
     enabled: true,
   });
-
-  const allExercises = trainings?.reduce(
-    (acc, training) => acc + training.workoutExercises.length,
-    0,
-  );
-
-  const allSets = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) => exAcc + exercise.sets.length,
-        0,
-      ),
-    0,
-  );
-
-  const allWeight = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) =>
-          exAcc +
-          exercise.sets.reduce(
-            (setAcc, set) => setAcc + Number(set.weight ?? 0) * (set.reps ?? 0),
-            0,
-          ),
-        0,
-      ),
-    0,
-  );
-
-  const allReps = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) =>
-          exAcc +
-          exercise.sets.reduce(
-            (setAcc, set) => setAcc + Number(set.reps ?? 0),
-            0,
-          ),
-        0,
-      ),
-    0,
-  );
 
   if (isLoading)
     return (
@@ -126,40 +79,9 @@ function RouteComponent() {
   return (
     <div>
       <Header page="STATISTIKY" />
-      <div className="max-w-[500px] mx-auto w-[90%]">
-        <Card>
-          <CardHeader>
-            <CardTitle>Celkové statistiky</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              <div>
-                <p className="text-muted-foreground">Počet všech tréninků</p>
-                <p>{trainings.length}</p>
-              </div>
-              <Separator />
-              <div>
-                <p className="text-muted-foreground">Počet všech cviků</p>
-                <p>{allExercises}</p>
-              </div>
-              <Separator />
-              <div>
-                <p className="text-muted-foreground">Počet všech sérií</p>
-                <p>{allSets}</p>
-              </div>
-              <Separator />
-              <div>
-                <p className="text-muted-foreground">Celková zvednutá váha</p>
-                <p>{allWeight}kg</p>
-              </div>
-              <Separator />
-              <div>
-                <p className="text-muted-foreground">Celkový počet opakování</p>
-                <p>{allReps}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="max-w-[500px] mx-auto w-[90%] space-y-4">
+        <OverallStats trainings={trainings} />
+        <PowerliftingStats trainings={trainings} />
       </div>
     </div>
   );

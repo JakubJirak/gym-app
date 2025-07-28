@@ -150,7 +150,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error: Error) => console.error(error),
   });
 
-  const { data: trainings } = useQuery({
+  const { data: trainings, isLoading } = useQuery({
     queryKey: ["workouts", userId],
     queryFn: () => fetchTrainings({ data: { userId } }),
     enabled: true,
@@ -250,7 +250,9 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     return parts.join(" × ") || "Prázdná série";
   };
 
-  if (trainings === undefined)
+  if (trainings === undefined) return null;
+
+  if (trainings === undefined && !isLoading)
     return (
       <Card className="max-w-[500px] mx-auto">
         <CardContent className="flex flex-col items-center justify-center py-6">
