@@ -42,15 +42,27 @@ const fetchWeight = createServerFn({ method: "GET" })
 const addWeight = createServerFn({ method: "POST" })
   .validator((data: { userId: string; weight: string }) => data)
   .handler(async ({ data }) => {
-    return db
+    await db
       .insert(userWeight)
-      .values({ userId: data.userId, weight: data.weight });
+      .values({ userId: data.userId, weight: data.weight })
+      .execute();
+  });
+
+const updateWeight = createServerFn({ method: "POST" })
+  .validator((data: { userId: string; weight: string }) => data)
+  .handler(async ({ data }) => {
+    await db
+      .update(userWeight)
+      .set({ weight: data.weight })
+      .where(eq(userWeight.userId, data.userId))
+      .execute();
   });
 
 function RouteComponent() {
   const { data: session } = authClient.useSession();
   const queryClient = useQueryClient();
   const [weight, setWeight] = useState<string>("");
+  const [changeWeight, setChangeWeight] = useState<boolean>(false);
 
   const { data: weightData } = useQuery({
     queryKey: ["userWeight", session?.user.id],
@@ -63,12 +75,27 @@ function RouteComponent() {
       queryClient.invalidateQueries({ queryKey: ["userWeight"] }),
   });
 
+  const updateWeightMutation = useMutation({
+    mutationFn: updateWeight,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["userWeight"] }),
+  });
+
   const handleAddWeight = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     addWeightMutation.mutate({
       data: { userId: session?.user.id ?? "", weight: weight },
     });
+  };
+
+  const handleChangeWeight = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    updateWeightMutation.mutate({
+      data: { userId: session?.user.id ?? "", weight: weight },
+    });
+    setChangeWeight(false);
   };
 
   if (!session) return null;
@@ -125,13 +152,40 @@ function RouteComponent() {
         ) : (
           <Card className="p-4">
             <CardContent className="px-2">
-              <form className="flex gap-2 items-center">
-                <p>Vaše váha:</p>
-                <p>{weightData[0]?.weight}kg</p>
-                <Button type="submit" className="ml-auto">
-                  Změnit váhu
-                </Button>
-              </form>
+              {changeWeight ? (
+                <form
+                  className="flex gap-2 items-center"
+                  onSubmit={handleChangeWeight}
+                >
+                  <p>Vaše nová váha (kg):</p>
+                  <Input
+                    autoFocus
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    className="max-w-[100px]"
+                    type="number"
+                    min="10"
+                    max="500"
+                    step="0.01"
+                    required
+                  />
+                  <Button type="submit" className="ml-auto">
+                    Uložit váhu
+                  </Button>
+                </form>
+              ) : (
+                <div className="flex gap-2 items-center">
+                  <p>Vaše váha:</p>
+                  <p>{weightData[0]?.weight}kg</p>
+                  <Button
+                    type="button"
+                    className="ml-auto"
+                    onClick={() => setChangeWeight(true)}
+                  >
+                    Změnit váhu
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         )}

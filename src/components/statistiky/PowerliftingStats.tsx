@@ -62,28 +62,38 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <div className="space-y-2 grid grid-cols-[1fr_10px_1fr_10px_1fr] gap-5">
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-muted-foreground">Squat</p>
+          <div className="space-y-2 grid grid-cols-[1fr_1px_1fr_1px_1fr] gap-1">
+            <div className="flex flex-col justify-center items-center gap-1">
+              <p className="text-muted-foreground text-sm sm:text-base">
+                Squat
+              </p>
               <p>{squatPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p>{(squatPR / Number(weightData[0].weight)).toFixed(2)}x BW</p>
+                <p className="text-sm sm:text-base">
+                  {(squatPR / Number(weightData[0].weight)).toFixed(2)}x BW
+                </p>
               )}
             </div>
             <Separator orientation="vertical" />
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-muted-foreground">Bench Press</p>
-              <p>{benchPR}kg</p>
+            <div className="flex flex-col justify-center items-center gap-1">
+              <p className="text-muted-foreground text-center text-sm sm:text-base">
+                Bench Press
+              </p>
+              <p className="text-center ">{benchPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p>{(benchPR / Number(weightData[0].weight)).toFixed(2)}x BW</p>
+                <p className="text-sm sm:text-base">
+                  {(benchPR / Number(weightData[0].weight)).toFixed(2)}x BW
+                </p>
               )}
             </div>
             <Separator orientation="vertical" />
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-muted-foreground">Deadlift</p>
+            <div className="flex flex-col justify-center items-center gap-1">
+              <p className="text-muted-foreground text-sm sm:text-base">
+                Deadlift
+              </p>
               <p>{deadliftPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p>
+                <p className="text-sm sm:text-base">
                   {(deadliftPR / Number(weightData[0].weight)).toFixed(2)}x BW
                 </p>
               )}
@@ -92,11 +102,13 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
           <Separator />
           <div className="">
             <div className="space-y-2 grid gap-5">
-              <div className="flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center gap-1">
                 <p className="text-muted-foreground">TOTAL</p>
                 <p>{total}kg</p>
                 {weightData === undefined || weightData.length === 0 ? null : (
-                  <p>{(total / Number(weightData[0].weight)).toFixed(2)}x BW</p>
+                  <p className="text-sm sm:text-base">
+                    {(total / Number(weightData[0].weight)).toFixed(2)}x BW
+                  </p>
                 )}
               </div>
             </div>
