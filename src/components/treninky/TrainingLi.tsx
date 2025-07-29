@@ -1,3 +1,4 @@
+import { DialogAddSet } from "@/components/treninky/DialogAddSet.tsx";
 import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
 import { DialogEditSet } from "@/components/treninky/DialogEditSet.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
@@ -37,8 +38,13 @@ interface TrainingLiProps {
   editSetReps: string;
   setEditSetWeight: React.Dispatch<React.SetStateAction<string>>;
   setEditSetReps: React.Dispatch<React.SetStateAction<string>>;
+  addSetWeight: string;
+  addSetReps: string;
+  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
+  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
   handleEditSet: (id: string) => void;
   toggleEdit: boolean;
+  handleAddSet: (exId: string, order: number) => void;
 }
 
 const TrainingLi = ({
@@ -51,7 +57,12 @@ const TrainingLi = ({
   setEditSetWeight,
   editSetWeight,
   editSetReps,
+  setAddSetReps,
+  setAddSetWeight,
+  addSetWeight,
+  addSetReps,
   toggleEdit,
+  handleAddSet,
 }: TrainingLiProps) => {
   return (
     <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
@@ -59,7 +70,18 @@ const TrainingLi = ({
         className={`${toggleEdit ? "" : "justify-between"} flex items-center`}
       >
         <h4 className="font-semibold text-lg">{exercise?.exercise?.name}</h4>
-        <div className={`${toggleEdit ? "block mr-auto" : "hidden"}`}>
+        <div
+          className={`${toggleEdit ? "flex ml-2 mr-auto gap-1.5" : "hidden"}`}
+        >
+          <DialogAddSet
+            setAddSetReps={setAddSetReps}
+            setAddSetWeight={setAddSetWeight}
+            addSetReps={addSetReps}
+            addSetWeight={addSetWeight}
+            order={exercise.sets.length}
+            handleAddSet={handleAddSet}
+            exId={exercise.id}
+          />
           <DialogDeleteExercise
             handleDeleteExercise={handleDeleteExercise}
             id={exercise.id}

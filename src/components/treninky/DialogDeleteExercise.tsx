@@ -24,8 +24,8 @@ const DialogDeleteTraining = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" size="icon-xs" className="mr-auto ml-2">
-          <FaRegTrashCan />
+        <Button variant="destructive" size="icon-xs" className="mr-auto">
+          <FaRegTrashCan className="size-3" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

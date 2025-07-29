@@ -28,6 +28,7 @@ import { eq } from "drizzle-orm";
 import { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
+import { v4 as uuidv4 } from "uuid";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 import TrainingLi from "./TrainingLi.tsx";
 
@@ -136,9 +137,31 @@ const updateSet = createServerFn()
       .execute();
   });
 
+const addSet = createServerFn()
+  .validator(
+    (data: {
+      id: string;
+      exId: string;
+      order: number;
+      weight: string;
+      reps: number;
+    }) => data,
+  )
+  .handler(async ({ data }) => {
+    await db.insert(sets).values({
+      id: data.id,
+      workoutExerciseId: data.exId,
+      weight: data.weight,
+      reps: data.reps,
+      order: data.order,
+    });
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [editSetWeight, setEditSetWeight] = useState<string>("");
   const [editSetReps, setEditSetReps] = useState<string>("");
+  const [addSetReps, setAddSetReps] = useState<string>("");
+  const [addSetWeight, setAddSetWeight] = useState<string>("");
   const [toggleEdit, setToggleEdit] = useState(false);
   const queryClient = useQueryClient();
 
@@ -215,6 +238,14 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const addMutationSet = useMutation({
+    mutationFn: addSet,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -239,6 +270,18 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
         setId: id,
         editSetWeight: editSetWeight,
         editSetReps: Number(editSetReps),
+      },
+    });
+  }
+
+  function handleAddSet(exId: string, order: number) {
+    addMutationSet.mutate({
+      data: {
+        id: uuidv4(),
+        exId: exId,
+        weight: addSetWeight,
+        reps: Number(addSetReps),
+        order: order,
       },
     });
   }
@@ -318,12 +361,17 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           formatSetInfo={formatSetInfo}
                           editSetWeight={editSetWeight}
                           editSetReps={editSetReps}
+                          addSetReps={addSetReps}
+                          addSetWeight={addSetWeight}
+                          setAddSetReps={setAddSetReps}
+                          setAddSetWeight={setAddSetWeight}
                           setEditSetWeight={setEditSetWeight}
                           setEditSetReps={setEditSetReps}
                           handleDeleteSet={handleDeleteSet}
                           handleDeleteExercise={handleDeleteExericse}
                           handleEditSet={handleEditSet}
                           toggleEdit={toggleEdit}
+                          handleAddSet={handleAddSet}
                         />
                       ))}
                       <div className="flex justify-between items-center">
