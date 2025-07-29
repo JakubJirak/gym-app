@@ -88,16 +88,17 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
             </div>
             <Separator orientation="vertical" />
             <div className="flex flex-col justify-center items-center gap-1">
-              <p className="text-muted-foreground text-sm sm:text-base">
+              <p className="text-muted-foreground text-center text-sm sm:text-base">
                 Deadlift
               </p>
-              <p>{deadliftPR}kg</p>
+              <p className="text-center ">{deadliftPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
                 <p className="text-sm sm:text-base">
                   {(deadliftPR / Number(weightData[0].weight)).toFixed(2)}x BW
                 </p>
               )}
             </div>
+            <Separator className="hidden" orientation="vertical" />
           </div>
           <Separator />
           <div className="">
