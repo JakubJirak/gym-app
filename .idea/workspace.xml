@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani moznosti pridat serii do uz vytvoreneho treninku">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/DialogAddSet.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku">
+      <change afterPath="$PROJECT_DIR$/src/components/treninky/DialogAddExercise.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,15 +152,7 @@
       <workItem from="1753480756089" duration="546000" />
       <workItem from="1753517468740" duration="4003000" />
       <workItem from="1753697941872" duration="11951000" />
-      <workItem from="1753821964299" duration="1882000" />
-    </task>
-    <task id="LOCAL-00014" summary="implementace betterauth, zabezpeceni stranek pro ktere musi byt uzivatel prihlasen, pridan dialog ktery se zobrazi pokud neni">
-      <option name="closed" value="true" />
-      <created>1753022727193</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1753022727193</updated>
+      <workItem from="1753821964299" duration="4559000" />
     </task>
     <task id="LOCAL-00015" summary="pridani server side overeni session a automaticky presmerovani na login kdyz uzivatel neni prihlasen">
       <option name="closed" value="true" />
@@ -548,7 +538,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753713206061</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku">
+      <option name="closed" value="true" />
+      <created>1753823966678</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1753823966678</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="uprava draweru pro mobil" />
     <MESSAGE value="fix: remove testing component from cviky" />
     <MESSAGE value="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony" />
     <MESSAGE value="pridani zakladnich statistik" />
@@ -591,6 +588,7 @@
     <MESSAGE value="pridani moznosti si upravit svoji vahu" />
     <MESSAGE value="pridani pb pro lepsi scrollovani u mobilu" />
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani moznosti pridat serii do uz vytvoreneho treninku" />
+    <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
   </component>
 </project>

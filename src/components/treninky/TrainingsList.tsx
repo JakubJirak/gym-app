@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar, Dumbbell } from "lucide-react";
 
+import { DialogAddExercise } from "@/components/treninky/DialogAddExercise.tsx";
 import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
 import {
   Accordion,
@@ -19,7 +20,8 @@ import {
 } from "@/components/ui/card.tsx";
 import { Toggle } from "@/components/ui/toggle.tsx";
 import { db } from "@/db";
-import { sets, workoutExercises, workouts } from "@/db/schema.ts";
+import { exercises, sets, workoutExercises, workouts } from "@/db/schema.ts";
+import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -58,6 +60,23 @@ interface setsDbType {
   reps: number;
   order: number;
 }
+
+type ExerciseSelect = {
+  id: string;
+  name: string;
+};
+
+type ExerciseSelectWithID = {
+  id: string;
+  userId: string | null;
+  name: string;
+};
+
+const getExById = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+  });
 
 const addTraining = createServerFn({ method: "POST" })
   .validator(
@@ -157,6 +176,24 @@ const addSet = createServerFn()
     });
   });
 
+const addExercise = createServerFn()
+  .validator(
+    (data: {
+      id: string;
+      workoutId: string;
+      exerciseId: string;
+      order: number;
+    }) => data,
+  )
+  .handler(async ({ data }) => {
+    await db.insert(workoutExercises).values({
+      id: data.id,
+      workoutId: data.workoutId,
+      exerciseId: data.exerciseId,
+      order: data.order,
+    });
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [editSetWeight, setEditSetWeight] = useState<string>("");
   const [editSetReps, setEditSetReps] = useState<string>("");
@@ -164,6 +201,25 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [addSetWeight, setAddSetWeight] = useState<string>("");
   const [toggleEdit, setToggleEdit] = useState(false);
   const queryClient = useQueryClient();
+  const { data: session } = authClient.useSession();
+  const [selectedStatuses, setSelectedStatuses] =
+    useState<ExerciseSelect | null>(null);
+
+  const { data: defaultExercises } = useQuery({
+    queryKey: ["defaultExercises"],
+    queryFn: () => getExById({ data: { userId: "default" } }),
+  });
+
+  const { data: customExercises } = useQuery({
+    queryKey: ["customExercises", session?.user.id],
+    queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
+  });
+
+  const exercises: ExerciseSelectWithID[] = [
+    ...(customExercises ?? []),
+    ...(defaultExercises ?? []),
+  ];
 
   const mutationTrainings = useMutation({
     mutationFn: addTraining,
@@ -246,6 +302,14 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const addMutationExercise = useMutation({
+    mutationFn: addExercise,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -281,6 +345,17 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
         exId: exId,
         weight: addSetWeight,
         reps: Number(addSetReps),
+        order: order,
+      },
+    });
+  }
+
+  function handleAddExercise(trainingId: string, order: number) {
+    addMutationExercise.mutate({
+      data: {
+        id: uuidv4(),
+        workoutId: trainingId,
+        exerciseId: selectedStatuses?.id ?? "dl",
         order: order,
       },
     });
@@ -374,6 +449,16 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           handleAddSet={handleAddSet}
                         />
                       ))}
+                      <div className={`${toggleEdit ? "" : "hidden"}`}>
+                        <DialogAddExercise
+                          handleAddExercise={handleAddExercise}
+                          exercises={exercises}
+                          trainingId={training.id}
+                          order={training.workoutExercises.length}
+                          selectedStatuses={selectedStatuses}
+                          setSelectedStatuses={setSelectedStatuses}
+                        />
+                      </div>
                       <div className="flex justify-between items-center">
                         <div className="">
                           <Toggle

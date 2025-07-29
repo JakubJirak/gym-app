@@ -39,7 +39,7 @@ interface ExerciseComboboxProps {
   selectedStatus: ExerciseSelect | null;
   setSelectedStatus: (status: ExerciseSelect | null) => void;
   exerciseId: string;
-  selectExercise: (
+  selectExercise?: (
     exerciseId: string | number,
     selected: ExerciseSelect,
   ) => void;
@@ -65,7 +65,8 @@ export function ExerciseCombobox({
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (selectedStatus) selectExercise(exerciseId, selectedStatus);
+    if (selectedStatus && selectExercise)
+      selectExercise(exerciseId, selectedStatus);
   }, [selectedStatus]);
 
   return (
