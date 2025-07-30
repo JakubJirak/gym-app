@@ -194,6 +194,15 @@ const addExercise = createServerFn()
     });
   });
 
+const editExercise = createServerFn()
+  .validator((data: { exerciseId: string; id: string }) => data)
+  .handler(async ({ data }) => {
+    await db
+      .update(workoutExercises)
+      .set({ exerciseId: data.exerciseId })
+      .where(eq(workoutExercises.id, data.id));
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [editSetWeight, setEditSetWeight] = useState<string>("");
   const [editSetReps, setEditSetReps] = useState<string>("");
@@ -203,6 +212,8 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const queryClient = useQueryClient();
   const { data: session } = authClient.useSession();
   const [selectedStatuses, setSelectedStatuses] =
+    useState<ExerciseSelect | null>(null);
+  const [selectedStatusesEx, setSelectedStatusesEx] =
     useState<ExerciseSelect | null>(null);
 
   const { data: defaultExercises } = useQuery({
@@ -310,6 +321,14 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const editMutationExercise = useMutation({
+    mutationFn: editExercise,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -357,6 +376,15 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
         workoutId: trainingId,
         exerciseId: selectedStatuses?.id ?? "dl",
         order: order,
+      },
+    });
+  }
+
+  function handleEditExercise(id: string) {
+    editMutationExercise.mutate({
+      data: {
+        id: id,
+        exerciseId: selectedStatusesEx?.id ?? "dl",
       },
     });
   }
@@ -447,6 +475,10 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           handleEditSet={handleEditSet}
                           toggleEdit={toggleEdit}
                           handleAddSet={handleAddSet}
+                          selectedStatusesEx={selectedStatusesEx}
+                          setSelectedStatusesEx={setSelectedStatusesEx}
+                          exercises={exercises}
+                          handleEditExercise={handleEditExercise}
                         />
                       ))}
                       <div className={`${toggleEdit ? "" : "hidden"}`}>

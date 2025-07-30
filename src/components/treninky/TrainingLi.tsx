@@ -1,5 +1,6 @@
 import { DialogAddSet } from "@/components/treninky/DialogAddSet.tsx";
 import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
+import { DialogEditExercise } from "@/components/treninky/DialogEditExercise.tsx";
 import { DialogEditSet } from "@/components/treninky/DialogEditSet.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
@@ -11,6 +12,17 @@ interface Set {
   weight: string | null;
   workoutExerciseId: string | null;
 }
+
+type ExerciseSelect = {
+  id: string;
+  name: string;
+};
+
+type ExerciseSelectWithID = {
+  id: string;
+  userId: string | null;
+  name: string;
+};
 
 interface TrainingLiProps {
   exercise: {
@@ -45,6 +57,12 @@ interface TrainingLiProps {
   handleEditSet: (id: string) => void;
   toggleEdit: boolean;
   handleAddSet: (exId: string, order: number) => void;
+  selectedStatusesEx: ExerciseSelect | null;
+  setSelectedStatusesEx: React.Dispatch<
+    React.SetStateAction<ExerciseSelect | null>
+  >;
+  exercises: ExerciseSelectWithID[];
+  handleEditExercise: (id: string) => void;
 }
 
 const TrainingLi = ({
@@ -63,6 +81,10 @@ const TrainingLi = ({
   addSetReps,
   toggleEdit,
   handleAddSet,
+  selectedStatusesEx,
+  setSelectedStatusesEx,
+  exercises,
+  handleEditExercise,
 }: TrainingLiProps) => {
   return (
     <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
@@ -82,6 +104,14 @@ const TrainingLi = ({
             handleAddSet={handleAddSet}
             exId={exercise.id}
           />
+          <DialogEditExercise
+            handleEditExercise={handleEditExercise}
+            exercises={exercises}
+            exerciseId={exercise.id}
+            selectedStatusesEx={selectedStatusesEx}
+            setSelectedStatusesEx={setSelectedStatusesEx}
+          />
+
           <DialogDeleteExercise
             handleDeleteExercise={handleDeleteExercise}
             id={exercise.id}
