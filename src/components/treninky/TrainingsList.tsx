@@ -204,8 +204,6 @@ const editExercise = createServerFn()
   });
 
 const TrainingsList = ({ userId }: TrainingsListProp) => {
-  const [editSetWeight, setEditSetWeight] = useState<string>("");
-  const [editSetReps, setEditSetReps] = useState<string>("");
   const [addSetReps, setAddSetReps] = useState<string>("");
   const [addSetWeight, setAddSetWeight] = useState<string>("");
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -347,7 +345,11 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     });
   }
 
-  function handleEditSet(id: string) {
+  function handleEditSet(
+    id: string,
+    editSetWeight: string,
+    editSetReps: string,
+  ) {
     updateMutationSet.mutate({
       data: {
         setId: id,
@@ -462,14 +464,10 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           key={exercise.id}
                           exercise={exercise}
                           formatSetInfo={formatSetInfo}
-                          editSetWeight={editSetWeight}
-                          editSetReps={editSetReps}
                           addSetReps={addSetReps}
                           addSetWeight={addSetWeight}
                           setAddSetReps={setAddSetReps}
                           setAddSetWeight={setAddSetWeight}
-                          setEditSetWeight={setEditSetWeight}
-                          setEditSetReps={setEditSetReps}
                           handleDeleteSet={handleDeleteSet}
                           handleDeleteExercise={handleDeleteExericse}
                           handleEditSet={handleEditSet}

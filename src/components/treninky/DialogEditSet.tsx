@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pencil } from "lucide-react";
 import type React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 
@@ -22,11 +21,11 @@ interface DialogEditSet {
   weightBefore: string | null;
   setId: string;
   handleDeleteSet: (id: string) => void;
-  editSetWeight: string;
-  editSetReps: string;
-  setEditSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setEditSetReps: React.Dispatch<React.SetStateAction<string>>;
-  handleEditSet: (id: string) => void;
+  handleEditSet: (
+    id: string,
+    editSetWeight: string,
+    editSetReps: string,
+  ) => void;
 }
 
 export function DialogEditSet({
@@ -34,29 +33,24 @@ export function DialogEditSet({
   weightBefore,
   setId,
   handleDeleteSet,
-  editSetWeight,
-  editSetReps,
-  setEditSetWeight,
-  setEditSetReps,
   handleEditSet,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
+  const [editReps, setEditReps] = useState<string>(
+    repsBefore ? String(repsBefore) : "",
+  );
+  const [editWeight, setEditWeight] = useState<string>(
+    weightBefore ? weightBefore : "",
+  );
 
   if (!repsBefore || !weightBefore) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    handleEditSet(setId);
+    handleEditSet(setId, editWeight, editReps);
     setOpen(false);
-    setEditSetWeight("");
-    setEditSetReps("");
   };
-
-  useEffect(() => {
-    setEditSetReps(String(repsBefore));
-    setEditSetWeight(weightBefore);
-  }, [repsBefore, weightBefore, setEditSetReps, setEditSetWeight]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -78,9 +72,8 @@ export function DialogEditSet({
               <div className="grid gap-3">
                 <Label htmlFor="vaha">Váha (kg)</Label>
                 <Input
-                  placeholder={weightBefore}
-                  value={editSetWeight}
-                  onChange={(e) => setEditSetWeight(e.target.value)}
+                  value={editWeight}
+                  onChange={(e) => setEditWeight(e.target.value)}
                   id="vaha"
                   name="vaha"
                   type="number"
@@ -93,8 +86,8 @@ export function DialogEditSet({
                 <Label htmlFor="opak">Počet opakování</Label>
                 <Input
                   placeholder={String(repsBefore)}
-                  value={editSetReps}
-                  onChange={(e) => setEditSetReps(e.target.value)}
+                  value={editReps}
+                  onChange={(e) => setEditReps(e.target.value)}
                   id="opak"
                   name="opak"
                   type="number"

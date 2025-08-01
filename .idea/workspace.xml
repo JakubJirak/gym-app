@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="uprava zarovnani deadliftu v powerlifting stats">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/DialogEditExercise.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
     </list>
@@ -154,15 +154,8 @@
       <workItem from="1753697941872" duration="11951000" />
       <workItem from="1753821964299" duration="4762000" />
       <workItem from="1753827015330" duration="291000" />
-      <workItem from="1753864712971" duration="1033000" />
-    </task>
-    <task id="LOCAL-00017" summary="zatim se pridava jen training name a date s userId">
-      <option name="closed" value="true" />
-      <created>1753194941836</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1753194941836</updated>
+      <workItem from="1753864712971" duration="1939000" />
+      <workItem from="1754079598740" duration="873000" />
     </task>
     <task id="LOCAL-00018" summary="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny">
       <option name="closed" value="true" />
@@ -548,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753827169379</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku">
+      <option name="closed" value="true" />
+      <created>1753865962125</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1753865962125</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +567,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani zakladnich statistik" />
     <MESSAGE value="odstraneni zbytecneho providera" />
     <MESSAGE value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
     <MESSAGE value="zmena exercise id na text misto integer" />
@@ -591,6 +591,7 @@
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
     <MESSAGE value="pridani moznosti pridat novy cvik na konec treninku" />
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="uprava zarovnani deadliftu v powerlifting stats" />
+    <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
   </component>
 </project>

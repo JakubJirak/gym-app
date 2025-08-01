@@ -46,15 +46,15 @@ interface TrainingLiProps {
   formatSetInfo: (set: Set) => string;
   handleDeleteSet: (id: string) => void;
   handleDeleteExercise: (id: string) => void;
-  editSetWeight: string;
-  editSetReps: string;
-  setEditSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setEditSetReps: React.Dispatch<React.SetStateAction<string>>;
   addSetWeight: string;
   addSetReps: string;
   setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
   setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
-  handleEditSet: (id: string) => void;
+  handleEditSet: (
+    id: string,
+    editSetWeight: string,
+    editSetReps: string,
+  ) => void;
   toggleEdit: boolean;
   handleAddSet: (exId: string, order: number) => void;
   selectedStatusesEx: ExerciseSelect | null;
@@ -71,10 +71,6 @@ const TrainingLi = ({
   handleDeleteExercise,
   handleDeleteSet,
   handleEditSet,
-  setEditSetReps,
-  setEditSetWeight,
-  editSetWeight,
-  editSetReps,
   setAddSetReps,
   setAddSetWeight,
   addSetWeight,
@@ -137,10 +133,6 @@ const TrainingLi = ({
                   weightBefore={set.weight}
                   setId={set.id}
                   handleDeleteSet={handleDeleteSet}
-                  editSetReps={editSetReps}
-                  editSetWeight={editSetWeight}
-                  setEditSetReps={setEditSetReps}
-                  setEditSetWeight={setEditSetWeight}
                   handleEditSet={handleEditSet}
                 />
               </div>
