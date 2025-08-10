@@ -1,4 +1,5 @@
 import Header from "@/components/Header.tsx";
+import HistorySets from "@/components/statistiky/HistorySets.tsx";
 import OverallStats from "@/components/statistiky/OverallStats.tsx";
 import PowerliftingStats from "@/components/statistiky/PowerliftingStats.tsx";
 import { Card } from "@/components/ui/card.tsx";
@@ -100,7 +101,9 @@ function RouteComponent() {
         <TabsContent value="stats">
           <OverallStats trainings={trainings} />
         </TabsContent>
-        <TabsContent value="history">historz</TabsContent>
+        <TabsContent value="history">
+          <HistorySets />
+        </TabsContent>
       </Tabs>
     </div>
   );

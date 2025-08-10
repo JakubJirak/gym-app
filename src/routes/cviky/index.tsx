@@ -88,7 +88,6 @@ function RouteComponent() {
     return (
       <>
         <Header page="CVIKY" />
-        <p>Načítání dat</p>
       </>
     );
 

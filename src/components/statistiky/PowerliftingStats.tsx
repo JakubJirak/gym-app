@@ -61,7 +61,7 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
       <CardHeader>
         <CardTitle>
           <p className="flex gap-3 items-center">
-            <Trophy className="size-5" />
+            <Trophy />
             Powerlifting PR
           </p>
         </CardTitle>
@@ -91,7 +91,7 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
                 Bench Press
               </p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <Badge variant="accent" className="text-xs sm:text-base">
+                <Badge variant="secondary" className="text-xs sm:text-base">
                   {(benchPR / Number(weightData[0].weight)).toFixed(2)}x BW
                 </Badge>
               )}
@@ -102,7 +102,7 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
                 Deadlift
               </p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <Badge variant="accent" className="text-xs sm:text-base">
+                <Badge variant="secondary" className="text-xs sm:text-base">
                   {(deadliftPR / Number(weightData[0].weight)).toFixed(2)}x BW
                 </Badge>
               )}
