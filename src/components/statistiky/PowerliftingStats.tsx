@@ -51,6 +51,8 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
   const deadliftPR = maxWeight(getSetsById("dl"));
   const total = squatPR + benchPR + deadliftPR;
 
+  if (total === 0) return null;
+
   return (
     <Card>
       <CardHeader>

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.tsx";
 import {
   Dialog,
   DialogClose,
@@ -8,41 +8,48 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Plus } from "lucide-react";
+} from "@/components/ui/dialog.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 interface DialogEditSet {
-  addSetWeight: string;
-  addSetReps: string;
-  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
-  order: number;
-  handleAddSet: (exId: string, order: number) => void;
-  exId: string;
+  repsBefore: number | null;
+  weightBefore: string | null;
+  setId: string;
+  handleDeleteSet: (id: string) => void;
+  handleEditSet: (
+    id: string,
+    editSetWeight: string,
+    editSetReps: string,
+  ) => void;
 }
 
-export function DialogAddSet({
-  addSetWeight,
-  addSetReps,
-  setAddSetWeight,
-  setAddSetReps,
-  order,
-  handleAddSet,
-  exId,
+export function DialogEditSet({
+  repsBefore,
+  weightBefore,
+  setId,
+  handleDeleteSet,
+  handleEditSet,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
+  const [editReps, setEditReps] = useState<string>(
+    repsBefore ? String(repsBefore) : "",
+  );
+  const [editWeight, setEditWeight] = useState<string>(
+    weightBefore ? weightBefore : "",
+  );
+
+  if (!repsBefore || !weightBefore) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    handleAddSet(exId, order);
+    handleEditSet(setId, editWeight, editReps);
     setOpen(false);
-    setAddSetWeight("");
-    setAddSetReps("");
   };
 
   return (
@@ -50,14 +57,14 @@ export function DialogAddSet({
       <form>
         <DialogTrigger asChild>
           <Button variant="outline" size="icon-xs">
-            <Plus className="h-3 w-3" />
+            <Pencil className="size-3" />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] h-auto">
           <DialogHeader>
-            <DialogTitle>Přidání série</DialogTitle>
+            <DialogTitle>Změna série</DialogTitle>
             <DialogDescription>
-              Zde můžete přidat sérii k vybranému cviku.
+              Zde můžete změnit váhu nebo počet opakování v sérii.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit}>
@@ -65,8 +72,8 @@ export function DialogAddSet({
               <div className="grid gap-3">
                 <Label htmlFor="vaha">Váha (kg)</Label>
                 <Input
-                  value={addSetWeight}
-                  onChange={(e) => setAddSetWeight(e.target.value)}
+                  value={editWeight}
+                  onChange={(e) => setEditWeight(e.target.value)}
                   id="vaha"
                   name="vaha"
                   type="number"
@@ -78,8 +85,9 @@ export function DialogAddSet({
               <div className="grid gap-3">
                 <Label htmlFor="opak">Počet opakování</Label>
                 <Input
-                  value={addSetReps}
-                  onChange={(e) => setAddSetReps(e.target.value)}
+                  placeholder={String(repsBefore)}
+                  value={editReps}
+                  onChange={(e) => setEditReps(e.target.value)}
                   id="opak"
                   name="opak"
                   type="number"
@@ -91,6 +99,15 @@ export function DialogAddSet({
             </div>
 
             <DialogFooter className="mt-4">
+              <Button
+                variant="destructive"
+                className="mr-auto"
+                onClick={() => handleDeleteSet(setId)}
+                type="button"
+              >
+                <FaRegTrashCan />
+                Odstranit sérii
+              </Button>
               <DialogClose asChild>
                 <Button variant="outline">Zrušit</Button>
               </DialogClose>

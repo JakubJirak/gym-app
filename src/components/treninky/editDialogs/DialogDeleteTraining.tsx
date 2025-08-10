@@ -8,37 +8,38 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/alert-dialog.tsx";
+import { Button } from "@/components/ui/button.tsx";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 interface DialogDeleteTraining {
-  handleDeleteExercise: (id: string) => void;
+  handleDeleteTraining: (id: string) => void;
   id: string;
 }
 
 const DialogDeleteTraining = ({
-  handleDeleteExercise,
+  handleDeleteTraining,
   id,
 }: DialogDeleteTraining) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" size="icon-xs" className="mr-auto">
-          <FaRegTrashCan className="size-3" />
+        <Button variant="destructive">
+          <FaRegTrashCan />
+          Vymazat trénink
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Jste si opravdu jistí?</AlertDialogTitle>
           <AlertDialogDescription>
-            Tato akce se nedá navrátit. Navždy smaže váš cvik se všemi sériemi a
-            poznámkami.
+            Tato akce se nedá navrátit. Navždy smaže váš trénink se všemi cviky,
+            sériemi a poznámkami.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Zrušit</AlertDialogCancel>
-          <AlertDialogAction asChild onClick={() => handleDeleteExercise(id)}>
+          <AlertDialogAction asChild onClick={() => handleDeleteTraining(id)}>
             <Button className="text-foreground" variant="destructive">
               Smazat
             </Button>

@@ -1,5 +1,5 @@
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.tsx";
 import {
   Dialog,
   DialogClose,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/ui/dialog.tsx";
 import { Plus } from "lucide-react";
 import type React from "react";
 import { useState } from "react";

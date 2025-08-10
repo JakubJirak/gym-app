@@ -1,0 +1,118 @@
+import { DialogAddSet } from "@/components/treninky/editDialogs/DialogAddSet.tsx";
+import DialogDeleteExercise from "@/components/treninky/editDialogs/DialogDeleteExercise.tsx";
+import { DialogEditExercise } from "@/components/treninky/editDialogs/DialogEditExercise.tsx";
+import { DialogEditNote } from "@/components/treninky/editDialogs/DialogEditNote.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog.tsx";
+import { Pencil } from "lucide-react";
+import { useState } from "react";
+import type React from "react";
+
+type ExerciseSelectWithID = {
+  id: string;
+  userId: string | null;
+  name: string;
+};
+
+type ExerciseSelect = {
+  id: string;
+  name: string;
+};
+
+interface EditOptionsDialogProps {
+  addSetWeight: string;
+  addSetReps: string;
+  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
+  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
+  order: number;
+  handleAddSet: (exId: string, order: number) => void;
+  exId: string;
+  handleEditExercise: (id: string) => void;
+  exercises: ExerciseSelectWithID[];
+  exerciseId: string;
+  selectedStatusesEx: ExerciseSelect | null;
+  setSelectedStatusesEx: React.Dispatch<
+    React.SetStateAction<ExerciseSelect | null>
+  >;
+  handleDeleteExercise: (id: string) => void;
+  id: string;
+  handleEditNote: (id: string, note: string) => void;
+}
+
+export function EditOptionsDialog({
+  addSetWeight,
+  addSetReps,
+  setAddSetWeight,
+  setAddSetReps,
+  order,
+  handleAddSet,
+  exId,
+  handleEditExercise,
+  exercises,
+  exerciseId,
+  selectedStatusesEx,
+  setSelectedStatusesEx,
+  handleDeleteExercise,
+  handleEditNote,
+  id,
+}: EditOptionsDialogProps) {
+  const [openParent, setOpenParent] = useState(false);
+  return (
+    <Dialog open={openParent} onOpenChange={setOpenParent}>
+      <form>
+        <DialogTrigger asChild>
+          <Button variant="outline" size="icon-xs">
+            <Pencil className="size-3" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] h-auto">
+          <DialogHeader>
+            <DialogTitle>Změna ve cviku</DialogTitle>
+            <DialogDescription>
+              Zde můžete změnit vše v daném cviku.
+            </DialogDescription>
+
+            <DialogAddSet
+              setAddSetReps={setAddSetReps}
+              setAddSetWeight={setAddSetWeight}
+              addSetReps={addSetReps}
+              addSetWeight={addSetWeight}
+              order={order}
+              handleAddSet={handleAddSet}
+              exId={exId}
+              setOpenParent={setOpenParent}
+            />
+
+            <DialogEditExercise
+              handleEditExercise={handleEditExercise}
+              exercises={exercises}
+              exerciseId={exerciseId}
+              selectedStatusesEx={selectedStatusesEx}
+              setSelectedStatusesEx={setSelectedStatusesEx}
+              setOpenParent={setOpenParent}
+            />
+
+            <DialogEditNote
+              setOpenParent={setOpenParent}
+              exerciseId={exerciseId}
+              handleEditNote={handleEditNote}
+            />
+
+            <DialogDeleteExercise
+              handleDeleteExercise={handleDeleteExercise}
+              id={id}
+              setOpenParent={setOpenParent}
+            />
+          </DialogHeader>
+        </DialogContent>
+      </form>
+    </Dialog>
+  );
+}

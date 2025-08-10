@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: editing sets now show before value as default value in input">
+      <change afterPath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditNote.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogAddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogAddSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddSet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogDeleteExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogDeleteTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditSet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/profil/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/profil/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,35 +66,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
-    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.14.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.14.1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kuba/WebstormProjects/gym&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
+    "Notification.DoNotAsk-Biome": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "22.14.0",
+    "javascript.nodejs.core.library.typings.version": "22.14.1",
+    "last_opened_file_path": "C:/Users/Kuba/WebstormProjects/gym",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\Kuba\\WebstormProjects\\gym\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\WebstormProjects\gym" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky\editDialogs" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\cviky" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\login" />
@@ -102,7 +113,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.26927.40" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
       </set>
     </attachedChunks>
   </component>
@@ -155,15 +166,14 @@
       <workItem from="1753821964299" duration="4762000" />
       <workItem from="1753827015330" duration="291000" />
       <workItem from="1753864712971" duration="1939000" />
-      <workItem from="1754079598740" duration="873000" />
-    </task>
-    <task id="LOCAL-00018" summary="pridano pridavani celeho treninku do databaze, kazda cast treninku ma svoje id a pomoci techto vygenerovanych id jsou spolu propojeny">
-      <option name="closed" value="true" />
-      <created>1753217339345</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1753217339346</updated>
+      <workItem from="1754079598740" duration="1707000" />
+      <workItem from="1754081411722" duration="24000" />
+      <workItem from="1754081446337" duration="17000" />
+      <workItem from="1754081503447" duration="64000" />
+      <workItem from="1754081578503" duration="65000" />
+      <workItem from="1754081902035" duration="173000" />
+      <workItem from="1754813486263" duration="41000" />
+      <workItem from="1754813691668" duration="4440000" />
     </task>
     <task id="LOCAL-00019" summary="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state">
       <option name="closed" value="true" />
@@ -549,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753865962125</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="fix: editing sets now show before value as default value in input">
+      <option name="closed" value="true" />
+      <created>1754080669177</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1754080669177</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="odstraneni zbytecneho providera" />
     <MESSAGE value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
     <MESSAGE value="zmena exercise id na text misto integer" />
     <MESSAGE value="fix: oprava starych typu" />
@@ -592,6 +609,7 @@
     <MESSAGE value="pridani moznosti pridat novy cvik na konec treninku" />
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
     <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
-    <option name="LAST_COMMIT_MESSAGE" value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
+    <MESSAGE value="fix: editing sets now show before value as default value in input" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: editing sets now show before value as default value in input" />
   </component>
 </project>

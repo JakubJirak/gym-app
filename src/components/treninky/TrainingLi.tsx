@@ -1,7 +1,5 @@
-import { DialogAddSet } from "@/components/treninky/DialogAddSet.tsx";
-import DialogDeleteExercise from "@/components/treninky/DialogDeleteExercise.tsx";
-import { DialogEditExercise } from "@/components/treninky/DialogEditExercise.tsx";
-import { DialogEditSet } from "@/components/treninky/DialogEditSet.tsx";
+import { EditOptionsDialog } from "@/components/treninky/EditOptionsDialog.tsx";
+import { DialogEditSet } from "@/components/treninky/editDialogs/DialogEditSet.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 import type React from "react";
@@ -63,6 +61,7 @@ interface TrainingLiProps {
   >;
   exercises: ExerciseSelectWithID[];
   handleEditExercise: (id: string) => void;
+  handleEditNote: (id: string, note: string) => void;
 }
 
 const TrainingLi = ({
@@ -81,6 +80,7 @@ const TrainingLi = ({
   setSelectedStatusesEx,
   exercises,
   handleEditExercise,
+  handleEditNote,
 }: TrainingLiProps) => {
   return (
     <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
@@ -91,7 +91,7 @@ const TrainingLi = ({
         <div
           className={`${toggleEdit ? "flex ml-2 mr-auto gap-1.5" : "hidden"}`}
         >
-          <DialogAddSet
+          <EditOptionsDialog
             setAddSetReps={setAddSetReps}
             setAddSetWeight={setAddSetWeight}
             addSetReps={addSetReps}
@@ -99,18 +99,14 @@ const TrainingLi = ({
             order={exercise.sets.length}
             handleAddSet={handleAddSet}
             exId={exercise.id}
-          />
-          <DialogEditExercise
             handleEditExercise={handleEditExercise}
             exercises={exercises}
             exerciseId={exercise.id}
             selectedStatusesEx={selectedStatusesEx}
             setSelectedStatusesEx={setSelectedStatusesEx}
-          />
-
-          <DialogDeleteExercise
             handleDeleteExercise={handleDeleteExercise}
             id={exercise.id}
+            handleEditNote={handleEditNote}
           />
         </div>
         <Badge variant="outline">Série: {exercise.sets.length}</Badge>
@@ -144,9 +140,7 @@ const TrainingLi = ({
       {exercise.note && <Separator />}
 
       {exercise.note && (
-        <div className="bg-secondary rounded-md p-2 px-3">
-          <p className="text-base text-muted-foreground">{exercise.note}</p>
-        </div>
+        <p className="text-sm text-muted-foreground">{exercise.note}</p>
       )}
     </div>
   );

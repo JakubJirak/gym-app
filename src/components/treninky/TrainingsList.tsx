@@ -2,8 +2,8 @@ import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar, Dumbbell } from "lucide-react";
 
-import { DialogAddExercise } from "@/components/treninky/DialogAddExercise.tsx";
-import DialogDelete from "@/components/treninky/DialogDeleteTraining.tsx";
+import { DialogAddExercise } from "@/components/treninky/editDialogs/DialogAddExercise.tsx";
+import DialogDelete from "@/components/treninky/editDialogs/DialogDeleteTraining.tsx";
 import {
   Accordion,
   AccordionContent,
@@ -203,6 +203,15 @@ const editExercise = createServerFn()
       .where(eq(workoutExercises.id, data.id));
   });
 
+const editNote = createServerFn()
+  .validator((data: { exId: string; note: string }) => data)
+  .handler(async ({ data }) => {
+    await db
+      .update(workoutExercises)
+      .set({ note: data.note })
+      .where(eq(workoutExercises.id, data.exId));
+  });
+
 const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [addSetReps, setAddSetReps] = useState<string>("");
   const [addSetWeight, setAddSetWeight] = useState<string>("");
@@ -327,6 +336,14 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  const editMutationNote = useMutation({
+    mutationFn: editNote,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -387,6 +404,15 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
       data: {
         id: id,
         exerciseId: selectedStatusesEx?.id ?? "dl",
+      },
+    });
+  }
+
+  function handleEditNote(id: string, note: string) {
+    editMutationNote.mutate({
+      data: {
+        exId: id,
+        note,
       },
     });
   }
@@ -477,6 +503,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           setSelectedStatusesEx={setSelectedStatusesEx}
                           exercises={exercises}
                           handleEditExercise={handleEditExercise}
+                          handleEditNote={handleEditNote}
                         />
                       ))}
                       <div className={`${toggleEdit ? "" : "hidden"}`}>

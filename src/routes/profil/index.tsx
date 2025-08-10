@@ -10,6 +10,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
+import { Check, Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 
@@ -96,6 +97,7 @@ function RouteComponent() {
       data: { userId: session?.user.id ?? "", weight: weight },
     });
     setChangeWeight(false);
+    setWeight("");
   };
 
   if (!session) return null;
@@ -151,13 +153,13 @@ function RouteComponent() {
           </Card>
         ) : (
           <Card className="p-4">
-            <CardContent className="px-2">
+            <CardContent className="px-0">
               {changeWeight ? (
                 <form
                   className="flex gap-2 items-center"
                   onSubmit={handleChangeWeight}
                 >
-                  <p>Vaše nová váha (kg):</p>
+                  <p>Vaše váha (kg):</p>
                   <Input
                     autoFocus
                     value={weight}
@@ -169,8 +171,8 @@ function RouteComponent() {
                     step="0.01"
                     required
                   />
-                  <Button type="submit" className="ml-auto">
-                    Uložit váhu
+                  <Button type="submit" className="ml-auto" size="icon">
+                    <Check />
                   </Button>
                 </form>
               ) : (
@@ -179,10 +181,11 @@ function RouteComponent() {
                   <p>{weightData[0]?.weight}kg</p>
                   <Button
                     type="button"
+                    size="icon"
                     className="ml-auto"
                     onClick={() => setChangeWeight(true)}
                   >
-                    Změnit váhu
+                    <Pencil />
                   </Button>
                 </div>
               )}

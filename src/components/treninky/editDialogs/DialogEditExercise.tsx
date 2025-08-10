@@ -1,5 +1,5 @@
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.tsx";
 import {
   Dialog,
   DialogClose,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/ui/dialog.tsx";
 import { Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
@@ -28,6 +28,7 @@ interface DialogEditSet {
   setSelectedStatusesEx: React.Dispatch<
     React.SetStateAction<ExerciseSelect | null>
   >;
+  setOpenParent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type ExerciseSelect = {
@@ -41,6 +42,7 @@ export function DialogEditExercise({
   exerciseId,
   selectedStatusesEx,
   setSelectedStatusesEx,
+  setOpenParent,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -52,14 +54,16 @@ export function DialogEditExercise({
       setOpen(false);
     }
     setSelectedStatusesEx(null);
+    setOpenParent(false);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon-xs">
-            <Pencil className="size-3" />
+          <Button variant="outline" className="w-40">
+            <Pencil className="size-4" />
+            Změnit cvik
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] h-auto">
