@@ -2,6 +2,12 @@ import Header from "@/components/Header.tsx";
 import OverallStats from "@/components/statistiky/OverallStats.tsx";
 import PowerliftingStats from "@/components/statistiky/PowerliftingStats.tsx";
 import { Card } from "@/components/ui/card.tsx";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs.tsx";
 import { db } from "@/db";
 import { authClient } from "@/lib/auth-client.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -78,10 +84,24 @@ function RouteComponent() {
   return (
     <div>
       <Header page="STATISTIKY" />
-      <div className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8">
-        <PowerliftingStats trainings={trainings} />
-        <OverallStats trainings={trainings} />
-      </div>
+
+      <Tabs
+        defaultValue="powerlifting"
+        className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8"
+      >
+        <TabsList className="w-full bg-secondary">
+          <TabsTrigger value="powerlifting">Powerlifting</TabsTrigger>
+          <TabsTrigger value="stats">Statistiky</TabsTrigger>
+          <TabsTrigger value="history">Historie</TabsTrigger>
+        </TabsList>
+        <TabsContent value="powerlifting">
+          <PowerliftingStats trainings={trainings} />
+        </TabsContent>
+        <TabsContent value="stats">
+          <OverallStats trainings={trainings} />
+        </TabsContent>
+        <TabsContent value="history">historz</TabsContent>
+      </Tabs>
     </div>
   );
 }

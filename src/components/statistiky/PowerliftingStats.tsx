@@ -1,6 +1,8 @@
+import { Badge } from "@/components/ui/badge.tsx";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
@@ -12,6 +14,7 @@ import type { TrainingsType } from "@/routes/statistiky";
 import { useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
+import { Trophy } from "lucide-react";
 
 interface PowerflitingStatsType {
   trainings: TrainingsType;
@@ -57,61 +60,64 @@ const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
     <Card>
       <CardHeader>
         <CardTitle>
-          {weightData === undefined || weightData.length === 0
-            ? "Powerlifting PR (zadejte svoji váhu v profilu)"
-            : `Powerlifting PR (${weightData[0].weight}kg BW)`}
+          <p className="flex gap-3 items-center">
+            <Trophy className="size-5" />
+            Powerlifting PR
+          </p>
         </CardTitle>
+        <CardDescription>
+          {weightData === undefined || weightData.length === 0
+            ? "zadejte svoji váhu v profilu"
+            : `${weightData[0].weight}kg BW`}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <div className="space-y-2 grid grid-cols-[1fr_1px_1fr_1px_1fr] gap-1">
+          <div className="grid grid-cols-3 gap-1">
             <div className="flex flex-col justify-center items-center gap-1">
-              <p className="text-muted-foreground text-sm sm:text-base">
+              <p className="text-lg sm:text-xl font-bold">{squatPR}kg</p>
+              <p className="text-muted-foreground text-sm sm:text-base mb-1">
                 Squat
               </p>
-              <p>{squatPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p className="text-sm sm:text-base">
+                <Badge variant="secondary" className="text-xs sm:text-base">
                   {(squatPR / Number(weightData[0].weight)).toFixed(2)}x BW
-                </p>
+                </Badge>
               )}
             </div>
-            <Separator orientation="vertical" />
             <div className="flex flex-col justify-center items-center gap-1">
-              <p className="text-muted-foreground text-center text-sm sm:text-base">
+              <p className="text-lg sm:text-xl font-bold">{benchPR}kg</p>
+              <p className="text-muted-foreground text-center text-sm sm:text-base mb-1">
                 Bench Press
               </p>
-              <p className="text-center ">{benchPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p className="text-sm sm:text-base">
+                <Badge variant="accent" className="text-xs sm:text-base">
                   {(benchPR / Number(weightData[0].weight)).toFixed(2)}x BW
-                </p>
+                </Badge>
               )}
             </div>
-            <Separator orientation="vertical" />
             <div className="flex flex-col justify-center items-center gap-1">
-              <p className="text-muted-foreground text-center text-sm sm:text-base">
+              <p className="text-lg sm:text-xl font-bold">{deadliftPR}kg</p>
+              <p className="text-muted-foreground text-center text-sm sm:text-base mb-1">
                 Deadlift
               </p>
-              <p className="text-center ">{deadliftPR}kg</p>
               {weightData === undefined || weightData.length === 0 ? null : (
-                <p className="text-sm sm:text-base">
+                <Badge variant="accent" className="text-xs sm:text-base">
                   {(deadliftPR / Number(weightData[0].weight)).toFixed(2)}x BW
-                </p>
+                </Badge>
               )}
             </div>
-            <Separator className="hidden" orientation="vertical" />
           </div>
           <Separator />
           <div className="">
             <div className="space-y-2 grid gap-5">
               <div className="flex flex-col justify-center items-center gap-1">
-                <p className="text-muted-foreground">TOTAL</p>
-                <p>{total}kg</p>
+                <p className="text-center text-2xl font-bold">{total}kg</p>
+                <p className="text-muted-foreground">Total</p>
                 {weightData === undefined || weightData.length === 0 ? null : (
-                  <p className="text-sm sm:text-base">
+                  <Badge variant="accent" className="text-xs sm:text-base">
                     {(total / Number(weightData[0].weight)).toFixed(2)}x BW
-                  </p>
+                  </Badge>
                 )}
               </div>
             </div>
