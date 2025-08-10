@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: uprava index component na sematic tagy, pridani novinek, uprava card pro novinky a funkce, pridani footeru">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/OverallStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/badge.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/badge.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani tabs do statistik, kompletni predelani designu statistik powerliftingu a stats">
       <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,15 +161,7 @@
       <workItem from="1754081578503" duration="65000" />
       <workItem from="1754081902035" duration="173000" />
       <workItem from="1754813486263" duration="41000" />
-      <workItem from="1754813691668" duration="12799000" />
-    </task>
-    <task id="LOCAL-00021" summary="pridani moznosti smazat jednotlivy cvik se zabezpecenim pomoci alert dialogu">
-      <option name="closed" value="true" />
-      <created>1753273531811</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1753273531811</updated>
+      <workItem from="1754813691668" duration="13173000" />
     </task>
     <task id="LOCAL-00022" summary="pridani order logiky, upravovani setu a odstraneni setu pomoci popup dialogu">
       <option name="closed" value="true" />
@@ -561,7 +547,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754850136446</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="feat: pridani tabs do statistik, kompletni predelani designu statistik powerliftingu a stats">
+      <option name="closed" value="true" />
+      <created>1754862479460</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1754862479460</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -579,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: oprava starych typu" />
     <MESSAGE value="uprava rozlozeni card trainingu" />
     <MESSAGE value="pridani autofocusu na novy cvik a serii" />
     <MESSAGE value="pridani moznosti pridat vlastni cviky, cviky na vyber jsou nyni ciste z databaze a je to default + uzivatelske cviky" />
@@ -604,6 +597,7 @@
     <MESSAGE value="fix: editing sets now show before value as default value in input" />
     <MESSAGE value="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu" />
     <MESSAGE value="feat: uprava index component na sematic tagy, pridani novinek, uprava card pro novinky a funkce, pridani footeru" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: uprava index component na sematic tagy, pridani novinek, uprava card pro novinky a funkce, pridani footeru" />
+    <MESSAGE value="feat: pridani tabs do statistik, kompletni predelani designu statistik powerliftingu a stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani tabs do statistik, kompletni predelani designu statistik powerliftingu a stats" />
   </component>
 </project>
