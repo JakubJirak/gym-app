@@ -145,8 +145,8 @@ function RouteComponent() {
                   step="0.01"
                   required
                 />
-                <Button type="submit" className="ml-auto">
-                  Uložit váhu
+                <Button type="submit" className="ml-auto" size="icon">
+                  <Check />
                 </Button>
               </form>
             </CardContent>
