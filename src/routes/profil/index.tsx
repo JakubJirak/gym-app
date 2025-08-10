@@ -131,14 +131,14 @@ function RouteComponent() {
           <Card className="p-4">
             <CardContent className="px-2">
               <form
-                className="flex gap-4 items-center"
+                className="flex gap-2 items-center"
                 onSubmit={handleAddWeight}
               >
                 <p>Vaše váha (kg):</p>
                 <Input
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="max-w-[100px]"
+                  className="max-w-[70px]"
                   type="number"
                   min="10"
                   max="500"
@@ -164,7 +164,7 @@ function RouteComponent() {
                     autoFocus
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
-                    className="max-w-[100px]"
+                    className="max-w-[70px]"
                     type="number"
                     min="10"
                     max="500"
