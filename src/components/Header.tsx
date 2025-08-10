@@ -33,7 +33,7 @@ const Header = ({ page }: HeaderProps) => {
   };
 
   return (
-    <div className="bg-foreground grid grid-cols-[40px_1fr_auto_35px] justify-items-center items-center mb-6 px-3 h-18 justify-center max-w-[550px] mx-auto rounded-b-2xl">
+    <header className="bg-foreground grid grid-cols-[40px_1fr_auto_35px] justify-items-center items-center mb-6 px-3 h-18 justify-center max-w-[550px] mx-auto rounded-b-2xl">
       <Link to={"/menu"}>
         <GiWeightLiftingUp size={40} className="text-background" />
       </Link>
@@ -44,7 +44,7 @@ const Header = ({ page }: HeaderProps) => {
           <MdLogout />
         </Button>
       </Link>
-    </div>
+    </header>
   );
 };
 

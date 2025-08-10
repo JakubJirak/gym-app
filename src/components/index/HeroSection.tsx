@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 const HeroSection = () => {
   return (
-    <div className="h-[100dvh] flex flex-col items-center">
+    <section className="h-[100dvh] flex flex-col items-center">
       <h1 className="text-[5.3dvh]/[6.7dvh] text-left w-[80%] mt-[13dvh] mx-auto font-bold">
         Získejte kontrolu nad svým tréninkem
       </h1>
@@ -24,7 +24,7 @@ const HeroSection = () => {
           </Button>
         </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

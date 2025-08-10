@@ -79,37 +79,39 @@ export function EditOptionsDialog({
               Zde můžete změnit vše v daném cviku.
             </DialogDescription>
 
-            <DialogAddSet
-              setAddSetReps={setAddSetReps}
-              setAddSetWeight={setAddSetWeight}
-              addSetReps={addSetReps}
-              addSetWeight={addSetWeight}
-              order={order}
-              handleAddSet={handleAddSet}
-              exId={exId}
-              setOpenParent={setOpenParent}
-            />
+            <div className="flex w-full flex-col items-center gap-2 mt-4">
+              <DialogAddSet
+                setAddSetReps={setAddSetReps}
+                setAddSetWeight={setAddSetWeight}
+                addSetReps={addSetReps}
+                addSetWeight={addSetWeight}
+                order={order}
+                handleAddSet={handleAddSet}
+                exId={exId}
+                setOpenParent={setOpenParent}
+              />
 
-            <DialogEditExercise
-              handleEditExercise={handleEditExercise}
-              exercises={exercises}
-              exerciseId={exerciseId}
-              selectedStatusesEx={selectedStatusesEx}
-              setSelectedStatusesEx={setSelectedStatusesEx}
-              setOpenParent={setOpenParent}
-            />
+              <DialogEditExercise
+                handleEditExercise={handleEditExercise}
+                exercises={exercises}
+                exerciseId={exerciseId}
+                selectedStatusesEx={selectedStatusesEx}
+                setSelectedStatusesEx={setSelectedStatusesEx}
+                setOpenParent={setOpenParent}
+              />
 
-            <DialogEditNote
-              setOpenParent={setOpenParent}
-              exerciseId={exerciseId}
-              handleEditNote={handleEditNote}
-            />
+              <DialogEditNote
+                setOpenParent={setOpenParent}
+                exerciseId={exerciseId}
+                handleEditNote={handleEditNote}
+              />
 
-            <DialogDeleteExercise
-              handleDeleteExercise={handleDeleteExercise}
-              id={id}
-              setOpenParent={setOpenParent}
-            />
+              <DialogDeleteExercise
+                handleDeleteExercise={handleDeleteExercise}
+                id={id}
+                setOpenParent={setOpenParent}
+              />
+            </div>
           </DialogHeader>
         </DialogContent>
       </form>

@@ -17,7 +17,9 @@ const FunctionsCard = ({ title, text }: Props) => {
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>{text}</p>
+        <p className="font-light text-base/7 tracking-wider mt-[-12px]">
+          {text}
+        </p>
       </CardContent>
     </Card>
   );

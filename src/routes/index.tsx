@@ -1,5 +1,6 @@
 import About from "@/components/index/About.tsx";
 import Contact from "@/components/index/Contact.tsx";
+import Footer from "@/components/index/Footer.tsx";
 import Functions from "@/components/index/Functions.tsx";
 import HeroSection from "@/components/index/HeroSection.tsx";
 import News from "@/components/index/News.tsx";
@@ -24,6 +25,7 @@ function App() {
       <About />
       <News />
       <Contact />
+      <Footer />
     </div>
   );
 }

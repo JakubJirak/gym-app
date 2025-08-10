@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: editing sets now show before value as default value in input">
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditNote.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu">
+      <change afterPath="$PROJECT_DIR$/src/components/index/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogAddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogAddSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddSet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogDeleteExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogDeleteTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogDeleteTraining.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/DialogEditSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditSet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/profil/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/profil/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Functions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Functions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/FunctionsCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/FunctionsCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/HeroSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/HeroSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/News.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,15 +171,7 @@
       <workItem from="1754081578503" duration="65000" />
       <workItem from="1754081902035" duration="173000" />
       <workItem from="1754813486263" duration="41000" />
-      <workItem from="1754813691668" duration="4440000" />
-    </task>
-    <task id="LOCAL-00019" summary="pridani fetchovani dat treninku z databaze, automaticke sortovani treninku podle date, predelani renderovani podle databaze a ne podle state">
-      <option name="closed" value="true" />
-      <created>1753267259191</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1753267259191</updated>
+      <workItem from="1754813691668" duration="7875000" />
     </task>
     <task id="LOCAL-00020" summary="pridani moznosti smazat trenink s ochranou alert dialogu">
       <option name="closed" value="true" />
@@ -567,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754080669177</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu">
+      <option name="closed" value="true" />
+      <created>1754826680224</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1754826680224</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: vybirani cviku funguje pro kazdy cvik zvlast" />
     <MESSAGE value="zmena exercise id na text misto integer" />
     <MESSAGE value="fix: oprava starych typu" />
     <MESSAGE value="uprava rozlozeni card trainingu" />
@@ -610,6 +607,7 @@
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
     <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
     <MESSAGE value="fix: editing sets now show before value as default value in input" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: editing sets now show before value as default value in input" />
+    <MESSAGE value="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu" />
   </component>
 </project>

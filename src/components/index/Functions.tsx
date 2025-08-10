@@ -2,7 +2,7 @@ import FunctionsCard from "@/components/index/FunctionsCard.tsx";
 
 const Functions = () => {
   return (
-    <div className="bg-secondary w-full py-15">
+    <section className="bg-secondary w-full py-15">
       <h1 className="text-3xl font-bold">FUNKCE</h1>
       <div className="w-[90%] mx-auto space-y-4 mt-15">
         <FunctionsCard
@@ -22,7 +22,7 @@ const Functions = () => {
           text="Získej medaile a odznaky za své výkony, ať už podle zvednuté váhy nebo podle BW ratia, a motivuj se k dalšímu zlepšení!"
         />
       </div>
-    </div>
+    </section>
   );
 };
 
