@@ -102,7 +102,7 @@ function RouteComponent() {
           <OverallStats trainings={trainings} />
         </TabsContent>
         <TabsContent value="history">
-          <HistorySets />
+          <HistorySets trainings={trainings} />
         </TabsContent>
       </Tabs>
     </div>
