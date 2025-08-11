@@ -10,14 +10,15 @@ import { Separator } from "@/components/ui/separator.tsx";
 import { db } from "@/db";
 import { userWeight } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
-import type { TrainingsType } from "@/routes/statistiky";
 import { useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { Trophy } from "lucide-react";
 
 interface PowerflitingStatsType {
-  trainings: TrainingsType;
+  benchPR: number;
+  deadliftPR: number;
+  squatPR: number;
 }
 
 const fetchWeight = createServerFn({ method: "GET" })
@@ -29,30 +30,18 @@ const fetchWeight = createServerFn({ method: "GET" })
       .where(eq(userWeight.userId, data.userId));
   });
 
-const PowerliftingStats = ({ trainings }: PowerflitingStatsType) => {
+const PowerliftingStats = ({
+  benchPR,
+  squatPR,
+  deadliftPR,
+}: PowerflitingStatsType) => {
   const { data: session } = authClient.useSession();
   const { data: weightData } = useQuery({
     queryKey: ["userWeight", session?.user.id],
     queryFn: () => fetchWeight({ data: { userId: session?.user.id ?? "" } }),
   });
 
-  const getSetsById = (id: string): number[] => {
-    return trainings
-      ?.flatMap((training) => training.workoutExercises)
-      .filter((exercise) => exercise.exerciseId === id)
-      .flatMap((exercise) => exercise.sets)
-      .flatMap((set) => Number(set.weight));
-  };
-
-  const maxWeight = (arr: number[]): number => {
-    if (arr.length === 0) return 0;
-    return Math.max(...arr);
-  };
-
-  const squatPR = maxWeight(getSetsById("sq"));
-  const benchPR = maxWeight(getSetsById("bp"));
-  const deadliftPR = maxWeight(getSetsById("dl"));
-  const total = squatPR + benchPR + deadliftPR;
+  const total = squatPR + deadliftPR + benchPR;
 
   if (total === 0) return null;
 

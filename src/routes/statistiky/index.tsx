@@ -1,6 +1,7 @@
 import Header from "@/components/Header.tsx";
 import HistorySets from "@/components/statistiky/HistorySets.tsx";
 import OverallStats from "@/components/statistiky/OverallStats.tsx";
+import PowerliftingGoals from "@/components/statistiky/PowerliftingGoals.tsx";
 import PowerliftingStats from "@/components/statistiky/PowerliftingStats.tsx";
 import { Card } from "@/components/ui/card.tsx";
 import {
@@ -63,6 +64,26 @@ function RouteComponent() {
     enabled: true,
   });
 
+  const getSetsById = (id: string): number[] => {
+    if (trainings !== undefined) {
+      return trainings
+        ?.flatMap((training) => training.workoutExercises)
+        .filter((exercise) => exercise.exerciseId === id)
+        .flatMap((exercise) => exercise.sets)
+        .flatMap((set) => Number(set.weight));
+    }
+    return [];
+  };
+
+  const maxWeight = (arr: number[]): number => {
+    if (arr.length === 0) return 0;
+    return Math.max(...arr);
+  };
+
+  const squatPR = maxWeight(getSetsById("sq"));
+  const benchPR = maxWeight(getSetsById("bp"));
+  const deadliftPR = maxWeight(getSetsById("dl"));
+
   if (isLoading)
     return (
       <>
@@ -96,7 +117,18 @@ function RouteComponent() {
           <TabsTrigger value="history">Historie</TabsTrigger>
         </TabsList>
         <TabsContent value="powerlifting">
-          <PowerliftingStats trainings={trainings} />
+          <div className="space-y-4">
+            <PowerliftingStats
+              benchPR={benchPR}
+              deadliftPR={deadliftPR}
+              squatPR={squatPR}
+            />
+            <PowerliftingGoals
+              benchPR={benchPR}
+              deadliftPR={deadliftPR}
+              squatPR={squatPR}
+            />
+          </div>
         </TabsContent>
         <TabsContent value="stats">
           <OverallStats trainings={trainings} />
