@@ -169,7 +169,7 @@ const UserSetGoals = () => {
               />
             </div>
             <Button className="mt-2" type="submit">
-              Ulozit cile
+              Uložit cíle
             </Button>
           </form>
         ) : (
