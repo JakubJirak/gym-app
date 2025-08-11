@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani historie cviku podle vybraneco cviku">
       <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,15 +163,7 @@
       <workItem from="1754813486263" duration="41000" />
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
-      <workItem from="1754904821245" duration="1523000" />
-    </task>
-    <task id="LOCAL-00027" summary="change version of betterauth">
-      <option name="closed" value="true" />
-      <created>1753278380163</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1753278380163</updated>
+      <workItem from="1754904821245" duration="1840000" />
     </task>
     <task id="LOCAL-00028" summary="add bunlock">
       <option name="closed" value="true" />
@@ -559,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754864334456</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="feat: pridani historie cviku podle vybraneco cviku">
+      <option name="closed" value="true" />
+      <created>1754906543890</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1754906543890</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +575,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani statistik k celkovym statistikam" />
     <MESSAGE value="uprava proti problikavani pro loadingu" />
     <MESSAGE value="oprava v logice vypoctu celkove vahy" />
     <MESSAGE value="pridani autofocusu na input pro hledani cviku" />
@@ -602,6 +599,7 @@
     <MESSAGE value="fix: pridani tabs do commitu" />
     <MESSAGE value="feat: pridani component pro historii cviku" />
     <MESSAGE value="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval" />
+    <MESSAGE value="feat: pridani historie cviku podle vybraneco cviku" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani historie cviku podle vybraneco cviku" />
   </component>
 </project>

@@ -92,12 +92,12 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
             {sets?.map((set) => (
               <div key={set.id}>
                 <div
-                  className={` ${(set.order ?? 1 > 0) ? "mt-0 rounded-b-xl pt-10 mt-[-41px] border border-t-transparent border-border" : "font-light mt-3 border border-border"} p-2 px-3  bg-secondary rounded-xl  flex gap-1`}
+                  className={` ${(set.order ?? 1 > 0) ? "mt-0 rounded-b-xl pt-10 mt-[-41px] border border-t-transparent border-border" : "mt-3 border border-border"} p-2 px-3 bg-secondary rounded-xl flex gap-0.5`}
                 >
                   <p>{set.order ? set.order + 1 : 1}. série</p>
-                  <p className="ml-auto">{set.weight}</p>
-                  <p>x</p>
-                  <p>{set.reps}</p>
+                  <p className="ml-auto font-bold">{set.weight}</p>
+                  <p className="font-bold">×</p>
+                  <p className="font-bold">{set.reps}</p>
                 </div>
               </div>
             ))}
