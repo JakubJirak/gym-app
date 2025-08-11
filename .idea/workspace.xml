@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach">
-      <change beforePath="$PROJECT_DIR$/src/components/index/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/News.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani news karty o powerlifting goals">
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +163,7 @@
       <workItem from="1754813486263" duration="41000" />
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
-      <workItem from="1754904821245" duration="8408000" />
-    </task>
-    <task id="LOCAL-00031" summary="fix: centering forms for login and register">
-      <option name="closed" value="true" />
-      <created>1753279477575</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1753279477575</updated>
+      <workItem from="1754904821245" duration="8711000" />
     </task>
     <task id="LOCAL-00032" summary="remove temporary menu button from index page">
       <option name="closed" value="true" />
@@ -557,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754920528425</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="feat: pridani news karty o powerlifting goals">
+      <option name="closed" value="true" />
+      <created>1754920624057</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1754920624057</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +575,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani moznosti pridat vlastni cvik primo pri vytvareni treninku" />
     <MESSAGE value="pridani custom head title, name a content pro kazdou stranku" />
     <MESSAGE value="odstaneni textu nacitani pro nacitani treninku" />
     <MESSAGE value="pridani powerlifting prs do statistik" />
@@ -600,6 +599,7 @@
     <MESSAGE value="fix: uprava fontu v historii cviku" />
     <MESSAGE value="feat: pridani moznosti pridat si a upravit svoje powerlifting cile v profilu" />
     <MESSAGE value="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach" />
+    <MESSAGE value="feat: pridani news karty o powerlifting goals" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani news karty o powerlifting goals" />
   </component>
 </project>

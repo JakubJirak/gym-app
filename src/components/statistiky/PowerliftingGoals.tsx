@@ -37,7 +37,7 @@ const PowerliftingGoals = ({
     queryFn: () => getGoals({ data: { userId: session?.user.id ?? "" } }),
   });
 
-  if (!goals) return null;
+  if (!goals || goals.length === 0) return null;
 
   return (
     <Card>

@@ -86,24 +86,26 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
           />
         </CardContent>
       </Card>
-      <Card>
-        <CardContent>
-          <div>
-            {sets?.map((set) => (
-              <div key={set.id}>
-                <div
-                  className={` ${(set.order ?? 1 > 0) ? "mt-0 rounded-b-xl pt-10 mt-[-41px] border border-t-transparent border-border" : "mt-3 border border-border"} p-2 px-3 bg-secondary rounded-xl flex gap-0.5`}
-                >
-                  <p>{set.order ? set.order + 1 : 1}. série</p>
-                  <p className="ml-auto font-bold">{set.weight}</p>
-                  <p className="font-bold">×</p>
-                  <p className="font-bold">{set.reps}</p>
+      {selectedStatusesEx && (
+        <Card>
+          <CardContent>
+            <div>
+              {sets?.map((set) => (
+                <div key={set.id}>
+                  <div
+                    className={` ${(set.order ?? 1 > 0) ? "mt-0 rounded-b-xl pt-10 mt-[-41px] border border-t-transparent border-border" : "mt-3 border border-border"} p-2 px-3 bg-secondary rounded-xl flex gap-0.5`}
+                  >
+                    <p>{set.order ? set.order + 1 : 1}. série</p>
+                    <p className="ml-auto font-bold">{set.weight}</p>
+                    <p className="font-bold">×</p>
+                    <p className="font-bold">{set.reps}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
