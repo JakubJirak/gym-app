@@ -12,10 +12,13 @@ export function CustomTooltip({
   if (active && payload && payload.length) {
     const d = new Date(label);
     return (
-      <div className="p-2 bg-accent border border-border rounded-xl">
-        <p>{d.toLocaleDateString()}</p>
-        <p>Váha: {payload[0].value}kg</p>
-        <p>Opak.: {payload[0].payload.reps}x</p>
+      <div className="p-3 bg-background flex flex-col gap-1 items-center justify-center border border-border rounded-xl">
+        <p className="font-semibold">{d.toLocaleDateString()}</p>
+        <div className="flex gap-0.5">
+          <p className="ml-auto font-bold">{payload[0].value}kg</p>
+          <p className="font-bold">×</p>
+          <p className="font-bold">{payload[0].payload.reps}</p>
+        </div>
       </div>
     );
   }

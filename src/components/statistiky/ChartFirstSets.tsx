@@ -30,24 +30,35 @@ const ChartFirstSets = ({ historySets }: chartProps) => {
         new Date(b?.date ? b.date : "2025-01-01").getTime(),
     );
 
-  const maxWeightPerSets = sortedHistorySets.map((set) => {
-    if (!set) return null;
-    const weights = set.sets
-      .map((s) => Number(s.weight))
-      .filter((w) => !Number.isNaN(w));
-    return weights.length ? Math.max(...weights) : null;
-  });
-
   const chartData = sortedHistorySets
-    .map((set, idx) => {
-      if (set && maxWeightPerSets[idx] !== null) {
-        return {
-          date: set.date,
-          value: maxWeightPerSets[idx],
-          reps: set.sets[0].reps,
-        };
-      }
-      return null;
+    .map((set) => {
+      if (!set) return null;
+
+      const weights = set.sets
+        .map((s) => Number(s.weight))
+        .filter((w) => !Number.isNaN(w));
+
+      const maxWeight = weights.length ? Math.max(...weights) : null;
+      if (maxWeight === null) return null;
+
+      const maxWeightSets = set.sets.filter(
+        (s) => Number(s.weight) === maxWeight,
+      );
+
+      const maxReps =
+        maxWeightSets.length > 0
+          ? Math.max(
+              ...maxWeightSets
+                .map((s) => Number(s.reps))
+                .filter((r) => !Number.isNaN(r)),
+            )
+          : null;
+
+      return {
+        date: set.date,
+        value: maxWeight,
+        reps: maxReps,
+      };
     })
     .filter(Boolean);
 

@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
@@ -100,6 +101,8 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
 
       {selectedStatusesEx && (
         <>
+          <ChartFirstSets historySets={historySets} />
+
           <Card>
             <CardContent>
               {historySets.length === 0 && (
@@ -107,19 +110,19 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
                   Pro tento cvik nemáte žádnou sérii
                 </p>
               )}
-              <div className="space-y-4">
-                {historySets.map((history) => (
-                  <HistorySet
-                    key={history?.id}
-                    date={history?.date}
-                    sets={history?.sets}
-                  />
-                ))}
-              </div>
+              <ScrollArea className="max-h-100 overflow-y-auto">
+                <div className="space-y-4">
+                  {historySets.map((history) => (
+                    <HistorySet
+                      key={history?.id}
+                      date={history?.date}
+                      sets={history?.sets}
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
             </CardContent>
           </Card>
-
-          <ChartFirstSets historySets={historySets} />
         </>
       )}
     </div>
