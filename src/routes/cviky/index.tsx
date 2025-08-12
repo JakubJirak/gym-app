@@ -7,7 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import { ScrollArea } from "@/components/ui/scroll-area.tsx";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs.tsx";
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
@@ -97,52 +102,61 @@ function RouteComponent() {
   return (
     <div>
       <Header page="CVIKY" />
-      <div className="w-[90%] max-w-[500px] mx-auto space-y-4 pb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Vaše vlastní cviky</CardTitle>
-            <CardDescription>
-              Zde jsou všechny vaše vlastní cviky
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <AddExercise
-              exName={exName}
-              setExName={setExName}
-              handleAddExercise={handleAddExercise}
-            />
-            {customExercises.length === 0 ? (
-              <p className="text-muted-foreground mt-4">
-                Ještě nemáte žádné vlastní cviky
-              </p>
-            ) : (
-              <ScrollArea className="overflow-auto max-h-60 border border-border p-3 rounded-xl mt-4">
-                <div className="">
+
+      <Tabs
+        defaultValue="custom"
+        className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8"
+      >
+        <TabsList className="w-full bg-secondary">
+          <TabsTrigger value="custom">Vlastní cviky</TabsTrigger>
+          <TabsTrigger value="default">Defaultní cviky</TabsTrigger>
+        </TabsList>
+        <TabsContent value="custom">
+          <Card>
+            <CardHeader>
+              <CardTitle>Vaše vlastní cviky</CardTitle>
+              <CardDescription>
+                Zde jsou všechny vaše vlastní cviky
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <AddExercise
+                exName={exName}
+                setExName={setExName}
+                handleAddExercise={handleAddExercise}
+              />
+              {customExercises.length === 0 ? (
+                <p className="text-muted-foreground mt-4">
+                  Ještě nemáte žádné vlastní cviky
+                </p>
+              ) : (
+                <div className="border border-border p-3 rounded-xl mt-4">
                   {customExercises.map((exercise) => (
                     <div key={exercise.id}>{exercise.name}</div>
                   ))}
                 </div>
-              </ScrollArea>
-            )}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Defaultní cviky</CardTitle>
-            <CardDescription>Zde jsou všechny defaultní cviky.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="overflow-auto max-h-40 border border-border p-3 rounded-xl">
-              <div className="grid gap-1 ">
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="default">
+          <Card>
+            <CardHeader>
+              <CardTitle>Defaultní cviky</CardTitle>
+              <CardDescription>
+                Zde jsou všechny defaultní cviky.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-1 border border-border p-3 rounded-xl">
                 {defaultExercises.map((exercise) => (
                   <div key={exercise.id}>{exercise.name}</div>
                 ))}
               </div>
-            </ScrollArea>
-          </CardContent>
-        </Card>
-      </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

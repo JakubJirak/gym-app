@@ -1,8 +1,8 @@
 import Header from "@/components/Header.tsx";
-import HistorySets from "@/components/statistiky/HistorySets.tsx";
-import OverallStats from "@/components/statistiky/OverallStats.tsx";
-import PowerliftingGoals from "@/components/statistiky/PowerliftingGoals.tsx";
-import PowerliftingStats from "@/components/statistiky/PowerliftingStats.tsx";
+import HistorySets from "@/components/statistiky/history/HistorySets.tsx";
+import PowerliftingGoals from "@/components/statistiky/powerlifting/PowerliftingGoals.tsx";
+import PowerliftingStats from "@/components/statistiky/powerlifting/PowerliftingStats.tsx";
+import OverallStats from "@/components/statistiky/stats/OverallStats.tsx";
 import { Card } from "@/components/ui/card.tsx";
 import {
   Tabs,
@@ -104,7 +104,7 @@ function RouteComponent() {
     );
 
   return (
-    <div>
+    <>
       <Header page="STATISTIKY" />
 
       <Tabs
@@ -137,6 +137,6 @@ function RouteComponent() {
           <HistorySets trainings={trainings} />
         </TabsContent>
       </Tabs>
-    </div>
+    </>
   );
 }

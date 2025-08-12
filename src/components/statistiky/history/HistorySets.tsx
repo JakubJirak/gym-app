@@ -1,5 +1,5 @@
-import ChartFirstSets from "@/components/statistiky/ChartFirstSets.tsx";
-import HistorySet from "@/components/statistiky/HistorySet.tsx";
+import ChartFirstSets from "@/components/statistiky/history/ChartFirstSets.tsx";
+import HistorySet from "@/components/statistiky/history/HistorySet.tsx";
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import {
   Card,

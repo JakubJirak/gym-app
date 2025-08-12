@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: prvotni pridani grafu k historii cviku">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/ChartFirstSets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/ChartFirstSets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/CustomTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/CustomTooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/ChartFirstSets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/ChartFirstSets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/CustomTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/CustomTooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,10 +94,11 @@
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\stats" />
+      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\history" />
+      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\powerlifting" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky\editDialogs" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\cviky" />
-      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky" />
-      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\login" />
     </key>
   </component>
   <component name="RunManager">
@@ -173,15 +181,7 @@
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
       <workItem from="1754904821245" duration="9616000" />
-      <workItem from="1754987864115" duration="12738000" />
-    </task>
-    <task id="LOCAL-00036" summary="pridani stranky profil">
-      <option name="closed" value="true" />
-      <created>1753357652370</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1753357652370</updated>
+      <workItem from="1754987864115" duration="13483000" />
     </task>
     <task id="LOCAL-00037" summary="Pridani custom draweru pro pridavani cviku do treninku">
       <option name="closed" value="true" />
@@ -567,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755017004394</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu">
+      <option name="closed" value="true" />
+      <created>1755023509038</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1755023509038</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani bw ratios u powerlifting pr stats" />
     <MESSAGE value="pridani moznosti si upravit svoji vahu" />
     <MESSAGE value="pridani pb pro lepsi scrollovani u mobilu" />
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku" />
@@ -610,6 +617,7 @@
     <MESSAGE value="fix: diakritika u ukladani goals" />
     <MESSAGE value="feat: predelani historie cviku, nyni funkcni a s daty treninku" />
     <MESSAGE value="feat: prvotni pridani grafu k historii cviku" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: prvotni pridani grafu k historii cviku" />
+    <MESSAGE value="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu" />
   </component>
 </project>

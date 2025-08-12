@@ -1,10 +1,10 @@
-import { CustomTooltip } from "@/components/statistiky/CustomTooltip.tsx";
+import { CustomTooltip } from "@/components/statistiky/history/CustomTooltip.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
-} from "@/components/ui/chart";
+} from "@/components/ui/chart.tsx";
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 
 interface chartProps {
