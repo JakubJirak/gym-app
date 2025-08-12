@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani news karty o powerlifting goals">
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: diakritika u ukladani goals">
+      <change afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +99,12 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -163,23 +171,8 @@
       <workItem from="1754813486263" duration="41000" />
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
-      <workItem from="1754904821245" duration="8711000" />
-    </task>
-    <task id="LOCAL-00032" summary="remove temporary menu button from index page">
-      <option name="closed" value="true" />
-      <created>1753279582784</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1753279582784</updated>
-    </task>
-    <task id="LOCAL-00033" summary="change of exercises">
-      <option name="closed" value="true" />
-      <created>1753280567035</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1753280567035</updated>
+      <workItem from="1754904821245" duration="9616000" />
+      <workItem from="1754987864115" duration="2926000" />
     </task>
     <task id="LOCAL-00034" summary="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku">
       <option name="closed" value="true" />
@@ -557,7 +550,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754920624057</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="fix: oprava pokud uzivatel nema zadane zadne cile">
+      <option name="closed" value="true" />
+      <created>1754921024893</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1754921024893</updated>
+    </task>
+    <task id="LOCAL-00082" summary="fix: diakritika u ukladani goals">
+      <option name="closed" value="true" />
+      <created>1754921099973</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1754921099974</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,8 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani custom head title, name a content pro kazdou stranku" />
-    <MESSAGE value="odstaneni textu nacitani pro nacitani treninku" />
     <MESSAGE value="pridani powerlifting prs do statistik" />
     <MESSAGE value="pridani moznosti pridat si svoji vahu v profilu" />
     <MESSAGE value="pridani bw ratios u powerlifting pr stats" />
@@ -600,6 +607,8 @@
     <MESSAGE value="feat: pridani moznosti pridat si a upravit svoje powerlifting cile v profilu" />
     <MESSAGE value="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach" />
     <MESSAGE value="feat: pridani news karty o powerlifting goals" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani news karty o powerlifting goals" />
+    <MESSAGE value="fix: oprava pokud uzivatel nema zadane zadne cile" />
+    <MESSAGE value="fix: diakritika u ukladani goals" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: diakritika u ukladani goals" />
   </component>
 </project>

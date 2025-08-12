@@ -1,3 +1,4 @@
+import HistorySet from "@/components/statistiky/HistorySet.tsx";
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import {
   Card,
@@ -57,14 +58,23 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
     ...(defaultExercises ?? []),
   ];
 
-  const getSetsById = (id: string) => {
+  const getHistoryOfSetsById = (id: string) => {
     return trainings
-      ?.flatMap((training) => training.workoutExercises)
-      .filter((exercise) => exercise.exerciseId === id)
-      .flatMap((exercise) => exercise.sets);
+      ?.map((training) => {
+        const cvik = training.workoutExercises.find((e) => e.exerciseId === id);
+        if (cvik) {
+          return {
+            id: training.id,
+            date: training.workoutDate,
+            sets: cvik.sets,
+          };
+        }
+        return null;
+      })
+      .filter(Boolean);
   };
 
-  const sets = getSetsById(selectedStatusesEx?.id ?? "");
+  const historySets = getHistoryOfSetsById(selectedStatusesEx?.id ?? "");
 
   return (
     <div className="space-y-4">
@@ -86,21 +96,22 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
           />
         </CardContent>
       </Card>
+
       {selectedStatusesEx && (
         <Card>
           <CardContent>
-            <div>
-              {sets?.map((set) => (
-                <div key={set.id}>
-                  <div
-                    className={` ${(set.order ?? 1 > 0) ? "mt-0 rounded-b-xl pt-10 mt-[-41px] border border-t-transparent border-border" : "mt-3 border border-border"} p-2 px-3 bg-secondary rounded-xl flex gap-0.5`}
-                  >
-                    <p>{set.order ? set.order + 1 : 1}. série</p>
-                    <p className="ml-auto font-bold">{set.weight}</p>
-                    <p className="font-bold">×</p>
-                    <p className="font-bold">{set.reps}</p>
-                  </div>
-                </div>
+            {historySets.length === 0 && (
+              <p className="text-center text-muted-foreground">
+                Pro tento cvik nemáte žádnou sérii
+              </p>
+            )}
+            <div className="space-y-4">
+              {historySets.map((history) => (
+                <HistorySet
+                  key={history?.id}
+                  date={history?.date}
+                  sets={history?.sets}
+                />
               ))}
             </div>
           </CardContent>
