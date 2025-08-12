@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: diakritika u ukladani goals">
-      <change afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySet.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani historie cviku, nyni funkcni a s daty treninku">
+      <change afterPath="$PROJECT_DIR$/src/components/statistiky/ChartFirstSets.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/statistiky/CustomTooltip.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/chart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,15 +177,7 @@
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
       <workItem from="1754904821245" duration="9616000" />
-      <workItem from="1754987864115" duration="2926000" />
-    </task>
-    <task id="LOCAL-00034" summary="uprava paddingu a mezer v zobrazovani treninku, predelani card pro zobrazeni poctu treninku, nyni ma v sobe tlacitko pro pridani treninku">
-      <option name="closed" value="true" />
-      <created>1753307724651</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1753307724651</updated>
+      <workItem from="1754987864115" duration="10380000" />
     </task>
     <task id="LOCAL-00035" summary="uprava fontu kalendare a velikosti inputu pro nazev treninku a poznamku">
       <option name="closed" value="true" />
@@ -566,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754921099974</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="feat: predelani historie cviku, nyni funkcni a s daty treninku">
+      <option name="closed" value="true" />
+      <created>1754990866770</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1754990866770</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +589,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani powerlifting prs do statistik" />
     <MESSAGE value="pridani moznosti pridat si svoji vahu v profilu" />
     <MESSAGE value="pridani bw ratios u powerlifting pr stats" />
     <MESSAGE value="pridani moznosti si upravit svoji vahu" />
@@ -609,6 +613,7 @@
     <MESSAGE value="feat: pridani news karty o powerlifting goals" />
     <MESSAGE value="fix: oprava pokud uzivatel nema zadane zadne cile" />
     <MESSAGE value="fix: diakritika u ukladani goals" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: diakritika u ukladani goals" />
+    <MESSAGE value="feat: predelani historie cviku, nyni funkcni a s daty treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: predelani historie cviku, nyni funkcni a s daty treninku" />
   </component>
 </project>

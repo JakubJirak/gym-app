@@ -1,3 +1,4 @@
+import ChartFirstSets from "@/components/statistiky/ChartFirstSets.tsx";
 import HistorySet from "@/components/statistiky/HistorySet.tsx";
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import {
@@ -98,24 +99,28 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
       </Card>
 
       {selectedStatusesEx && (
-        <Card>
-          <CardContent>
-            {historySets.length === 0 && (
-              <p className="text-center text-muted-foreground">
-                Pro tento cvik nemáte žádnou sérii
-              </p>
-            )}
-            <div className="space-y-4">
-              {historySets.map((history) => (
-                <HistorySet
-                  key={history?.id}
-                  date={history?.date}
-                  sets={history?.sets}
-                />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <>
+          <Card>
+            <CardContent>
+              {historySets.length === 0 && (
+                <p className="text-center text-muted-foreground">
+                  Pro tento cvik nemáte žádnou sérii
+                </p>
+              )}
+              <div className="space-y-4">
+                {historySets.map((history) => (
+                  <HistorySet
+                    key={history?.id}
+                    date={history?.date}
+                    sets={history?.sets}
+                  />
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <ChartFirstSets historySets={historySets} />
+        </>
       )}
     </div>
   );
