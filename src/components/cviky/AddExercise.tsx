@@ -39,9 +39,8 @@ export function AddExercise({
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button>
-            <Plus className="" />
-            Přidat cvik
+          <Button size="icon">
+            <Plus />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] h-auto">
