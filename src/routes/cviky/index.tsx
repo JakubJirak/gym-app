@@ -13,7 +13,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
-import { CirclePlus, Dumbbell, Wrench } from "lucide-react";
+import { CirclePlus, Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 

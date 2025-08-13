@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani nove karty kalendar, pomoci shadcn kalendare, kazdy den kde je trenink je zvyraznen, po kliknuti se zobrazi accordion s nadpisem a pote i seriemi v treninku jako v trenink menu">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani designu cviku" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,15 +177,7 @@
       <workItem from="1754904821245" duration="9616000" />
       <workItem from="1754987864115" duration="14749000" />
       <workItem from="1755035178570" duration="886000" />
-      <workItem from="1755083805048" duration="5603000" />
-    </task>
-    <task id="LOCAL-00039" summary="fix: remove testing component from cviky">
-      <option name="closed" value="true" />
-      <created>1753363127772</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1753363127772</updated>
+      <workItem from="1755083805048" duration="6121000" />
     </task>
     <task id="LOCAL-00040" summary="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony">
       <option name="closed" value="true" />
@@ -575,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755091009786</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="feat: predelani designu cviku">
+      <option name="closed" value="true" />
+      <created>1755094833157</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1755094833157</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +589,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku" />
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
     <MESSAGE value="pridani moznosti pridat novy cvik na konec treninku" />
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
@@ -618,6 +613,7 @@
     <MESSAGE value="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu" />
     <MESSAGE value="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach" />
     <MESSAGE value="feat: pridani nove karty kalendar, pomoci shadcn kalendare, kazdy den kde je trenink je zvyraznen, po kliknuti se zobrazi accordion s nadpisem a pote i seriemi v treninku jako v trenink menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani nove karty kalendar, pomoci shadcn kalendare, kazdy den kde je trenink je zvyraznen, po kliknuti se zobrazi accordion s nadpisem a pote i seriemi v treninku jako v trenink menu" />
+    <MESSAGE value="feat: predelani designu cviku" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: predelani designu cviku" />
   </component>
 </project>

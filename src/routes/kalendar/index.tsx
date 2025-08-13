@@ -98,7 +98,7 @@ function RouteComponent() {
               defaultMonth={date}
               selected={date}
               onSelect={(d) => d && setDate(d)}
-              className="w-full bg-secondary rounded-2xl border border-border"
+              className="w-full rounded-2xl border border-border"
               components={{
                 DayButton: ({ children, modifiers, day, ...props }) => {
                   const trainingsDates = allDates();
@@ -111,7 +111,7 @@ function RouteComponent() {
                       modifiers={modifiers}
                       {...props}
                       className={
-                        isSpecial ? "bg-ring/50 text-white font-bold" : ""
+                        isSpecial ? "bg-accent text-white font-bold" : ""
                       }
                     >
                       {children}

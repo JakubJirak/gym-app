@@ -119,10 +119,10 @@ const TrainingLi = ({
               key={set.id}
               className="flex items-center bg-secondary rounded-md py-2 px-3"
             >
-              <span className="text-sm font-medium flex-1">
-                {setIndex + 1}. série
+              <span className="text-sm flex-1">{setIndex + 1}. série</span>
+              <span className="text-sm font-medium mr-2">
+                {formatSetInfo(set)}
               </span>
-              <span className="text-sm mr-2">{formatSetInfo(set)}</span>
               <div className={`${toggleEdit ? "block" : "hidden"}`}>
                 <DialogEditSet
                   repsBefore={set.reps}
