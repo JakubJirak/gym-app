@@ -4,17 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach">
+      <change afterPath="$PROJECT_DIR$/src/components/kalendar/CalendarTrainingLi.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/ChartFirstSets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/ChartFirstSets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/CustomTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/CustomTooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoals.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profil/UserSetGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profil/UserSetGoals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/profil/UserWeightInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profil/UserWeightInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/menu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/profil/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/profil/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/rutiny/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/rutiny/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,6 +119,12 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -181,15 +192,9 @@
       <workItem from="1754813691668" duration="14794000" />
       <workItem from="1754903596378" duration="1187000" />
       <workItem from="1754904821245" duration="9616000" />
-      <workItem from="1754987864115" duration="13483000" />
-    </task>
-    <task id="LOCAL-00037" summary="Pridani custom draweru pro pridavani cviku do treninku">
-      <option name="closed" value="true" />
-      <created>1753362216816</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1753362216816</updated>
+      <workItem from="1754987864115" duration="14749000" />
+      <workItem from="1755035178570" duration="886000" />
+      <workItem from="1755083805048" duration="4115000" />
     </task>
     <task id="LOCAL-00038" summary="uprava draweru pro mobil">
       <option name="closed" value="true" />
@@ -575,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755023509038</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach">
+      <option name="closed" value="true" />
+      <created>1755024200803</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1755024200803</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani moznosti si upravit svoji vahu" />
     <MESSAGE value="pridani pb pro lepsi scrollovani u mobilu" />
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku" />
     <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
@@ -618,6 +630,7 @@
     <MESSAGE value="feat: predelani historie cviku, nyni funkcni a s daty treninku" />
     <MESSAGE value="feat: prvotni pridani grafu k historii cviku" />
     <MESSAGE value="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ukazovani uz spravnych opakovani v tooltipu pro graf, uprava tooltipu" />
+    <MESSAGE value="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach" />
   </component>
 </project>

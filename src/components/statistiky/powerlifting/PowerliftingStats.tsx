@@ -39,6 +39,7 @@ const PowerliftingStats = ({
   const { data: weightData } = useQuery({
     queryKey: ["userWeight", session?.user.id],
     queryFn: () => fetchWeight({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
   });
 
   const total = squatPR + deadliftPR + benchPR;

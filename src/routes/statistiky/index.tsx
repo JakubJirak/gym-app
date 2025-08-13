@@ -61,7 +61,7 @@ function RouteComponent() {
   const { data: trainings, isLoading } = useQuery({
     queryKey: ["workouts", session?.user.id],
     queryFn: () => fetchTrainings({ data: { userId: session?.user.id ?? "" } }),
-    enabled: true,
+    enabled: !!session,
   });
 
   const getSetsById = (id: string): number[] => {

@@ -19,6 +19,7 @@ import { Route as RegisterIndexRouteImport } from './routes/register/index'
 import { Route as ProfilIndexRouteImport } from './routes/profil/index'
 import { Route as MenuIndexRouteImport } from './routes/menu/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as KalendarIndexRouteImport } from './routes/kalendar/index'
 import { Route as CvikyIndexRouteImport } from './routes/cviky/index'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/$'
 
@@ -64,6 +65,11 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
   path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KalendarIndexRoute = KalendarIndexRouteImport.update({
+  id: '/kalendar/',
+  path: '/kalendar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CvikyIndexRoute = CvikyIndexRouteImport.update({
   id: '/cviky/',
   path: '/cviky/',
@@ -78,6 +84,7 @@ const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cviky': typeof CvikyIndexRoute
+  '/kalendar': typeof KalendarIndexRoute
   '/login': typeof LoginIndexRoute
   '/menu': typeof MenuIndexRoute
   '/profil': typeof ProfilIndexRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cviky': typeof CvikyIndexRoute
+  '/kalendar': typeof KalendarIndexRoute
   '/login': typeof LoginIndexRoute
   '/menu': typeof MenuIndexRoute
   '/profil': typeof ProfilIndexRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cviky/': typeof CvikyIndexRoute
+  '/kalendar/': typeof KalendarIndexRoute
   '/login/': typeof LoginIndexRoute
   '/menu/': typeof MenuIndexRoute
   '/profil/': typeof ProfilIndexRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cviky'
+    | '/kalendar'
     | '/login'
     | '/menu'
     | '/profil'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cviky'
+    | '/kalendar'
     | '/login'
     | '/menu'
     | '/profil'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cviky/'
+    | '/kalendar/'
     | '/login/'
     | '/menu/'
     | '/profil/'
@@ -148,6 +160,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CvikyIndexRoute: typeof CvikyIndexRoute
+  KalendarIndexRoute: typeof KalendarIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   MenuIndexRoute: typeof MenuIndexRoute
   ProfilIndexRoute: typeof ProfilIndexRoute
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kalendar/': {
+      id: '/kalendar/'
+      path: '/kalendar'
+      fullPath: '/kalendar'
+      preLoaderRoute: typeof KalendarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cviky/': {
       id: '/cviky/'
       path: '/cviky'
@@ -260,6 +280,7 @@ declare module '@tanstack/react-start/server' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CvikyIndexRoute: CvikyIndexRoute,
+  KalendarIndexRoute: KalendarIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   MenuIndexRoute: MenuIndexRoute,
   ProfilIndexRoute: ProfilIndexRoute,

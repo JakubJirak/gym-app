@@ -23,13 +23,13 @@ export const Route = createFileRoute("/profil/")({
 
 function RouteComponent() {
   return (
-    <div>
+    <>
       <Header page="PROFIL" />
       <div className="max-w-[500px] w-[90%] mx-auto space-y-4 pb-8">
         <UserAccInfo />
         <UserWeightInput />
         <UserSetGoals />
       </div>
-    </div>
+    </>
   );
 }

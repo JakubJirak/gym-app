@@ -18,11 +18,6 @@ interface OverallStatsType {
 }
 
 const OverallStats = ({ trainings }: OverallStatsType) => {
-  // const allExercises = trainings?.reduce(
-  //   (acc, training) => acc + training.workoutExercises.length,
-  //   0,
-  // );
-
   const allSets = trainings?.reduce(
     (acc, training) =>
       acc +

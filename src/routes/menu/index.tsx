@@ -26,10 +26,8 @@ function RouteComponent() {
 
   return (
     <>
-      <div className="">
-        <Header page="MENU" />
-        <Navigation />
-      </div>
+      <Header page="MENU" />
+      <Navigation />
     </>
   );
 }

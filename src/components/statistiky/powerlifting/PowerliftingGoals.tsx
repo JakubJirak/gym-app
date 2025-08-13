@@ -35,6 +35,7 @@ const PowerliftingGoals = ({
   const { data: goals } = useQuery({
     queryKey: ["userGoals", session?.user.id ?? ""],
     queryFn: () => getGoals({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
   });
 
   if (!goals || goals.length === 0) return null;

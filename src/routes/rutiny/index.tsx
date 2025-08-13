@@ -24,8 +24,8 @@ function RouteComponent() {
   if (!session) return null;
 
   return (
-    <div>
+    <>
       <Header page="RUTINY" />
-    </div>
+    </>
   );
 }

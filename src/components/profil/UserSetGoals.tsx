@@ -70,6 +70,7 @@ const UserSetGoals = () => {
   const { data: goals } = useQuery({
     queryKey: ["userGoals", session?.user.id ?? ""],
     queryFn: () => getGoals({ data: { userId: session?.user.id ?? "" } }),
+    enabled: !!session,
   });
 
   const addGoalsMutation = useMutation({

@@ -47,6 +47,7 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
   const { data: defaultExercises } = useQuery({
     queryKey: ["defaultExercises"],
     queryFn: () => getExById({ data: { userId: "default" } }),
+    enabled: !!session,
   });
 
   const { data: customExercises } = useQuery({

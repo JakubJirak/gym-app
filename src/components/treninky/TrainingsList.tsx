@@ -226,6 +226,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const { data: defaultExercises } = useQuery({
     queryKey: ["defaultExercises"],
     queryFn: () => getExById({ data: { userId: "default" } }),
+    enabled: !!session,
   });
 
   const { data: customExercises } = useQuery({
@@ -250,7 +251,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const { data: trainings, isLoading } = useQuery({
     queryKey: ["workouts", userId],
     queryFn: () => fetchTrainings({ data: { userId } }),
-    enabled: true,
+    enabled: !!session,
   });
 
   const handleSaveTraining = async (training: Training) => {
