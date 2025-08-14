@@ -49,7 +49,11 @@ const fetchTrainings = createServerFn({ method: "GET" })
             sets: {
               orderBy: (set, { asc }) => [asc(set.order)],
             },
-            exercise: true,
+            exercise: {
+              with: {
+                muscleGroup: true,
+              },
+            },
           },
         },
       },

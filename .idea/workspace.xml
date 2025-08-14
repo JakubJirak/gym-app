@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani designu cviku">
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli">
+      <change beforePath="$PROJECT_DIR$/src/components/kalendar/CalendarTrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/kalendar/CalendarTrainingLi.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,15 +181,7 @@
       <workItem from="1754987864115" duration="14749000" />
       <workItem from="1755035178570" duration="886000" />
       <workItem from="1755083805048" duration="6121000" />
-      <workItem from="1755177908841" duration="1981000" />
-    </task>
-    <task id="LOCAL-00040" summary="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony">
-      <option name="closed" value="true" />
-      <created>1753365647806</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1753365647806</updated>
+      <workItem from="1755177908841" duration="2443000" />
     </task>
     <task id="LOCAL-00041" summary="pridani zakladnich statistik">
       <option name="closed" value="true" />
@@ -577,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755094833157</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli">
+      <option name="closed" value="true" />
+      <created>1755179975082</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1755179975082</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -595,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani moznosti pridat serii do uz vytvoreneho treninku, zmenseni ikon pro upravu treninku" />
     <MESSAGE value="pridani moznosti pridat novy cvik na konec treninku" />
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
     <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
@@ -620,6 +617,7 @@
     <MESSAGE value="feat: predelani sekce cviky na dve tabs, vlastni a defaultni cviky, odstraneni scroll areas v cvikach" />
     <MESSAGE value="feat: pridani nove karty kalendar, pomoci shadcn kalendare, kazdy den kde je trenink je zvyraznen, po kliknuti se zobrazi accordion s nadpisem a pote i seriemi v treninku jako v trenink menu" />
     <MESSAGE value="feat: predelani designu cviku" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: predelani designu cviku" />
+    <MESSAGE value="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli" />
   </component>
 </project>

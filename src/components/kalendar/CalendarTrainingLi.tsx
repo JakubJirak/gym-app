@@ -11,6 +11,9 @@ interface Props {
     exercise: {
       id: string;
       name: string;
+      muscleGroup: {
+        muscleGroup: string;
+      } | null;
     } | null;
     sets: {
       id: string;
@@ -27,7 +30,9 @@ const CalendarTrainingLi = ({ exercise }: Props) => {
     <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
       <div className="flex justify-between">
         <h4 className="font-semibold text-lg">{exercise?.exercise?.name}</h4>
-        <Badge variant="outline">Série: {exercise.sets.length}</Badge>
+        <Badge variant="outline">
+          {exercise?.exercise?.muscleGroup?.muscleGroup}
+        </Badge>
       </div>
 
       <div>
