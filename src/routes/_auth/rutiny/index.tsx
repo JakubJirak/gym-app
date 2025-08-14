@@ -1,15 +1,8 @@
 import Header from "@/components/Header.tsx";
 import { authClient } from "@/lib/auth-client.ts";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/rutiny/")({
-  beforeLoad: ({ context }) => {
-    if (!context.session) {
-      throw redirect({
-        to: "/login",
-      });
-    }
-  },
+export const Route = createFileRoute("/_auth/rutiny/")({
   component: RouteComponent,
   head: () => ({
     meta: [

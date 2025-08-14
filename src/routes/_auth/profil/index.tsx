@@ -2,16 +2,9 @@ import Header from "@/components/Header.tsx";
 import UserAccInfo from "@/components/profil/UserAccInfo.tsx";
 import UserSetGoals from "@/components/profil/UserSetGoals.tsx";
 import UserWeightInput from "@/components/profil/UserWeightInput.tsx";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/profil/")({
-  beforeLoad: ({ context }) => {
-    if (!context.session) {
-      throw redirect({
-        to: "/login",
-      });
-    }
-  },
+export const Route = createFileRoute("/_auth/profil/")({
   component: RouteComponent,
   head: () => ({
     meta: [

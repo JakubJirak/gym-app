@@ -11,38 +11,28 @@
 import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TreninkyIndexRouteImport } from './routes/treninky/index'
-import { Route as StatistikyIndexRouteImport } from './routes/statistiky/index'
-import { Route as RutinyIndexRouteImport } from './routes/rutiny/index'
 import { Route as RegisterIndexRouteImport } from './routes/register/index'
-import { Route as ProfilIndexRouteImport } from './routes/profil/index'
-import { Route as MenuIndexRouteImport } from './routes/menu/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
-import { Route as KalendarIndexRouteImport } from './routes/kalendar/index'
-import { Route as CvikyIndexRouteImport } from './routes/cviky/index'
+import { Route as AuthTreninkyIndexRouteImport } from './routes/_auth/treninky/index'
+import { Route as AuthStatistikyIndexRouteImport } from './routes/_auth/statistiky/index'
+import { Route as AuthRutinyIndexRouteImport } from './routes/_auth/rutiny/index'
+import { Route as AuthProfilIndexRouteImport } from './routes/_auth/profil/index'
+import { Route as AuthMenuIndexRouteImport } from './routes/_auth/menu/index'
+import { Route as AuthKalendarIndexRouteImport } from './routes/_auth/kalendar/index'
+import { Route as AuthCvikyIndexRouteImport } from './routes/_auth/cviky/index'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/$'
 
 const rootServerRouteImport = createServerRootRoute()
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TreninkyIndexRoute = TreninkyIndexRouteImport.update({
-  id: '/treninky/',
-  path: '/treninky/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StatistikyIndexRoute = StatistikyIndexRouteImport.update({
-  id: '/statistiky/',
-  path: '/statistiky/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RutinyIndexRoute = RutinyIndexRouteImport.update({
-  id: '/rutiny/',
-  path: '/rutiny/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterIndexRoute = RegisterIndexRouteImport.update({
@@ -50,30 +40,45 @@ const RegisterIndexRoute = RegisterIndexRouteImport.update({
   path: '/register/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfilIndexRoute = ProfilIndexRouteImport.update({
-  id: '/profil/',
-  path: '/profil/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MenuIndexRoute = MenuIndexRouteImport.update({
-  id: '/menu/',
-  path: '/menu/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
   id: '/login/',
   path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const KalendarIndexRoute = KalendarIndexRouteImport.update({
+const AuthTreninkyIndexRoute = AuthTreninkyIndexRouteImport.update({
+  id: '/treninky/',
+  path: '/treninky/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthStatistikyIndexRoute = AuthStatistikyIndexRouteImport.update({
+  id: '/statistiky/',
+  path: '/statistiky/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthRutinyIndexRoute = AuthRutinyIndexRouteImport.update({
+  id: '/rutiny/',
+  path: '/rutiny/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthProfilIndexRoute = AuthProfilIndexRouteImport.update({
+  id: '/profil/',
+  path: '/profil/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthMenuIndexRoute = AuthMenuIndexRouteImport.update({
+  id: '/menu/',
+  path: '/menu/',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthKalendarIndexRoute = AuthKalendarIndexRouteImport.update({
   id: '/kalendar/',
   path: '/kalendar/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
-const CvikyIndexRoute = CvikyIndexRouteImport.update({
+const AuthCvikyIndexRoute = AuthCvikyIndexRouteImport.update({
   id: '/cviky/',
   path: '/cviky/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthRoute,
 } as any)
 const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
   id: '/api/auth/$',
@@ -83,91 +88,87 @@ const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cviky': typeof CvikyIndexRoute
-  '/kalendar': typeof KalendarIndexRoute
   '/login': typeof LoginIndexRoute
-  '/menu': typeof MenuIndexRoute
-  '/profil': typeof ProfilIndexRoute
   '/register': typeof RegisterIndexRoute
-  '/rutiny': typeof RutinyIndexRoute
-  '/statistiky': typeof StatistikyIndexRoute
-  '/treninky': typeof TreninkyIndexRoute
+  '/cviky': typeof AuthCvikyIndexRoute
+  '/kalendar': typeof AuthKalendarIndexRoute
+  '/menu': typeof AuthMenuIndexRoute
+  '/profil': typeof AuthProfilIndexRoute
+  '/rutiny': typeof AuthRutinyIndexRoute
+  '/statistiky': typeof AuthStatistikyIndexRoute
+  '/treninky': typeof AuthTreninkyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cviky': typeof CvikyIndexRoute
-  '/kalendar': typeof KalendarIndexRoute
   '/login': typeof LoginIndexRoute
-  '/menu': typeof MenuIndexRoute
-  '/profil': typeof ProfilIndexRoute
   '/register': typeof RegisterIndexRoute
-  '/rutiny': typeof RutinyIndexRoute
-  '/statistiky': typeof StatistikyIndexRoute
-  '/treninky': typeof TreninkyIndexRoute
+  '/cviky': typeof AuthCvikyIndexRoute
+  '/kalendar': typeof AuthKalendarIndexRoute
+  '/menu': typeof AuthMenuIndexRoute
+  '/profil': typeof AuthProfilIndexRoute
+  '/rutiny': typeof AuthRutinyIndexRoute
+  '/statistiky': typeof AuthStatistikyIndexRoute
+  '/treninky': typeof AuthTreninkyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cviky/': typeof CvikyIndexRoute
-  '/kalendar/': typeof KalendarIndexRoute
+  '/_auth': typeof AuthRouteWithChildren
   '/login/': typeof LoginIndexRoute
-  '/menu/': typeof MenuIndexRoute
-  '/profil/': typeof ProfilIndexRoute
   '/register/': typeof RegisterIndexRoute
-  '/rutiny/': typeof RutinyIndexRoute
-  '/statistiky/': typeof StatistikyIndexRoute
-  '/treninky/': typeof TreninkyIndexRoute
+  '/_auth/cviky/': typeof AuthCvikyIndexRoute
+  '/_auth/kalendar/': typeof AuthKalendarIndexRoute
+  '/_auth/menu/': typeof AuthMenuIndexRoute
+  '/_auth/profil/': typeof AuthProfilIndexRoute
+  '/_auth/rutiny/': typeof AuthRutinyIndexRoute
+  '/_auth/statistiky/': typeof AuthStatistikyIndexRoute
+  '/_auth/treninky/': typeof AuthTreninkyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/register'
     | '/cviky'
     | '/kalendar'
-    | '/login'
     | '/menu'
     | '/profil'
-    | '/register'
     | '/rutiny'
     | '/statistiky'
     | '/treninky'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
+    | '/register'
     | '/cviky'
     | '/kalendar'
-    | '/login'
     | '/menu'
     | '/profil'
-    | '/register'
     | '/rutiny'
     | '/statistiky'
     | '/treninky'
   id:
     | '__root__'
     | '/'
-    | '/cviky/'
-    | '/kalendar/'
+    | '/_auth'
     | '/login/'
-    | '/menu/'
-    | '/profil/'
     | '/register/'
-    | '/rutiny/'
-    | '/statistiky/'
-    | '/treninky/'
+    | '/_auth/cviky/'
+    | '/_auth/kalendar/'
+    | '/_auth/menu/'
+    | '/_auth/profil/'
+    | '/_auth/rutiny/'
+    | '/_auth/statistiky/'
+    | '/_auth/treninky/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CvikyIndexRoute: typeof CvikyIndexRoute
-  KalendarIndexRoute: typeof KalendarIndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
   LoginIndexRoute: typeof LoginIndexRoute
-  MenuIndexRoute: typeof MenuIndexRoute
-  ProfilIndexRoute: typeof ProfilIndexRoute
   RegisterIndexRoute: typeof RegisterIndexRoute
-  RutinyIndexRoute: typeof RutinyIndexRoute
-  StatistikyIndexRoute: typeof StatistikyIndexRoute
-  TreninkyIndexRoute: typeof TreninkyIndexRoute
 }
 export interface FileServerRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatServerRoute
@@ -193,32 +194,18 @@ export interface RootServerRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/treninky/': {
-      id: '/treninky/'
-      path: '/treninky'
-      fullPath: '/treninky'
-      preLoaderRoute: typeof TreninkyIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/statistiky/': {
-      id: '/statistiky/'
-      path: '/statistiky'
-      fullPath: '/statistiky'
-      preLoaderRoute: typeof StatistikyIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rutiny/': {
-      id: '/rutiny/'
-      path: '/rutiny'
-      fullPath: '/rutiny'
-      preLoaderRoute: typeof RutinyIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register/': {
@@ -228,20 +215,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profil/': {
-      id: '/profil/'
-      path: '/profil'
-      fullPath: '/profil'
-      preLoaderRoute: typeof ProfilIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/menu/': {
-      id: '/menu/'
-      path: '/menu'
-      fullPath: '/menu'
-      preLoaderRoute: typeof MenuIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login/': {
       id: '/login/'
       path: '/login'
@@ -249,19 +222,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/kalendar/': {
-      id: '/kalendar/'
+    '/_auth/treninky/': {
+      id: '/_auth/treninky/'
+      path: '/treninky'
+      fullPath: '/treninky'
+      preLoaderRoute: typeof AuthTreninkyIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/statistiky/': {
+      id: '/_auth/statistiky/'
+      path: '/statistiky'
+      fullPath: '/statistiky'
+      preLoaderRoute: typeof AuthStatistikyIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/rutiny/': {
+      id: '/_auth/rutiny/'
+      path: '/rutiny'
+      fullPath: '/rutiny'
+      preLoaderRoute: typeof AuthRutinyIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/profil/': {
+      id: '/_auth/profil/'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof AuthProfilIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/menu/': {
+      id: '/_auth/menu/'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof AuthMenuIndexRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/kalendar/': {
+      id: '/_auth/kalendar/'
       path: '/kalendar'
       fullPath: '/kalendar'
-      preLoaderRoute: typeof KalendarIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthKalendarIndexRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/cviky/': {
-      id: '/cviky/'
+    '/_auth/cviky/': {
+      id: '/_auth/cviky/'
       path: '/cviky'
       fullPath: '/cviky'
-      preLoaderRoute: typeof CvikyIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthCvikyIndexRouteImport
+      parentRoute: typeof AuthRoute
     }
   }
 }
@@ -277,17 +285,33 @@ declare module '@tanstack/react-start/server' {
   }
 }
 
+interface AuthRouteChildren {
+  AuthCvikyIndexRoute: typeof AuthCvikyIndexRoute
+  AuthKalendarIndexRoute: typeof AuthKalendarIndexRoute
+  AuthMenuIndexRoute: typeof AuthMenuIndexRoute
+  AuthProfilIndexRoute: typeof AuthProfilIndexRoute
+  AuthRutinyIndexRoute: typeof AuthRutinyIndexRoute
+  AuthStatistikyIndexRoute: typeof AuthStatistikyIndexRoute
+  AuthTreninkyIndexRoute: typeof AuthTreninkyIndexRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthCvikyIndexRoute: AuthCvikyIndexRoute,
+  AuthKalendarIndexRoute: AuthKalendarIndexRoute,
+  AuthMenuIndexRoute: AuthMenuIndexRoute,
+  AuthProfilIndexRoute: AuthProfilIndexRoute,
+  AuthRutinyIndexRoute: AuthRutinyIndexRoute,
+  AuthStatistikyIndexRoute: AuthStatistikyIndexRoute,
+  AuthTreninkyIndexRoute: AuthTreninkyIndexRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CvikyIndexRoute: CvikyIndexRoute,
-  KalendarIndexRoute: KalendarIndexRoute,
+  AuthRoute: AuthRouteWithChildren,
   LoginIndexRoute: LoginIndexRoute,
-  MenuIndexRoute: MenuIndexRoute,
-  ProfilIndexRoute: ProfilIndexRoute,
   RegisterIndexRoute: RegisterIndexRoute,
-  RutinyIndexRoute: RutinyIndexRoute,
-  StatistikyIndexRoute: StatistikyIndexRoute,
-  TreninkyIndexRoute: TreninkyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

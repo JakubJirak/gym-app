@@ -11,19 +11,12 @@ import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
 import { getExById } from "@/utils/serverFn/trainings.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { CirclePlus, Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
 
-export const Route = createFileRoute("/cviky/")({
-  beforeLoad: ({ context }) => {
-    if (!context.session) {
-      throw redirect({
-        to: "/login",
-      });
-    }
-  },
+export const Route = createFileRoute("/_auth/cviky/")({
   component: RouteComponent,
   head: () => ({
     meta: [

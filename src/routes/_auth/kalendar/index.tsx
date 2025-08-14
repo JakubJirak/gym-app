@@ -12,20 +12,13 @@ import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { fetchTrainings } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/kalendar/")({
-  beforeLoad: ({ context }) => {
-    if (!context.session) {
-      throw redirect({
-        to: "/login",
-      });
-    }
-  },
+export const Route = createFileRoute("/_auth/kalendar/")({
   component: RouteComponent,
   head: () => ({
     meta: [

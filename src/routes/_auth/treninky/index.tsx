@@ -1,16 +1,9 @@
 import Header from "@/components/Header.tsx";
 import TrainingsList from "@/components/treninky/TrainingsList.tsx";
 import { authClient } from "@/lib/auth-client.ts";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/treninky/")({
-  beforeLoad: ({ context }) => {
-    if (!context.session) {
-      throw redirect({
-        to: "/login",
-      });
-    }
-  },
+export const Route = createFileRoute("/_auth/treninky/")({
   component: RouteComponent,
   head: () => ({
     meta: [
