@@ -28,6 +28,10 @@ import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
 import { cn } from "@/lib/utils";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+} from "@/utils/types/trainingsTypes.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
@@ -60,17 +64,6 @@ export interface Training {
   date: Date;
   exercises: Exercise[];
 }
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
 
 interface TrainingDialogProps {
   onSave: (training: Training) => void;

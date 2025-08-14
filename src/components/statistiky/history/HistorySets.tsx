@@ -8,36 +8,20 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
-import { db } from "@/db";
-import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
-import type { TrainingsType } from "@/routes/statistiky";
+import { getExById } from "@/utils/serverFn/trainings.ts";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+  TrainingsType,
+} from "@/utils/types/trainingsTypes.ts";
 import { useQuery } from "@tanstack/react-query";
-import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
 import { History } from "lucide-react";
 import { useState } from "react";
 
 interface PowerflitingStatsType {
   trainings: TrainingsType;
 }
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
-
-const getExById = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
-  });
 
 const HistorySets = ({ trainings }: PowerflitingStatsType) => {
   const [selectedStatusesEx, setSelectedStatusesEx] =

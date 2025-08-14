@@ -10,11 +10,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs.tsx";
-import { db } from "@/db";
 import { authClient } from "@/lib/auth-client.ts";
+import { fetchTrainings } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 
 export const Route = createFileRoute("/statistiky/")({
   beforeLoad: ({ context }) => {
@@ -32,28 +31,6 @@ export const Route = createFileRoute("/statistiky/")({
     ],
   }),
 });
-
-const fetchTrainings = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return await db.query.workouts.findMany({
-      orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
-      where: (workout, { eq }) => eq(workout.userId, data.userId),
-      with: {
-        workoutExercises: {
-          orderBy: (set, { asc }) => [asc(set.order)],
-          with: {
-            sets: {
-              orderBy: (set, { asc }) => [asc(set.order)],
-            },
-            exercise: true,
-          },
-        },
-      },
-    });
-  });
-
-export type TrainingsType = Awaited<ReturnType<typeof fetchTrainings>>;
 
 function RouteComponent() {
   const { data: session } = authClient.useSession();

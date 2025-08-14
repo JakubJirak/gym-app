@@ -19,14 +19,28 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { Toggle } from "@/components/ui/toggle.tsx";
-import { db } from "@/db";
-import { exercises, sets, workoutExercises, workouts } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
+import {
+  addExercise,
+  addSet,
+  addTraining,
+  deleteExercise,
+  deleteSet,
+  deleteTraining,
+  editExercise,
+  editNote,
+  fetchTrainings,
+  getExById,
+  updateSet,
+} from "@/utils/serverFn/trainings.ts";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+  SetType,
+} from "@/utils/types/trainingsTypes.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
 import { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
@@ -34,191 +48,11 @@ import { v4 as uuidv4 } from "uuid";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 import TrainingLi from "./TrainingLi.tsx";
 
-export interface Set {
-  id: string;
-  reps: number | null;
-  weight: string | null;
-  workoutExerciseId: string | null;
-}
-
 interface TrainingsListProp {
   userId: string;
 }
 
-interface exerciseDbType {
-  id: string;
-  workoutId: string;
-  exerciseId: string;
-  note: string;
-  order: number;
-}
-
-interface setsDbType {
-  id: string;
-  workoutExerciseId: string;
-  weight: string;
-  reps: number;
-  order: number;
-}
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
-
-const getExById = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
-  });
-
-const addTraining = createServerFn({ method: "POST" })
-  .validator(
-    (data: {
-      training: Training;
-      exercisesDb: exerciseDbType[];
-      setsDb: setsDbType[];
-      userId: string;
-      date: string;
-    }) => data,
-  )
-  .handler(async ({ data }) => {
-    await db.transaction(async (trx) => {
-      await trx.insert(workouts).values({
-        id: data.training.id,
-        userId: data.userId,
-        name: data.training.name,
-        workoutDate: data.date,
-      });
-
-      await trx.insert(workoutExercises).values(data.exercisesDb);
-      await trx.insert(sets).values(data.setsDb);
-    });
-  });
-
-const fetchTrainings = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return await db.query.workouts.findMany({
-      orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
-      where: (workout, { eq }) => eq(workout.userId, data.userId),
-      with: {
-        workoutExercises: {
-          orderBy: (set, { asc }) => [asc(set.order)],
-          with: {
-            sets: {
-              orderBy: (set, { asc }) => [asc(set.order)],
-            },
-            exercise: {
-              with: {
-                muscleGroup: true,
-              },
-            },
-          },
-        },
-      },
-    });
-  });
-
-const deleteTraining = createServerFn()
-  .validator((data: { trainingId: string }) => data)
-  .handler(async ({ data }) => {
-    await db.delete(workouts).where(eq(workouts.id, data.trainingId)).execute();
-  });
-
-const deleteExercise = createServerFn()
-  .validator((data: { exerciseId: string }) => data)
-  .handler(async ({ data }) => {
-    await db
-      .delete(workoutExercises)
-      .where(eq(workoutExercises.id, data.exerciseId))
-      .execute();
-  });
-
-const deleteSet = createServerFn()
-  .validator((data: { setId: string }) => data)
-  .handler(async ({ data }) => {
-    await db.delete(sets).where(eq(sets.id, data.setId)).execute();
-  });
-
-const updateSet = createServerFn()
-  .validator(
-    (data: { setId: string; editSetWeight: string; editSetReps: number }) =>
-      data,
-  )
-  .handler(async ({ data }) => {
-    await db
-      .update(sets)
-      .set({ weight: data.editSetWeight, reps: data.editSetReps })
-      .where(eq(sets.id, data.setId))
-      .execute();
-  });
-
-const addSet = createServerFn()
-  .validator(
-    (data: {
-      id: string;
-      exId: string;
-      order: number;
-      weight: string;
-      reps: number;
-    }) => data,
-  )
-  .handler(async ({ data }) => {
-    await db.insert(sets).values({
-      id: data.id,
-      workoutExerciseId: data.exId,
-      weight: data.weight,
-      reps: data.reps,
-      order: data.order,
-    });
-  });
-
-const addExercise = createServerFn()
-  .validator(
-    (data: {
-      id: string;
-      workoutId: string;
-      exerciseId: string;
-      order: number;
-    }) => data,
-  )
-  .handler(async ({ data }) => {
-    await db.insert(workoutExercises).values({
-      id: data.id,
-      workoutId: data.workoutId,
-      exerciseId: data.exerciseId,
-      order: data.order,
-    });
-  });
-
-const editExercise = createServerFn()
-  .validator((data: { exerciseId: string; id: string }) => data)
-  .handler(async ({ data }) => {
-    await db
-      .update(workoutExercises)
-      .set({ exerciseId: data.exerciseId })
-      .where(eq(workoutExercises.id, data.id));
-  });
-
-const editNote = createServerFn()
-  .validator((data: { exId: string; note: string }) => data)
-  .handler(async ({ data }) => {
-    await db
-      .update(workoutExercises)
-      .set({ note: data.note })
-      .where(eq(workoutExercises.id, data.exId));
-  });
-
 const TrainingsList = ({ userId }: TrainingsListProp) => {
-  const [addSetReps, setAddSetReps] = useState<string>("");
-  const [addSetWeight, setAddSetWeight] = useState<string>("");
   const [toggleEdit, setToggleEdit] = useState(false);
   const queryClient = useQueryClient();
   const { data: session } = authClient.useSession();
@@ -258,31 +92,11 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     enabled: !!session,
   });
 
-  const handleSaveTraining = async (training: Training) => {
-    handleAddTraining(training);
-  };
-
   function formatDate(date: Date | null, formatString: string) {
     if (date) {
       return format(date, formatString, { locale: cs });
     }
     return "neplatne datum";
-  }
-
-  function handleAddTraining(training: Training) {
-    const ISOdate = toLocalISODateString(training.date);
-    const exercises = exerciseDb(training.exercises);
-    const sets = setsDb(training.exercises);
-
-    mutationTrainings.mutate({
-      data: {
-        training: training,
-        exercisesDb: exercises,
-        setsDb: sets,
-        userId: userId,
-        date: ISOdate,
-      },
-    });
   }
 
   const deleteMutationTraining = useMutation({
@@ -349,6 +163,26 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     onError: (error) => console.log(error),
   });
 
+  async function handleSaveTraining(training: Training) {
+    handleAddTraining(training);
+  }
+
+  function handleAddTraining(training: Training) {
+    const ISOdate = toLocalISODateString(training.date);
+    const exercises = exerciseDb(training.exercises);
+    const sets = setsDb(training.exercises);
+
+    mutationTrainings.mutate({
+      data: {
+        training: training,
+        exercisesDb: exercises,
+        setsDb: sets,
+        userId: userId,
+        date: ISOdate,
+      },
+    });
+  }
+
   function handleDeleteTraining(id: string) {
     deleteMutationTraining.mutate({
       data: { trainingId: id },
@@ -381,7 +215,12 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     });
   }
 
-  function handleAddSet(exId: string, order: number) {
+  function handleAddSet(
+    exId: string,
+    order: number,
+    addSetWeight: string,
+    addSetReps: string,
+  ) {
     addMutationSet.mutate({
       data: {
         id: uuidv4(),
@@ -422,7 +261,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     });
   }
 
-  const formatSetInfo = (set: Set) => {
+  const formatSetInfo = (set: SetType) => {
     const parts = [];
     if (set.weight) parts.push(`${set.weight}kg`);
     if (set.reps) parts.push(`${set.reps}`);
@@ -495,10 +334,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           key={exercise.id}
                           exercise={exercise}
                           formatSetInfo={formatSetInfo}
-                          addSetReps={addSetReps}
-                          addSetWeight={addSetWeight}
-                          setAddSetReps={setAddSetReps}
-                          setAddSetWeight={setAddSetWeight}
                           handleDeleteSet={handleDeleteSet}
                           handleDeleteExercise={handleDeleteExericse}
                           handleEditSet={handleEditSet}

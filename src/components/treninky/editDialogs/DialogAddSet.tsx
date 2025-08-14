@@ -16,32 +16,31 @@ import type React from "react";
 import { useState } from "react";
 
 interface DialogEditSet {
-  addSetWeight: string;
-  addSetReps: string;
-  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
   order: number;
-  handleAddSet: (exId: string, order: number) => void;
+  handleAddSet: (
+    exId: string,
+    order: number,
+    addSetWeight: string,
+    addSetReps: string,
+  ) => void;
   exId: string;
   setOpenParent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function DialogAddSet({
-  addSetWeight,
-  addSetReps,
-  setAddSetWeight,
-  setAddSetReps,
   order,
   handleAddSet,
   exId,
   setOpenParent,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
+  const [addSetWeight, setAddSetWeight] = useState<string>("");
+  const [addSetReps, setAddSetReps] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    handleAddSet(exId, order);
+    handleAddSet(exId, order, addSetWeight, addSetReps);
     setOpen(false);
     setAddSetWeight("");
     setAddSetReps("");

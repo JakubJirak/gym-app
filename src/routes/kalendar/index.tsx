@@ -8,12 +8,11 @@ import {
 } from "@/components/ui/accordion.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
 import { Calendar, CalendarDayButton } from "@/components/ui/calendar.tsx";
-import { db } from "@/db";
 import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
+import { fetchTrainings } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -35,32 +34,6 @@ export const Route = createFileRoute("/kalendar/")({
     ],
   }),
 });
-
-const fetchTrainings = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return await db.query.workouts.findMany({
-      orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
-      where: (workout, { eq }) => eq(workout.userId, data.userId),
-      with: {
-        workoutExercises: {
-          orderBy: (set, { asc }) => [asc(set.order)],
-          with: {
-            sets: {
-              orderBy: (set, { asc }) => [asc(set.order)],
-            },
-            exercise: {
-              with: {
-                muscleGroup: true,
-              },
-            },
-          },
-        },
-      },
-    });
-  });
-
-export type TrainingsType = Awaited<ReturnType<typeof fetchTrainings>>;
 
 function RouteComponent() {
   const { data: session } = authClient.useSession();

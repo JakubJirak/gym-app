@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import type { TrainingsType } from "@/routes/statistiky";
+import type { TrainingsType } from "@/utils/types/trainingsTypes.ts";
 import {
   Calendar,
   ChartColumnIncreasing,

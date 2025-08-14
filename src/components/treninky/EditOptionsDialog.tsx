@@ -11,28 +11,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog.tsx";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+} from "@/utils/types/trainingsTypes.ts";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import type React from "react";
 
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
-
 interface EditOptionsDialogProps {
-  addSetWeight: string;
-  addSetReps: string;
-  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
   order: number;
-  handleAddSet: (exId: string, order: number) => void;
+  handleAddSet: (
+    exId: string,
+    order: number,
+    addSetWeight: string,
+    addSetReps: string,
+  ) => void;
   exId: string;
   handleEditExercise: (id: string) => void;
   exercises: ExerciseSelectWithID[];
@@ -47,10 +41,6 @@ interface EditOptionsDialogProps {
 }
 
 export function EditOptionsDialog({
-  addSetWeight,
-  addSetReps,
-  setAddSetWeight,
-  setAddSetReps,
   order,
   handleAddSet,
   exId,
@@ -81,10 +71,6 @@ export function EditOptionsDialog({
 
             <div className="flex w-full flex-col items-center gap-2 mt-4">
               <DialogAddSet
-                setAddSetReps={setAddSetReps}
-                setAddSetWeight={setAddSetWeight}
-                addSetReps={addSetReps}
-                addSetWeight={addSetWeight}
                 order={order}
                 handleAddSet={handleAddSet}
                 exId={exId}

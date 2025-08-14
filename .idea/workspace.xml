@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani badge s musclegroup do kalendare">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: u pridavani cviku ve vyhledavani se spusti dialog s vyberem musclegroup">
+      <change afterPath="$PROJECT_DIR$/src/utils/serverFn/trainings.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/types/trainingsTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/AddNewTraining.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/EditOptionsDialog.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddSet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogAddSet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/editDialogs/DialogEditExercise.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/statistiky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -113,6 +125,12 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -184,15 +202,8 @@
       <workItem from="1755035178570" duration="886000" />
       <workItem from="1755083805048" duration="6121000" />
       <workItem from="1755177908841" duration="2443000" />
-      <workItem from="1755180414204" duration="2110000" />
-    </task>
-    <task id="LOCAL-00042" summary="odstraneni zbytecneho providera">
-      <option name="closed" value="true" />
-      <created>1753371824209</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1753371824209</updated>
+      <workItem from="1755180414204" duration="3066000" />
+      <workItem from="1755205525813" duration="1670000" />
     </task>
     <task id="LOCAL-00043" summary="fix: vybirani cviku funguje pro kazdy cvik zvlast">
       <option name="closed" value="true" />
@@ -578,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755180470964</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="feat: u pridavani cviku ve vyhledavani se spusti dialog s vyberem musclegroup">
+      <option name="closed" value="true" />
+      <created>1755182619351</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1755182619351</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +615,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
     <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
     <MESSAGE value="fix: editing sets now show before value as default value in input" />
     <MESSAGE value="feat: pridani popup okna s moznostmi pro upravu vseho u cviku, pridani moznosti upravit poznamku, uprava ikony ukladani a upravy vahy v profilu" />
@@ -621,6 +639,7 @@
     <MESSAGE value="feat: predelani designu cviku" />
     <MESSAGE value="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli" />
     <MESSAGE value="feat: pridani badge s musclegroup do kalendare" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani badge s musclegroup do kalendare" />
+    <MESSAGE value="feat: u pridavani cviku ve vyhledavani se spusti dialog s vyberem musclegroup" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: u pridavani cviku ve vyhledavani se spusti dialog s vyberem musclegroup" />
   </component>
 </project>

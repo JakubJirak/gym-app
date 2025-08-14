@@ -10,15 +10,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog.tsx";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+} from "@/utils/types/trainingsTypes.ts";
 import { Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
 
 interface DialogEditSet {
   handleEditExercise: (id: string) => void;
@@ -30,11 +28,6 @@ interface DialogEditSet {
   >;
   setOpenParent: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
 
 export function DialogEditExercise({
   handleEditExercise,

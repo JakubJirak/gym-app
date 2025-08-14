@@ -20,21 +20,14 @@ import {
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+} from "@/utils/types/trainingsTypes.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
 
 interface ExerciseComboboxProps {
   selectedStatus: ExerciseSelect | null;

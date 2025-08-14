@@ -9,10 +9,10 @@ import {
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
+import { getExById } from "@/utils/serverFn/trainings.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
 import { CirclePlus, Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
 
@@ -35,12 +35,6 @@ export const Route = createFileRoute("/cviky/")({
     ],
   }),
 });
-
-const getExById = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
-  });
 
 const addCustomEx = createServerFn({ method: "POST" })
   .validator(

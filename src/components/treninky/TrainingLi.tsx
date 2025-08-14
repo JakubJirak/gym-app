@@ -2,25 +2,12 @@ import { EditOptionsDialog } from "@/components/treninky/EditOptionsDialog.tsx";
 import { DialogEditSet } from "@/components/treninky/editDialogs/DialogEditSet.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
+import type {
+  ExerciseSelect,
+  ExerciseSelectWithID,
+  SetType,
+} from "@/utils/types/trainingsTypes.ts";
 import type React from "react";
-
-interface Set {
-  id: string;
-  reps: number | null;
-  weight: string | null;
-  workoutExerciseId: string | null;
-}
-
-type ExerciseSelect = {
-  id: string;
-  name: string;
-};
-
-type ExerciseSelectWithID = {
-  id: string;
-  userId: string | null;
-  name: string;
-};
 
 interface TrainingLiProps {
   exercise: {
@@ -44,20 +31,21 @@ interface TrainingLiProps {
       reps: number | null;
     }[];
   };
-  formatSetInfo: (set: Set) => string;
+  formatSetInfo: (set: SetType) => string;
   handleDeleteSet: (id: string) => void;
   handleDeleteExercise: (id: string) => void;
-  addSetWeight: string;
-  addSetReps: string;
-  setAddSetWeight: React.Dispatch<React.SetStateAction<string>>;
-  setAddSetReps: React.Dispatch<React.SetStateAction<string>>;
   handleEditSet: (
     id: string,
     editSetWeight: string,
     editSetReps: string,
   ) => void;
   toggleEdit: boolean;
-  handleAddSet: (exId: string, order: number) => void;
+  handleAddSet: (
+    exId: string,
+    order: number,
+    addSetWeight: string,
+    addSetReps: string,
+  ) => void;
   selectedStatusesEx: ExerciseSelect | null;
   setSelectedStatusesEx: React.Dispatch<
     React.SetStateAction<ExerciseSelect | null>
@@ -73,10 +61,6 @@ const TrainingLi = ({
   handleDeleteExercise,
   handleDeleteSet,
   handleEditSet,
-  setAddSetReps,
-  setAddSetWeight,
-  addSetWeight,
-  addSetReps,
   toggleEdit,
   handleAddSet,
   selectedStatusesEx,
@@ -95,10 +79,6 @@ const TrainingLi = ({
           className={`${toggleEdit ? "flex ml-2 mr-auto gap-1.5" : "hidden"}`}
         >
           <EditOptionsDialog
-            setAddSetReps={setAddSetReps}
-            setAddSetWeight={setAddSetWeight}
-            addSetReps={addSetReps}
-            addSetWeight={addSetWeight}
             order={exercise.sets.length}
             handleAddSet={handleAddSet}
             exId={exercise.id}
