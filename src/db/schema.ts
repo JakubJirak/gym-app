@@ -74,6 +74,7 @@ export const exercises = pgTable("exercises", {
   id: text("id").primaryKey(),
   userId: text("user_id"),
   name: varchar("name", { length: 100 }).notNull().unique(),
+  muscleGroupId: text("muscle_group_id").references(() => muscleGroups.id),
 });
 
 export const workouts = pgTable("workouts", {
@@ -106,21 +107,34 @@ export const sets = pgTable("sets", {
 });
 
 export const userWeight = pgTable("user_weight", {
-  userId: text("user_id").notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
   weight: numeric("weight", { precision: 8, scale: 2 }).notNull(),
 });
 
 export const userGoals = pgTable("user_goals", {
-  userId: text("user_id").notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
   squat: numeric("squat", { precision: 8, scale: 2 }),
   bench: numeric("bench", { precision: 8, scale: 2 }),
   deadlift: numeric("deadlift", { precision: 8, scale: 2 }),
 });
 
+export const muscleGroups = pgTable("muscle_groups", {
+  id: text("id").notNull(),
+  muscleGroup: text("muscle_group").notNull(),
+});
+
 /* --- Relations --- */
 
-export const exercisesRelations = relations(exercises, ({ many }) => ({
+export const exercisesRelations = relations(exercises, ({ many, one }) => ({
   workoutExercises: many(workoutExercises),
+  muscleGroup: one(muscleGroups, {
+    fields: [exercises.muscleGroupId],
+    references: [muscleGroups.id],
+  }),
 }));
 
 export const workoutsRelations = relations(workouts, ({ many, one }) => ({
@@ -165,4 +179,8 @@ export const userGolalsRelations = relations(userGoals, ({ one }) => ({
     fields: [userGoals.userId],
     references: [user.id],
   }),
+}));
+
+export const muscleGroupsRelations = relations(muscleGroups, ({ many }) => ({
+  exercises: many(exercises),
 }));

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani designu cviku" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: predelani designu cviku">
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,6 +183,7 @@
       <workItem from="1754987864115" duration="14749000" />
       <workItem from="1755035178570" duration="886000" />
       <workItem from="1755083805048" duration="6121000" />
+      <workItem from="1755177908841" duration="1981000" />
     </task>
     <task id="LOCAL-00040" summary="predelani renderovani serie kazdeho cviku do vlastni komponenty, pridani toggle tlacitka ktere zapina a vypina edit nebo delete buttony">
       <option name="closed" value="true" />

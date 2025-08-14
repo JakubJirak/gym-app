@@ -32,6 +32,9 @@ interface TrainingLiProps {
     exercise: {
       id: string;
       name: string;
+      muscleGroup: {
+        muscleGroup: string;
+      } | null;
     } | null;
     sets: {
       id: string;
@@ -87,7 +90,7 @@ const TrainingLi = ({
       <div
         className={`${toggleEdit ? "" : "justify-between"} flex items-center`}
       >
-        <h4 className="font-semibold text-lg">{exercise?.exercise?.name}</h4>
+        <h4 className="font-semibold text-lg">{exercise?.exercise?.name} </h4>
         <div
           className={`${toggleEdit ? "flex ml-2 mr-auto gap-1.5" : "hidden"}`}
         >
@@ -109,7 +112,9 @@ const TrainingLi = ({
             handleEditNote={handleEditNote}
           />
         </div>
-        <Badge variant="outline">Série: {exercise.sets.length}</Badge>
+        <Badge variant="outline">
+          {exercise?.exercise?.muscleGroup?.muscleGroup}
+        </Badge>
       </div>
 
       <div>
