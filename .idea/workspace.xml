@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli">
-      <change beforePath="$PROJECT_DIR$/src/components/kalendar/CalendarTrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/kalendar/CalendarTrainingLi.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/kalendar/index.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani badge s musclegroup do kalendare">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cviky/AddExercise.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/ExerciseCombobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cviky/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,14 +184,7 @@
       <workItem from="1755035178570" duration="886000" />
       <workItem from="1755083805048" duration="6121000" />
       <workItem from="1755177908841" duration="2443000" />
-    </task>
-    <task id="LOCAL-00041" summary="pridani zakladnich statistik">
-      <option name="closed" value="true" />
-      <created>1753371756877</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1753371756877</updated>
+      <workItem from="1755180414204" duration="2110000" />
     </task>
     <task id="LOCAL-00042" summary="odstraneni zbytecneho providera">
       <option name="closed" value="true" />
@@ -575,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755179975082</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="feat: pridani badge s musclegroup do kalendare">
+      <option name="closed" value="true" />
+      <created>1755180470963</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1755180470964</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pridani moznosti pridat novy cvik na konec treninku" />
     <MESSAGE value="uprava zarovnani deadliftu v powerlifting stats" />
     <MESSAGE value="pridani moznosti zmenit typ cviku k jiz vytvorenemu treninku" />
     <MESSAGE value="fix: editing sets now show before value as default value in input" />
@@ -618,6 +620,7 @@
     <MESSAGE value="feat: pridani nove karty kalendar, pomoci shadcn kalendare, kazdy den kde je trenink je zvyraznen, po kliknuti se zobrazi accordion s nadpisem a pote i seriemi v treninku jako v trenink menu" />
     <MESSAGE value="feat: predelani designu cviku" />
     <MESSAGE value="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani tabulky musclegroups, propojeni s exercises a zobrazeni musclegroup pro kazdy cvik v trainingli" />
+    <MESSAGE value="feat: pridani badge s musclegroup do kalendare" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani badge s musclegroup do kalendare" />
   </component>
 </project>

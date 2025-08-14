@@ -15,21 +15,6 @@ import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { CirclePlus, Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
-import { useState } from "react";
-
-const getExById = createServerFn({ method: "GET" })
-  .validator((data: { userId: string }) => data)
-  .handler(async ({ data }) => {
-    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
-  });
-
-const addCustomEx = createServerFn({ method: "POST" })
-  .validator((data: { userId: string; id: string; name: string }) => data)
-  .handler(async ({ data }) => {
-    await db
-      .insert(exercises)
-      .values({ id: data.id, name: data.name, userId: data.userId });
-  });
 
 export const Route = createFileRoute("/cviky/")({
   beforeLoad: ({ context }) => {
@@ -51,10 +36,28 @@ export const Route = createFileRoute("/cviky/")({
   }),
 });
 
+const getExById = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+  });
+
+const addCustomEx = createServerFn({ method: "POST" })
+  .validator(
+    (data: { userId: string; id: string; name: string; mgId: string }) => data,
+  )
+  .handler(async ({ data }) => {
+    await db.insert(exercises).values({
+      id: data.id,
+      name: data.name,
+      userId: data.userId,
+      muscleGroupId: data.mgId,
+    });
+  });
+
 function RouteComponent() {
   const queryClient = useQueryClient();
   const { data: session } = authClient.useSession();
-  const [exName, setExName] = useState<string>("");
 
   const { data: defaultExercises, isLoading: isDefaultLoading } = useQuery({
     queryKey: ["defaultExercises"],
@@ -73,12 +76,13 @@ function RouteComponent() {
       void queryClient.invalidateQueries({ queryKey: ["customExercises"] }),
   });
 
-  const handleAddExercise = (exN: string) => {
+  const handleAddExercise = (exN: string, mgId: string) => {
     addExMutation.mutate({
       data: {
         id: nanoid(10),
         name: exN,
         userId: session?.user.id ?? "",
+        mgId: mgId,
       },
     });
   };
@@ -117,11 +121,7 @@ function RouteComponent() {
               </p>
             </div>
 
-            <AddExercise
-              exName={exName}
-              setExName={setExName}
-              handleAddExercise={handleAddExercise}
-            />
+            <AddExercise handleAddExercise={handleAddExercise} defaultName="" />
           </div>
 
           {customExercises.length === 0 ? (

@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { AddExercise } from "@/components/cviky/AddExercise.tsx";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -47,11 +48,16 @@ interface ExerciseComboboxProps {
 }
 
 const addCustomEx = createServerFn({ method: "POST" })
-  .validator((data: { userId: string; id: string; name: string }) => data)
+  .validator(
+    (data: { userId: string; id: string; name: string; mgId: string }) => data,
+  )
   .handler(async ({ data }) => {
-    await db
-      .insert(exercises)
-      .values({ id: data.id, name: data.name, userId: data.userId });
+    await db.insert(exercises).values({
+      id: data.id,
+      name: data.name,
+      userId: data.userId,
+      muscleGroupId: data.mgId,
+    });
   });
 
 export function ExerciseCombobox({
@@ -113,12 +119,13 @@ function StatusList({
     },
   });
 
-  const handleAddExercise = (exN: string) => {
+  const handleAddExercise = (exN: string, mgId: string) => {
     addExMutation.mutate({
       data: {
         id: nanoid(10),
         name: exN,
         userId: session?.user.id ?? "",
+        mgId: mgId,
       },
     });
   };
@@ -133,9 +140,10 @@ function StatusList({
       />
       <CommandList className="max-h-[55vh]">
         <CommandEmpty className="p-4 text-muted-foreground text-sm text-center">
-          <Button onClick={() => handleAddExercise(searchVal)}>
-            Přidat jako vlastní cvik
-          </Button>
+          <AddExercise
+            handleAddExercise={handleAddExercise}
+            defaultName={searchVal}
+          />
         </CommandEmpty>
         <CommandGroup>
           {exercises.map((status) => (
