@@ -3,32 +3,13 @@ import { DialogEditSet } from "@/components/treninky/editDialogs/DialogEditSet.t
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 import type {
+  Exercise,
   ExerciseSelectWithID,
   SetType,
 } from "@/utils/types/trainingsTypes.ts";
 
 interface TrainingLiProps {
-  exercise: {
-    id: string;
-    note: string | null;
-    workoutId: string | null;
-    exerciseId: string | null;
-    order: number | null;
-    exercise: {
-      id: string;
-      name: string;
-      muscleGroup: {
-        muscleGroup: string;
-      } | null;
-    } | null;
-    sets: {
-      id: string;
-      order: number | null;
-      workoutExerciseId: string | null;
-      weight: string | null;
-      reps: number | null;
-    }[];
-  };
+  exercise: Exercise;
   formatSetInfo: (set: SetType) => string;
   toggleEdit: boolean;
   exercises: ExerciseSelectWithID[];

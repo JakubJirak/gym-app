@@ -41,14 +41,12 @@ interface ExerciseOption {
   id: string;
   name: string;
 }
-
 export interface Set {
   id: string;
   exerciseId: string;
   reps: string;
   weight: string;
 }
-
 export interface Exercise {
   id: string;
   workoutId: string;
@@ -57,14 +55,12 @@ export interface Exercise {
   notes: string;
   sets: Set[];
 }
-
 export interface Training {
   id: string;
   name: string;
   date: Date;
   exercises: Exercise[];
 }
-
 interface TrainingDialogProps {
   onSave: (training: Training) => void;
 }

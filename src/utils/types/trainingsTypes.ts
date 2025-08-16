@@ -34,4 +34,26 @@ export type SetType = {
   workoutExerciseId: string | null;
 };
 
+export type Exercise = {
+  id: string;
+  note: string | null;
+  workoutId: string | null;
+  exerciseId: string | null;
+  order: number | null;
+  exercise: {
+    id: string;
+    name: string;
+    muscleGroup: {
+      muscleGroup: string;
+    } | null;
+  } | null;
+  sets: {
+    id: string;
+    order: number | null;
+    workoutExerciseId: string | null;
+    weight: string | null;
+    reps: number | null;
+  }[];
+};
+
 export type TrainingsType = Awaited<ReturnType<typeof fetchTrainings>>;

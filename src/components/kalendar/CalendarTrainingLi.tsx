@@ -1,28 +1,9 @@
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
+import type { Exercise } from "@/utils/types/trainingsTypes";
 
 interface Props {
-  exercise: {
-    id: string;
-    note: string | null;
-    workoutId: string | null;
-    exerciseId: string | null;
-    order: number | null;
-    exercise: {
-      id: string;
-      name: string;
-      muscleGroup: {
-        muscleGroup: string;
-      } | null;
-    } | null;
-    sets: {
-      id: string;
-      order: number | null;
-      workoutExerciseId: string | null;
-      weight: string | null;
-      reps: number | null;
-    }[];
-  };
+  exercise: Exercise;
 }
 
 const CalendarTrainingLi = ({ exercise }: Props) => {
