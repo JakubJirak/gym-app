@@ -10,34 +10,48 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog.tsx";
+import { editExercise } from "@/utils/serverFn/trainings";
 import type {
   ExerciseSelect,
   ExerciseSelectWithID,
 } from "@/utils/types/trainingsTypes.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 
 interface DialogEditSet {
-  handleEditExercise: (id: string) => void;
   exercises: ExerciseSelectWithID[];
   exerciseId: string;
-  selectedStatusesEx: ExerciseSelect | null;
-  setSelectedStatusesEx: React.Dispatch<
-    React.SetStateAction<ExerciseSelect | null>
-  >;
   setOpenParent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function DialogEditExercise({
-  handleEditExercise,
   exercises,
   exerciseId,
-  selectedStatusesEx,
-  setSelectedStatusesEx,
   setOpenParent,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedStatusesEx, setSelectedStatusesEx] =
+    useState<ExerciseSelect | null>(null);
+  const queryClient = useQueryClient();
+
+  const editExerciseMutation = useMutation({
+    mutationFn: editExercise,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
+  function handleEditExercise(id: string) {
+    editExerciseMutation.mutate({
+      data: {
+        id: id,
+        exerciseId: selectedStatusesEx?.id ?? "dl",
+      },
+    });
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

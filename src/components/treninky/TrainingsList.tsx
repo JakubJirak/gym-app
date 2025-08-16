@@ -23,20 +23,11 @@ import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import {
-  addExercise,
-  addSet,
   addTraining,
-  deleteExercise,
-  deleteSet,
-  deleteTraining,
-  editExercise,
-  editNote,
   fetchTrainings,
   getExById,
-  updateSet,
 } from "@/utils/serverFn/trainings.ts";
 import type {
-  ExerciseSelect,
   ExerciseSelectWithID,
   SetType,
 } from "@/utils/types/trainingsTypes.ts";
@@ -44,7 +35,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
-import { v4 as uuidv4 } from "uuid";
 import TrainingDialog, { type Training } from "./AddNewTraining.tsx";
 import TrainingLi from "./TrainingLi.tsx";
 
@@ -56,10 +46,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
   const [toggleEdit, setToggleEdit] = useState(false);
   const queryClient = useQueryClient();
   const { data: session } = authClient.useSession();
-  const [selectedStatuses, setSelectedStatuses] =
-    useState<ExerciseSelect | null>(null);
-  const [selectedStatusesEx, setSelectedStatusesEx] =
-    useState<ExerciseSelect | null>(null);
 
   const { data: defaultExercises } = useQuery({
     queryKey: ["defaultExercises"],
@@ -99,70 +85,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     return "neplatne datum";
   }
 
-  const deleteMutationTraining = useMutation({
-    mutationFn: deleteTraining,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const deleteMutationExercise = useMutation({
-    mutationFn: deleteExercise,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const deleteMutationSet = useMutation({
-    mutationFn: deleteSet,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const updateMutationSet = useMutation({
-    mutationFn: updateSet,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const addMutationSet = useMutation({
-    mutationFn: addSet,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const addMutationExercise = useMutation({
-    mutationFn: addExercise,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const editMutationExercise = useMutation({
-    mutationFn: editExercise,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
-  const editMutationNote = useMutation({
-    mutationFn: editNote,
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
-    },
-    onError: (error) => console.log(error),
-  });
-
   async function handleSaveTraining(training: Training) {
     handleAddTraining(training);
   }
@@ -179,84 +101,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
         setsDb: sets,
         userId: userId,
         date: ISOdate,
-      },
-    });
-  }
-
-  function handleDeleteTraining(id: string) {
-    deleteMutationTraining.mutate({
-      data: { trainingId: id },
-    });
-  }
-
-  function handleDeleteExericse(id: string) {
-    deleteMutationExercise.mutate({
-      data: { exerciseId: id },
-    });
-  }
-
-  function handleDeleteSet(id: string) {
-    deleteMutationSet.mutate({
-      data: { setId: id },
-    });
-  }
-
-  function handleEditSet(
-    id: string,
-    editSetWeight: string,
-    editSetReps: string,
-  ) {
-    updateMutationSet.mutate({
-      data: {
-        setId: id,
-        editSetWeight: editSetWeight,
-        editSetReps: Number(editSetReps),
-      },
-    });
-  }
-
-  function handleAddSet(
-    exId: string,
-    order: number,
-    addSetWeight: string,
-    addSetReps: string,
-  ) {
-    addMutationSet.mutate({
-      data: {
-        id: uuidv4(),
-        exId: exId,
-        weight: addSetWeight,
-        reps: Number(addSetReps),
-        order: order,
-      },
-    });
-  }
-
-  function handleAddExercise(trainingId: string, order: number) {
-    addMutationExercise.mutate({
-      data: {
-        id: uuidv4(),
-        workoutId: trainingId,
-        exerciseId: selectedStatuses?.id ?? "dl",
-        order: order,
-      },
-    });
-  }
-
-  function handleEditExercise(id: string) {
-    editMutationExercise.mutate({
-      data: {
-        id: id,
-        exerciseId: selectedStatusesEx?.id ?? "dl",
-      },
-    });
-  }
-
-  function handleEditNote(id: string, note: string) {
-    editMutationNote.mutate({
-      data: {
-        exId: id,
-        note,
       },
     });
   }
@@ -334,26 +178,15 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           key={exercise.id}
                           exercise={exercise}
                           formatSetInfo={formatSetInfo}
-                          handleDeleteSet={handleDeleteSet}
-                          handleDeleteExercise={handleDeleteExericse}
-                          handleEditSet={handleEditSet}
                           toggleEdit={toggleEdit}
-                          handleAddSet={handleAddSet}
-                          selectedStatusesEx={selectedStatusesEx}
-                          setSelectedStatusesEx={setSelectedStatusesEx}
                           exercises={exercises}
-                          handleEditExercise={handleEditExercise}
-                          handleEditNote={handleEditNote}
                         />
                       ))}
                       <div className={`${toggleEdit ? "" : "hidden"}`}>
                         <DialogAddExercise
-                          handleAddExercise={handleAddExercise}
                           exercises={exercises}
                           trainingId={training.id}
                           order={training.workoutExercises.length}
-                          selectedStatuses={selectedStatuses}
-                          setSelectedStatuses={setSelectedStatuses}
                         />
                       </div>
                       <div className="flex justify-between items-center">
@@ -366,10 +199,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                           </Toggle>
                         </div>
                         <div className="inline-flex self-end">
-                          <DialogDelete
-                            handleDeleteTraining={handleDeleteTraining}
-                            id={training.id}
-                          />
+                          <DialogDelete id={training.id} />
                         </div>
                       </div>
                     </div>

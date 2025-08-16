@@ -11,31 +11,49 @@ import {
 } from "@/components/ui/dialog.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Label } from "@/components/ui/label.tsx";
+import { addSet } from "@/utils/serverFn/trainings";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface DialogEditSet {
   order: number;
-  handleAddSet: (
-    exId: string,
-    order: number,
-    addSetWeight: string,
-    addSetReps: string,
-  ) => void;
   exId: string;
   setOpenParent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function DialogAddSet({
-  order,
-  handleAddSet,
-  exId,
-  setOpenParent,
-}: DialogEditSet) {
+export function DialogAddSet({ order, exId, setOpenParent }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
   const [addSetWeight, setAddSetWeight] = useState<string>("");
   const [addSetReps, setAddSetReps] = useState<string>("");
+  const queryClient = useQueryClient();
+
+  const addSetMutation = useMutation({
+    mutationFn: addSet,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
+  function handleAddSet(
+    exId: string,
+    order: number,
+    addSetWeight: string,
+    addSetReps: string,
+  ) {
+    addSetMutation.mutate({
+      data: {
+        id: uuidv4(),
+        exId: exId,
+        weight: addSetWeight,
+        reps: Number(addSetReps),
+        order: order,
+      },
+    });
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -3,11 +3,9 @@ import { DialogEditSet } from "@/components/treninky/editDialogs/DialogEditSet.t
 import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 import type {
-  ExerciseSelect,
   ExerciseSelectWithID,
   SetType,
 } from "@/utils/types/trainingsTypes.ts";
-import type React from "react";
 
 interface TrainingLiProps {
   exercise: {
@@ -32,42 +30,15 @@ interface TrainingLiProps {
     }[];
   };
   formatSetInfo: (set: SetType) => string;
-  handleDeleteSet: (id: string) => void;
-  handleDeleteExercise: (id: string) => void;
-  handleEditSet: (
-    id: string,
-    editSetWeight: string,
-    editSetReps: string,
-  ) => void;
   toggleEdit: boolean;
-  handleAddSet: (
-    exId: string,
-    order: number,
-    addSetWeight: string,
-    addSetReps: string,
-  ) => void;
-  selectedStatusesEx: ExerciseSelect | null;
-  setSelectedStatusesEx: React.Dispatch<
-    React.SetStateAction<ExerciseSelect | null>
-  >;
   exercises: ExerciseSelectWithID[];
-  handleEditExercise: (id: string) => void;
-  handleEditNote: (id: string, note: string) => void;
 }
 
 const TrainingLi = ({
   exercise,
   formatSetInfo,
-  handleDeleteExercise,
-  handleDeleteSet,
-  handleEditSet,
   toggleEdit,
-  handleAddSet,
-  selectedStatusesEx,
-  setSelectedStatusesEx,
   exercises,
-  handleEditExercise,
-  handleEditNote,
 }: TrainingLiProps) => {
   return (
     <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
@@ -80,16 +51,10 @@ const TrainingLi = ({
         >
           <EditOptionsDialog
             order={exercise.sets.length}
-            handleAddSet={handleAddSet}
             exId={exercise.id}
-            handleEditExercise={handleEditExercise}
             exercises={exercises}
             exerciseId={exercise.id}
-            selectedStatusesEx={selectedStatusesEx}
-            setSelectedStatusesEx={setSelectedStatusesEx}
-            handleDeleteExercise={handleDeleteExercise}
             id={exercise.id}
-            handleEditNote={handleEditNote}
           />
         </div>
         <Badge variant="outline">
@@ -113,8 +78,6 @@ const TrainingLi = ({
                   repsBefore={set.reps}
                   weightBefore={set.weight}
                   setId={set.id}
-                  handleDeleteSet={handleDeleteSet}
-                  handleEditSet={handleEditSet}
                 />
               </div>
             </div>

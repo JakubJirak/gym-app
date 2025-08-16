@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dialog.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Label } from "@/components/ui/label.tsx";
+import { deleteSet, updateSet } from "@/utils/serverFn/trainings";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
@@ -20,20 +22,12 @@ interface DialogEditSet {
   repsBefore: number | null;
   weightBefore: string | null;
   setId: string;
-  handleDeleteSet: (id: string) => void;
-  handleEditSet: (
-    id: string,
-    editSetWeight: string,
-    editSetReps: string,
-  ) => void;
 }
 
 export function DialogEditSet({
   repsBefore,
   weightBefore,
   setId,
-  handleDeleteSet,
-  handleEditSet,
 }: DialogEditSet) {
   const [open, setOpen] = useState<boolean>(false);
   const [editReps, setEditReps] = useState<string>(
@@ -42,8 +36,43 @@ export function DialogEditSet({
   const [editWeight, setEditWeight] = useState<string>(
     weightBefore ? weightBefore : "",
   );
+  const queryClient = useQueryClient();
 
-  if (!repsBefore || !weightBefore) return null;
+  const deleteSetMutation = useMutation({
+    mutationFn: deleteSet,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
+  const updateSetMutation = useMutation({
+    mutationFn: updateSet,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+    onError: (error) => console.log(error),
+  });
+
+  function handleDeleteSet(id: string) {
+    deleteSetMutation.mutate({
+      data: { setId: id },
+    });
+  }
+
+  function handleEditSet(
+    id: string,
+    editSetWeight: string,
+    editSetReps: string,
+  ) {
+    updateSetMutation.mutate({
+      data: {
+        setId: id,
+        editSetWeight: editSetWeight,
+        editSetReps: Number(editSetReps),
+      },
+    });
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +80,8 @@ export function DialogEditSet({
     handleEditSet(setId, editWeight, editReps);
     setOpen(false);
   };
+
+  if (!repsBefore || !weightBefore) return null;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

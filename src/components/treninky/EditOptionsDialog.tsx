@@ -11,46 +11,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog.tsx";
-import type {
-  ExerciseSelect,
-  ExerciseSelectWithID,
-} from "@/utils/types/trainingsTypes.ts";
+import type { ExerciseSelectWithID } from "@/utils/types/trainingsTypes.ts";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
-import type React from "react";
 
 interface EditOptionsDialogProps {
   order: number;
-  handleAddSet: (
-    exId: string,
-    order: number,
-    addSetWeight: string,
-    addSetReps: string,
-  ) => void;
   exId: string;
-  handleEditExercise: (id: string) => void;
   exercises: ExerciseSelectWithID[];
   exerciseId: string;
-  selectedStatusesEx: ExerciseSelect | null;
-  setSelectedStatusesEx: React.Dispatch<
-    React.SetStateAction<ExerciseSelect | null>
-  >;
-  handleDeleteExercise: (id: string) => void;
   id: string;
-  handleEditNote: (id: string, note: string) => void;
 }
 
 export function EditOptionsDialog({
   order,
-  handleAddSet,
   exId,
-  handleEditExercise,
   exercises,
   exerciseId,
-  selectedStatusesEx,
-  setSelectedStatusesEx,
-  handleDeleteExercise,
-  handleEditNote,
   id,
 }: EditOptionsDialogProps) {
   const [openParent, setOpenParent] = useState(false);
@@ -72,31 +49,22 @@ export function EditOptionsDialog({
             <div className="flex w-full flex-col items-center gap-2 mt-4">
               <DialogAddSet
                 order={order}
-                handleAddSet={handleAddSet}
                 exId={exId}
                 setOpenParent={setOpenParent}
               />
 
               <DialogEditExercise
-                handleEditExercise={handleEditExercise}
                 exercises={exercises}
                 exerciseId={exerciseId}
-                selectedStatusesEx={selectedStatusesEx}
-                setSelectedStatusesEx={setSelectedStatusesEx}
                 setOpenParent={setOpenParent}
               />
 
               <DialogEditNote
                 setOpenParent={setOpenParent}
                 exerciseId={exerciseId}
-                handleEditNote={handleEditNote}
               />
 
-              <DialogDeleteExercise
-                handleDeleteExercise={handleDeleteExercise}
-                id={id}
-                setOpenParent={setOpenParent}
-              />
+              <DialogDeleteExercise id={id} setOpenParent={setOpenParent} />
             </div>
           </DialogHeader>
         </DialogContent>
