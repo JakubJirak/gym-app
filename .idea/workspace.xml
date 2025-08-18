@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: presunuti powerliftingstats na vlastni stranku, pridani buttonu v menu, odstraneni jmena v headeru, pridani stats podle casti tela do statistik misto powerlifting stats">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/_auth/cviky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_auth/cviky/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/serverFn/trainings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/serverFn/trainings.ts" afterDir="false" />
-    </list>
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: upraveni designu cviku" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,15 +204,7 @@
       <workItem from="1755441610323" duration="629000" />
       <workItem from="1755443757007" duration="2557000" />
       <workItem from="1755506891916" duration="7688000" />
-      <workItem from="1755522298603" duration="3584000" />
-    </task>
-    <task id="LOCAL-00048" summary="pridani autofocusu na novy cvik a serii">
-      <option name="closed" value="true" />
-      <created>1753457137884</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1753457137884</updated>
+      <workItem from="1755522298603" duration="3927000" />
     </task>
     <task id="LOCAL-00049" summary="pridani moznosti pridat vlastni cviky, cviky na vyber jsou nyni ciste z databaze a je to default + uzivatelske cviky">
       <option name="closed" value="true" />
@@ -603,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755524069383</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="feat: upraveni designu cviku">
+      <option name="closed" value="true" />
+      <created>1755526365387</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1755526365387</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: zkouska odebrat tabs" />
     <MESSAGE value="fix: pridani tabs do commitu" />
     <MESSAGE value="feat: pridani component pro historii cviku" />
     <MESSAGE value="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval" />
@@ -646,6 +640,7 @@
     <MESSAGE value="feat: pridani musclegroups do kategorie cviku" />
     <MESSAGE value="feat: uprava desingu statistik" />
     <MESSAGE value="feat: presunuti powerliftingstats na vlastni stranku, pridani buttonu v menu, odstraneni jmena v headeru, pridani stats podle casti tela do statistik misto powerlifting stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: presunuti powerliftingstats na vlastni stranku, pridani buttonu v menu, odstraneni jmena v headeru, pridani stats podle casti tela do statistik misto powerlifting stats" />
+    <MESSAGE value="feat: upraveni designu cviku" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: upraveni designu cviku" />
   </component>
 </project>
