@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: upraveni designu cviku" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani favicon a jejich variant">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,38 +54,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
-    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.19.2&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.19.11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kuba/.bun/bin/bun&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;/home/kuba/.bun/bin/bun&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.completions.CompletionsConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/kuba/WebstormProjects/gym-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
+    "Notification.DoNotAsk-Biome": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "20.19.2",
+    "javascript.nodejs.core.library.typings.version": "20.19.11",
+    "last_opened_file_path": "/home/kuba/WebstormProjects/gym-app/public",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "/home/kuba/.bun/bin/bun",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.completions.CompletionsConfigurable",
+    "ts.external.directory.path": "/home/kuba/WebstormProjects/gym-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
     </key>
@@ -204,15 +207,7 @@
       <workItem from="1755441610323" duration="629000" />
       <workItem from="1755443757007" duration="2557000" />
       <workItem from="1755506891916" duration="7688000" />
-      <workItem from="1755522298603" duration="3927000" />
-    </task>
-    <task id="LOCAL-00049" summary="pridani moznosti pridat vlastni cviky, cviky na vyber jsou nyni ciste z databaze a je to default + uzivatelske cviky">
-      <option name="closed" value="true" />
-      <created>1753477663712</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1753477663712</updated>
+      <workItem from="1755522298603" duration="4838000" />
     </task>
     <task id="LOCAL-00050" summary="pridani karet funkci do hlavni stranky">
       <option name="closed" value="true" />
@@ -598,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755526365387</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="feat: pridani favicon a jejich variant">
+      <option name="closed" value="true" />
+      <created>1755526947161</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1755526947161</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: pridani tabs do commitu" />
     <MESSAGE value="feat: pridani component pro historii cviku" />
     <MESSAGE value="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval" />
     <MESSAGE value="feat: pridani historie cviku podle vybraneco cviku" />
@@ -641,6 +643,7 @@
     <MESSAGE value="feat: uprava desingu statistik" />
     <MESSAGE value="feat: presunuti powerliftingstats na vlastni stranku, pridani buttonu v menu, odstraneni jmena v headeru, pridani stats podle casti tela do statistik misto powerlifting stats" />
     <MESSAGE value="feat: upraveni designu cviku" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: upraveni designu cviku" />
+    <MESSAGE value="feat: pridani favicon a jejich variant" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani favicon a jejich variant" />
   </component>
 </project>
