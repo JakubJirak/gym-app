@@ -1,12 +1,7 @@
 import ChartFirstSets from "@/components/statistiky/history/ChartFirstSets.tsx";
 import HistorySet from "@/components/statistiky/history/HistorySet.tsx";
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { authClient } from "@/lib/auth-client.ts";
 import { getExById } from "@/utils/serverFn/trainings.ts";
@@ -64,25 +59,20 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
   const historySets = getHistoryOfSetsById(selectedStatusesEx?.id ?? "");
 
   return (
-    <div className="space-y-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            <p className="flex gap-3 items-center">
-              <History />
-              Historie cviku
-            </p>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ExerciseCombobox
-            selectedStatus={selectedStatusesEx}
-            setSelectedStatus={setSelectedStatusesEx}
-            exerciseId="a"
-            exercises={exercises}
-          />
-        </CardContent>
-      </Card>
+    <div className="space-y-4 p-1">
+      <div>
+        <p className="flex gap-3 items-center text-lg font-bold pb-4">
+          <History />
+          Historie cviku
+        </p>
+
+        <ExerciseCombobox
+          selectedStatus={selectedStatusesEx}
+          setSelectedStatus={setSelectedStatusesEx}
+          exerciseId="a"
+          exercises={exercises}
+        />
+      </div>
 
       {selectedStatusesEx && (
         <>

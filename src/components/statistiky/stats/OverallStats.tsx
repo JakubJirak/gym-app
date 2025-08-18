@@ -1,9 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import type { TrainingsType } from "@/utils/types/trainingsTypes.ts";
 import {
   Calendar,
@@ -61,40 +55,34 @@ const OverallStats = ({ trainings }: OverallStatsType) => {
   const totalWeight = (allWeight / 100).toFixed(1);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          <p className="flex gap-3 items-center">
-            <ChartColumnIncreasing />
-            Celkové statistiky
-          </p>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gird-rows-2 grid-cols-2 gap-4">
-          <div className="flex flex-col items-center py-4 gap-2 bg-secondary rounded-2xl text-center">
-            <Calendar />
-            <p className="font-bold text-2xl">{trainings?.length}</p>
-            <p className="text-muted-foreground">Tréninky</p>
-          </div>
-          <div className="flex flex-col items-center py-4 gap-2 bg-secondary rounded-2xl text-center">
-            <TrendingUp />
-            <p className="font-bold text-2xl">{allSets}</p>
-            <p className="text-muted-foreground">Série</p>
-          </div>
-          <div className="flex flex-col items-center py-4 gap-2 bg-secondary rounded-2xl text-center">
-            <Weight />
-            <p className="font-bold text-2xl">{totalWeight}t</p>
-            <p className="text-muted-foreground">Váha</p>
-          </div>
-          <div className="flex flex-col items-center py-4 gap-2 bg-secondary rounded-2xl text-center">
-            <Repeat />
-            <p className="font-bold text-2xl">{allReps}</p>
-            <p className="text-muted-foreground">Opakovaní</p>
-          </div>
+    <div className="p-1">
+      <p className="flex gap-3 items-center text-lg font-bold mb-4">
+        <ChartColumnIncreasing />
+        Celkové statistiky
+      </p>
+      <div className="grid gird-rows-2 grid-cols-2 gap-5">
+        <div className="flex flex-col items-center justify-between gap-1 py-4 bg-secondary rounded-2xl text-center">
+          <Calendar />
+          <p className="mt-1 font-bold text-2xl">{trainings?.length}</p>
+          <p className="text-muted-foreground">Tréninky</p>
         </div>
-      </CardContent>
-    </Card>
+        <div className="flex flex-col items-center py-4 justify-between gap-1 bg-secondary rounded-2xl text-center">
+          <TrendingUp />
+          <p className="mt-1 font-bold text-2xl">{allSets}</p>
+          <p className="text-muted-foreground">Série</p>
+        </div>
+        <div className="flex flex-col items-center py-4 justify-between gap-1 bg-secondary rounded-2xl text-center">
+          <Weight />
+          <p className="mt-1 font-bold text-2xl">{totalWeight}t</p>
+          <p className="text-muted-foreground">Váha</p>
+        </div>
+        <div className="flex flex-col items-center py-4 justify-between gap-1 bg-secondary rounded-2xl text-center">
+          <Repeat />
+          <p className="mt-1 font-bold text-2xl">{allReps}</p>
+          <p className="text-muted-foreground">Opakovaní</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

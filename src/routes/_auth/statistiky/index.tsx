@@ -79,7 +79,7 @@ function RouteComponent() {
 
       <Tabs
         defaultValue="powerlifting"
-        className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8"
+        className="max-w-[500px] mx-auto w-[90%] space-y-3"
       >
         <TabsList className="w-full bg-secondary">
           <TabsTrigger value="powerlifting">Powerlifting</TabsTrigger>
