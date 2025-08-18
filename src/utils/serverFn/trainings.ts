@@ -169,5 +169,6 @@ export const getExWithMuscleGroup = createServerFn({ method: "GET" })
       })
       .from(exercises)
       .leftJoin(muscleGroups, eq(exercises.muscleGroupId, muscleGroups.id))
-      .where(eq(exercises.userId, data.userId));
+      .where(eq(exercises.userId, data.userId))
+      .orderBy(muscleGroups.muscleGroup);
   });

@@ -1,6 +1,7 @@
 import Header from "@/components/Header.tsx";
 import { AddExercise } from "@/components/cviky/AddExercise.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
+import { Separator } from "@/components/ui/separator.tsx";
 import {
   Tabs,
   TabsContent,
@@ -118,14 +119,14 @@ function RouteComponent() {
               Ještě nemáte žádné vlastní cviky
             </p>
           ) : (
-            <div className="space-y-2">
+            <div>
               {customExercises.map((exercise) => (
-                <div
-                  className="border border-border p-2 rounded-xl flex justify-between items-center"
-                  key={exercise.id}
-                >
-                  <p>{exercise.name}</p>
-                  <Badge variant="outline">{exercise.muscleGroupName}</Badge>
+                <div key={exercise.id}>
+                  <div className="p-2 rounded-xl flex justify-between items-center">
+                    <p>{exercise.name}</p>
+                    <Badge variant="outline">{exercise.muscleGroupName}</Badge>
+                  </div>
+                  <Separator />
                 </div>
               ))}
             </div>
@@ -142,14 +143,14 @@ function RouteComponent() {
             </p>
           </div>
 
-          <div className="space-y-2">
+          <div>
             {defaultExercises.map((exercise) => (
-              <div
-                className="border border-border p-2 rounded-xl flex justify-between items-center"
-                key={exercise.id}
-              >
-                <p>{exercise.name}</p>
-                <Badge variant="outline">{exercise.muscleGroupName}</Badge>
+              <div key={exercise.id}>
+                <div className="p-2 rounded-xl flex justify-between items-center">
+                  <p>{exercise.name}</p>
+                  <Badge variant="outline">{exercise.muscleGroupName}</Badge>
+                </div>
+                <Separator />
               </div>
             ))}
           </div>
