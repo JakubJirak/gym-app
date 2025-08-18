@@ -122,7 +122,7 @@ function RouteComponent() {
             <div>
               {customExercises.map((exercise) => (
                 <div key={exercise.id}>
-                  <div className="p-2 rounded-xl flex justify-between items-center">
+                  <div className="p-2 my-1 rounded-xl flex justify-between items-center">
                     <p>{exercise.name}</p>
                     <Badge variant="outline">{exercise.muscleGroupName}</Badge>
                   </div>
@@ -146,7 +146,7 @@ function RouteComponent() {
           <div>
             {defaultExercises.map((exercise) => (
               <div key={exercise.id}>
-                <div className="p-2 rounded-xl flex justify-between items-center">
+                <div className="p-2 my-1 rounded-xl flex justify-between items-center">
                   <p>{exercise.name}</p>
                   <Badge variant="outline">{exercise.muscleGroupName}</Badge>
                 </div>
