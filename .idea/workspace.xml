@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani musclegroups do kategorie cviku">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: uprava desingu statistik">
+      <change afterPath="$PROJECT_DIR$/src/components/statistiky/musclegroup/MuscleGroupStats.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/_auth/powerlifting/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/history/HistorySets.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statistiky/stats/OverallStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/powerlifting/PowerliftingGoal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingGoals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/powerlifting/PowerliftingGoals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statistiky/powerlifting/PowerliftingStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/powerlifting/PowerliftingStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/_auth/statistiky/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_auth/statistiky/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +45,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/JakubJirak/gym-app.git&quot;,
-    &quot;accountId&quot;: &quot;f3c70033-223c-4646-b9ea-191e2ba6e5a3&quot;
+    &quot;accountId&quot;: &quot;3dfdee38-022d-4c6c-9300-8ed0961c1df6&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -57,47 +66,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-Biome": "Biome",
-    "Notification.DoNotAsk-Biome": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "javascript.nodejs.core.library.configured.version": "20.19.2",
-    "javascript.nodejs.core.library.typings.version": "20.19.11",
-    "last_opened_file_path": "/home/kuba/.bun/bin/bun",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "/home/kuba/.bun/bin/bun",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.completions.CompletionsConfigurable",
-    "ts.external.directory.path": "/home/kuba/WebstormProjects/gym-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Biome&quot;: &quot;Biome&quot;,
+    &quot;Notification.DoNotAsk-Biome&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.19.2&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.19.11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kuba/.bun/bin/bun&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;/home/kuba/.bun/bin/bun&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.completions.CompletionsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/kuba/WebstormProjects/gym-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kuba\WebstormProjects\gym" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\register" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/powerlifting" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\routes\_auth" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\stats" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\history" />
       <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\statistiky\powerlifting" />
-      <recent name="C:\Users\Kuba\WebstormProjects\gym\src\components\treninky\editDialogs" />
     </key>
   </component>
   <component name="RunManager">
@@ -208,15 +217,8 @@
       <workItem from="1755440940844" duration="62000" />
       <workItem from="1755441610323" duration="629000" />
       <workItem from="1755443757007" duration="2557000" />
-      <workItem from="1755506891916" duration="7382000" />
-    </task>
-    <task id="LOCAL-00046" summary="fix: oprava starych typu">
-      <option name="closed" value="true" />
-      <created>1753447015640</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1753447015640</updated>
+      <workItem from="1755506891916" duration="7688000" />
+      <workItem from="1755522298603" duration="1684000" />
     </task>
     <task id="LOCAL-00047" summary="uprava rozlozeni card trainingu">
       <option name="closed" value="true" />
@@ -602,7 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755520951925</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="feat: uprava desingu statistik">
+      <option name="closed" value="true" />
+      <created>1755522019149</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1755522019149</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: uprava index component na sematic tagy, pridani novinek, uprava card pro novinky a funkce, pridani footeru" />
     <MESSAGE value="feat: pridani tabs do statistik, kompletni predelani designu statistik powerliftingu a stats" />
     <MESSAGE value="fix: zkouska odebrat tabs" />
     <MESSAGE value="fix: pridani tabs do commitu" />
@@ -645,6 +654,7 @@
     <MESSAGE value="fix: vytvoreni utils pro typy a vicekrat pouzivane serverfn, odstraneni jejich duplicit a nahrazeni importy, to same s typy" />
     <MESSAGE value="feat: vytvoreni _auth sablony pro jednoduchou autentifikaci pro auth pathy, nemusi byt uz na kazdem indexu" />
     <MESSAGE value="feat: pridani musclegroups do kategorie cviku" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani musclegroups do kategorie cviku" />
+    <MESSAGE value="feat: uprava desingu statistik" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: uprava desingu statistik" />
   </component>
 </project>

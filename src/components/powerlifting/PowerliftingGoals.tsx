@@ -1,4 +1,4 @@
-import PowerliftingGoal from "@/components/statistiky/powerlifting/PowerliftingGoal.tsx";
+import PowerliftingGoal from "@/components/powerlifting/PowerliftingGoal.tsx";
 import {
   Card,
   CardContent,

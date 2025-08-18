@@ -33,12 +33,11 @@ const Header = ({ page }: HeaderProps) => {
   };
 
   return (
-    <header className="bg-foreground grid grid-cols-[40px_1fr_auto_35px] justify-items-center items-center mb-6 px-3 h-18 justify-center max-w-[550px] mx-auto rounded-b-2xl">
+    <header className="bg-foreground grid grid-cols-[40px_1fr_40px] justify-items-center items-center mb-6 px-3 h-18 justify-center max-w-[550px] mx-auto rounded-b-2xl">
       <Link to={"/menu"}>
         <GiWeightLiftingUp size={40} className="text-background" />
       </Link>
       <p className="text-background text-xl font-bold">{page}</p>
-      <p className="text-background mr-4 text-lg">{session.user.name}</p>
       <Link to={"/"}>
         <Button onClick={handleSignOut} variant="secondary-icon" size="icon-lg">
           <MdLogout />

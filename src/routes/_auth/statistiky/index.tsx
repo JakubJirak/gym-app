@@ -1,7 +1,6 @@
 import Header from "@/components/Header.tsx";
 import HistorySets from "@/components/statistiky/history/HistorySets.tsx";
-import PowerliftingGoals from "@/components/statistiky/powerlifting/PowerliftingGoals.tsx";
-import PowerliftingStats from "@/components/statistiky/powerlifting/PowerliftingStats.tsx";
+import MuscleGroupStats from "@/components/statistiky/musclegroup/MuscleGroupStats.tsx";
 import OverallStats from "@/components/statistiky/stats/OverallStats.tsx";
 import { Card } from "@/components/ui/card.tsx";
 import {
@@ -34,32 +33,7 @@ function RouteComponent() {
     enabled: !!session,
   });
 
-  const getSetsById = (id: string): number[] => {
-    if (trainings !== undefined) {
-      return trainings
-        ?.flatMap((training) => training.workoutExercises)
-        .filter((exercise) => exercise.exerciseId === id)
-        .flatMap((exercise) => exercise.sets)
-        .flatMap((set) => Number(set.weight));
-    }
-    return [];
-  };
-
-  const maxWeight = (arr: number[]): number => {
-    if (arr.length === 0) return 0;
-    return Math.max(...arr);
-  };
-
-  const squatPR = maxWeight(getSetsById("sq"));
-  const benchPR = maxWeight(getSetsById("bp"));
-  const deadliftPR = maxWeight(getSetsById("dl"));
-
-  if (isLoading)
-    return (
-      <>
-        <Header page="STATISTIKY" />
-      </>
-    );
+  if (isLoading) return <Header page="STATISTIKY" />;
 
   if (trainings === undefined || trainings.length === 0)
     return (
@@ -78,30 +52,19 @@ function RouteComponent() {
       <Header page="STATISTIKY" />
 
       <Tabs
-        defaultValue="powerlifting"
+        defaultValue="stats"
         className="max-w-[500px] mx-auto w-[90%] space-y-3"
       >
         <TabsList className="w-full bg-secondary">
-          <TabsTrigger value="powerlifting">Powerlifting</TabsTrigger>
-          <TabsTrigger value="stats">Statistiky</TabsTrigger>
+          <TabsTrigger value="stats">Celkově</TabsTrigger>
+          <TabsTrigger value="musclegroup">Podle části</TabsTrigger>
           <TabsTrigger value="history">Historie</TabsTrigger>
         </TabsList>
-        <TabsContent value="powerlifting">
-          <div className="space-y-4">
-            <PowerliftingStats
-              benchPR={benchPR}
-              deadliftPR={deadliftPR}
-              squatPR={squatPR}
-            />
-            <PowerliftingGoals
-              benchPR={benchPR}
-              deadliftPR={deadliftPR}
-              squatPR={squatPR}
-            />
-          </div>
-        </TabsContent>
         <TabsContent value="stats">
           <OverallStats trainings={trainings} />
+        </TabsContent>
+        <TabsContent value="musclegroup">
+          <MuscleGroupStats />
         </TabsContent>
         <TabsContent value="history">
           <HistorySets trainings={trainings} />
