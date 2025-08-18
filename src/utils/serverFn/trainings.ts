@@ -1,6 +1,12 @@
 import type { Training } from "@/components/treninky/AddNewTraining.tsx";
 import { db } from "@/db";
-import { exercises, sets, workoutExercises, workouts } from "@/db/schema.ts";
+import {
+  exercises,
+  muscleGroups,
+  sets,
+  workoutExercises,
+  workouts,
+} from "@/db/schema.ts";
 import type {
   exerciseDbType,
   setsDbType,
@@ -150,4 +156,18 @@ export const getExById = createServerFn({ method: "GET" })
   .validator((data: { userId: string }) => data)
   .handler(async ({ data }) => {
     return db.select().from(exercises).where(eq(exercises.userId, data.userId));
+  });
+
+export const getExWithMuscleGroup = createServerFn({ method: "GET" })
+  .validator((data: { userId: string }) => data)
+  .handler(async ({ data }) => {
+    return db
+      .select({
+        id: exercises.id,
+        name: exercises.name,
+        muscleGroupName: muscleGroups.muscleGroup,
+      })
+      .from(exercises)
+      .leftJoin(muscleGroups, eq(exercises.muscleGroupId, muscleGroups.id))
+      .where(eq(exercises.userId, data.userId));
   });

@@ -1,5 +1,6 @@
 import Header from "@/components/Header.tsx";
 import { AddExercise } from "@/components/cviky/AddExercise.tsx";
+import { Badge } from "@/components/ui/badge.tsx";
 import {
   Tabs,
   TabsContent,
@@ -9,7 +10,7 @@ import {
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
-import { getExById } from "@/utils/serverFn/trainings.ts";
+import { getExWithMuscleGroup } from "@/utils/serverFn/trainings.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
@@ -48,12 +49,13 @@ function RouteComponent() {
 
   const { data: defaultExercises, isLoading: isDefaultLoading } = useQuery({
     queryKey: ["defaultExercises"],
-    queryFn: () => getExById({ data: { userId: "default" } }),
+    queryFn: () => getExWithMuscleGroup({ data: { userId: "default" } }),
   });
 
   const { data: customExercises, isLoading: isCustomLoading } = useQuery({
     queryKey: ["customExercises", session?.user.id],
-    queryFn: () => getExById({ data: { userId: session?.user.id ?? "" } }),
+    queryFn: () =>
+      getExWithMuscleGroup({ data: { userId: session?.user.id ?? "" } }),
     enabled: !!session,
   });
 
@@ -119,10 +121,11 @@ function RouteComponent() {
             <div className="space-y-2">
               {customExercises.map((exercise) => (
                 <div
-                  className="border border-border p-2 rounded-xl"
+                  className="border border-border p-2 rounded-xl flex justify-between items-center"
                   key={exercise.id}
                 >
-                  {exercise.name}
+                  <p>{exercise.name}</p>
+                  <Badge variant="outline">{exercise.muscleGroupName}</Badge>
                 </div>
               ))}
             </div>
@@ -142,10 +145,11 @@ function RouteComponent() {
           <div className="space-y-2">
             {defaultExercises.map((exercise) => (
               <div
-                className="border border-border p-2 rounded-xl"
+                className="border border-border p-2 rounded-xl flex justify-between items-center"
                 key={exercise.id}
               >
-                {exercise.name}
+                <p>{exercise.name}</p>
+                <Badge variant="outline">{exercise.muscleGroupName}</Badge>
               </div>
             ))}
           </div>
