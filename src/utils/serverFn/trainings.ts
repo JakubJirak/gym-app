@@ -38,6 +38,31 @@ export const fetchTrainings = createServerFn({ method: "GET" })
     });
   });
 
+export const fetchTrainingsById = createServerFn({ method: "GET" })
+  .validator((data: { userId: string; trainingId: string }) => data)
+  .handler(async ({ data }) => {
+    return db.query.workouts.findMany({
+      orderBy: (workout, { desc }) => [desc(workout.workoutDate)],
+      where: (workout, { eq, and }) =>
+        and(eq(workout.userId, data.userId), eq(workout.id, data.trainingId)),
+      with: {
+        workoutExercises: {
+          orderBy: (set, { asc }) => [asc(set.order)],
+          with: {
+            sets: {
+              orderBy: (set, { asc }) => [asc(set.order)],
+            },
+            exercise: {
+              with: {
+                muscleGroup: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  });
+
 export const addTraining = createServerFn({ method: "POST" })
   .validator(
     (data: {

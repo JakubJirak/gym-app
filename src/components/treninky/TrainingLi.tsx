@@ -13,6 +13,8 @@ interface TrainingLiProps {
   formatSetInfo: (set: SetType) => string;
   toggleEdit: boolean;
   exercises: ExerciseSelectWithID[];
+  index: number;
+  len: number;
 }
 
 const TrainingLi = ({
@@ -20,9 +22,11 @@ const TrainingLi = ({
   formatSetInfo,
   toggleEdit,
   exercises,
+  index,
+  len,
 }: TrainingLiProps) => {
   return (
-    <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
+    <div key={exercise.id} className="rounded-lg mt-2 space-y-3">
       <div
         className={`${toggleEdit ? "" : "justify-between"} flex items-center`}
       >
@@ -66,11 +70,11 @@ const TrainingLi = ({
         </div>
       </div>
 
-      {exercise.note && <Separator />}
-
       {exercise.note && (
         <p className="text-sm text-muted-foreground">{exercise.note}</p>
       )}
+
+      {index !== len - 1 && <Separator />}
     </div>
   );
 };

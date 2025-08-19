@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-import { cs } from "date-fns/locale";
 import { Calendar, Dumbbell } from "lucide-react";
 
 import { DialogAddExercise } from "@/components/treninky/editDialogs/DialogAddExercise.tsx";
@@ -11,26 +9,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
+import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Toggle } from "@/components/ui/toggle.tsx";
 import { authClient } from "@/lib/auth-client.ts";
-import { toLocalISODateString } from "@/utils/date-utils.ts";
+import { formatDate, toLocalISODateString } from "@/utils/date-utils.ts";
 import { exerciseDb, setsDb } from "@/utils/db-format-utils.ts";
 import {
   addTraining,
   fetchTrainings,
   getExById,
 } from "@/utils/serverFn/trainings.ts";
-import type {
-  ExerciseSelectWithID,
-  SetType,
-} from "@/utils/types/trainingsTypes.ts";
+import { formatSetInfo } from "@/utils/training-format-utils.ts";
+import type { ExerciseSelectWithID } from "@/utils/types/trainingsTypes.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
@@ -79,13 +69,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     enabled: !!session,
   });
 
-  function formatDate(date: Date | null, formatString: string) {
-    if (date) {
-      return format(date, formatString, { locale: cs });
-    }
-    return "neplatne datum";
-  }
-
   async function handleSaveTraining(training: Training) {
     handleAddTraining(training);
   }
@@ -106,13 +89,6 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     });
   }
 
-  const formatSetInfo = (set: SetType) => {
-    const parts = [];
-    if (set.weight) parts.push(`${set.weight}kg`);
-    if (set.reps) parts.push(`${set.reps}`);
-    return parts.join(" × ") || "Prázdná série";
-  };
-
   if (trainings === undefined) return null;
 
   if (trainings === undefined && !isLoading)
@@ -130,29 +106,27 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
     );
 
   return (
-    <div className="container mx-auto w-[90%] mt-12 max-w-[500px]">
+    <div className="container mx-auto w-[90%] max-w-[500px]">
       <div className="space-y-4">
         {/* Trainings List */}
         {trainings.length > 0 ? (
-          <div className="space-y-3 mt-[-24px]">
-            <Card className="py-4">
-              <CardHeader className="px-4">
-                <div className="flex flex-row gap-1 items-center mb-[-8px]">
-                  <div className="flex-1">
-                    <CardTitle className="flex items-center gap-2">
-                      <Dumbbell className="h-5 w-5" />
-                      Vaše tréninky
-                    </CardTitle>
-                    <CardDescription>
-                      Celkem tréninků: {trainings.length}
-                    </CardDescription>
-                  </div>
-                  <div className="">
-                    <TrainingDialog onSave={handleSaveTraining} />
-                  </div>
+          <div className="space-y-3">
+            <div className="pb-4">
+              <div className="flex flex-row gap-1 items-center mb-[-8px]">
+                <div className="flex-1 space-y-1">
+                  <h2 className="flex items-center gap-2 font-bold">
+                    <Dumbbell className="h-5 w-5" />
+                    Vaše tréninky
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    Celkem tréninků: {trainings.length}
+                  </p>
                 </div>
-              </CardHeader>
-            </Card>
+                <div className="">
+                  <TrainingDialog onSave={handleSaveTraining} />
+                </div>
+              </div>
+            </div>
             <Accordion type="multiple" className="w-full space-y-2">
               {trainings.map((training) => (
                 <AccordionItem
@@ -180,34 +154,38 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
-                    <div className="flex flex-col gap-2 items-stretch relative">
-                      {training.workoutExercises.map((exercise) => (
+                    <div className="flex flex-col items-stretch relative">
+                      {training.workoutExercises.map((exercise, index) => (
                         <TrainingLi
                           key={exercise.id}
                           exercise={exercise}
                           formatSetInfo={formatSetInfo}
                           toggleEdit={toggleEdit}
                           exercises={exercises}
+                          index={index}
+                          len={training.workoutExercises.length}
                         />
                       ))}
-                      <div className={`${toggleEdit ? "" : "hidden"}`}>
-                        <DialogAddExercise
-                          exercises={exercises}
-                          trainingId={training.id}
-                          order={training.workoutExercises.length}
-                        />
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="">
-                          <Toggle
-                            variant="outline"
-                            onClick={() => setToggleEdit(!toggleEdit)}
-                          >
-                            <FaPencilAlt /> Upravit
-                          </Toggle>
+                      <div className="space-y-2 mt-4">
+                        <div className={`${toggleEdit ? "" : "hidden"}`}>
+                          <DialogAddExercise
+                            exercises={exercises}
+                            trainingId={training.id}
+                            order={training.workoutExercises.length}
+                          />
                         </div>
-                        <div className="inline-flex self-end">
-                          <DialogDelete id={training.id} />
+                        <div className="flex justify-between items-center">
+                          <div className="">
+                            <Toggle
+                              variant="outline"
+                              onClick={() => setToggleEdit(!toggleEdit)}
+                            >
+                              <FaPencilAlt /> Upravit
+                            </Toggle>
+                          </div>
+                          <div className="inline-flex self-end">
+                            <DialogDelete id={training.id} />
+                          </div>
                         </div>
                       </div>
                     </div>

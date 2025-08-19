@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: zvetseni mezer mezi cviky v jejich seznamu">
-      <change afterPath="$PROJECT_DIR$/src/routes/_auth/treninky/$trainingId.tsx" afterDir="false" />
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="feat: pridani url s params pro zobrazeni treninku">
+      <change afterPath="$PROJECT_DIR$/src/components/treninky/trenink/TrainingInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/training-format-utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingLi.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/_auth/treninky/$trainingId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/_auth/treninky/$trainingId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/date-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/date-utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/serverFn/trainings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/serverFn/trainings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/types/trainingsTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/types/trainingsTypes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -251,14 +255,7 @@
       <workItem from="1755591292324" duration="71000" />
       <workItem from="1755591392497" duration="662000" />
       <workItem from="1755593193835" duration="308000" />
-    </task>
-    <task id="LOCAL-00053" summary="oprava v logice vypoctu celkove vahy">
-      <option name="closed" value="true" />
-      <created>1753480896096</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1753480896096</updated>
+      <workItem from="1755593805852" duration="2690000" />
     </task>
     <task id="LOCAL-00054" summary="pridani autofocusu na input pro hledani cviku">
       <option name="closed" value="true" />
@@ -644,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755555688542</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="feat: pridani url s params pro zobrazeni treninku">
+      <option name="closed" value="true" />
+      <created>1755593864821</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1755593864822</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +668,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix: uprava fontu v historii cviku" />
     <MESSAGE value="feat: pridani moznosti pridat si a upravit svoje powerlifting cile v profilu" />
     <MESSAGE value="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach" />
     <MESSAGE value="feat: pridani news karty o powerlifting goals" />
@@ -688,6 +692,7 @@
     <MESSAGE value="fix: new favicon" />
     <MESSAGE value="fix: zmenseni headeru" />
     <MESSAGE value="fix: zvetseni mezer mezi cviky v jejich seznamu" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: zvetseni mezer mezi cviky v jejich seznamu" />
+    <MESSAGE value="feat: pridani url s params pro zobrazeni treninku" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: pridani url s params pro zobrazeni treninku" />
   </component>
 </project>

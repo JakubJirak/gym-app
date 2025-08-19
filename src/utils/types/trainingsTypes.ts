@@ -1,4 +1,7 @@
-import type { fetchTrainings } from "@/utils/serverFn/trainings.ts";
+import type {
+  fetchTrainings,
+  fetchTrainingsById,
+} from "@/utils/serverFn/trainings.ts";
 
 export interface exerciseDbType {
   id: string;
@@ -57,3 +60,4 @@ export type Exercise = {
 };
 
 export type TrainingsType = Awaited<ReturnType<typeof fetchTrainings>>;
+export type TrainingsByIdType = Awaited<ReturnType<typeof fetchTrainingsById>>;
