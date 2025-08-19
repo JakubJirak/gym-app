@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: new favicon">
+    <list default="true" id="c1f3651b-7926-4eb8-b414-df76ee2762d5" name="Changes" comment="fix: zvetseni mezer mezi cviky v jejich seznamu">
+      <change afterPath="$PROJECT_DIR$/src/routes/_auth/treninky/$trainingId.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/__root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/__root.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/menu/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/treninky/TrainingsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routeTree.gen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routeTree.gen.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;/home/kuba/.bun/bin/bun&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.completions.CompletionsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/kuba/WebstormProjects/gym-app/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -104,6 +103,30 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile">
         <settings />
@@ -223,23 +246,11 @@
       <workItem from="1755546889017" duration="550000" />
       <workItem from="1755547465599" duration="340000" />
       <workItem from="1755547919221" duration="698000" />
-      <workItem from="1755550034148" duration="1066000" />
-    </task>
-    <task id="LOCAL-00051" summary="pridani statistik k celkovym statistikam">
-      <option name="closed" value="true" />
-      <created>1753479225068</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1753479225069</updated>
-    </task>
-    <task id="LOCAL-00052" summary="uprava proti problikavani pro loadingu">
-      <option name="closed" value="true" />
-      <created>1753479966706</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1753479966706</updated>
+      <workItem from="1755550034148" duration="2508000" />
+      <workItem from="1755590917254" duration="41000" />
+      <workItem from="1755591292324" duration="71000" />
+      <workItem from="1755591392497" duration="662000" />
+      <workItem from="1755593193835" duration="308000" />
     </task>
     <task id="LOCAL-00053" summary="oprava v logice vypoctu celkove vahy">
       <option name="closed" value="true" />
@@ -617,7 +628,23 @@
       <option name="project" value="LOCAL" />
       <updated>1755528168063</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="fix: zmenseni headeru">
+      <option name="closed" value="true" />
+      <created>1755554533297</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1755554533297</updated>
+    </task>
+    <task id="LOCAL-00101" summary="fix: zvetseni mezer mezi cviky v jejich seznamu">
+      <option name="closed" value="true" />
+      <created>1755555688542</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1755555688542</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,8 +663,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix: uprava buttonu pro ulozeni prvni vahy aby se text nezalamoval" />
-    <MESSAGE value="feat: pridani historie cviku podle vybraneco cviku" />
     <MESSAGE value="fix: uprava fontu v historii cviku" />
     <MESSAGE value="feat: pridani moznosti pridat si a upravit svoje powerlifting cile v profilu" />
     <MESSAGE value="feat: pridani zobrazeni cilu pomoci progress baru v powerlifting statistikach" />
@@ -661,6 +686,8 @@
     <MESSAGE value="feat: upraveni designu cviku" />
     <MESSAGE value="feat: pridani favicon a jejich variant" />
     <MESSAGE value="fix: new favicon" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: new favicon" />
+    <MESSAGE value="fix: zmenseni headeru" />
+    <MESSAGE value="fix: zvetseni mezer mezi cviky v jejich seznamu" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: zvetseni mezer mezi cviky v jejich seznamu" />
   </component>
 </project>

@@ -23,6 +23,7 @@ import { Route as AuthPowerliftingIndexRouteImport } from './routes/_auth/powerl
 import { Route as AuthMenuIndexRouteImport } from './routes/_auth/menu/index'
 import { Route as AuthKalendarIndexRouteImport } from './routes/_auth/kalendar/index'
 import { Route as AuthCvikyIndexRouteImport } from './routes/_auth/cviky/index'
+import { Route as AuthTreninkyTrainingIdRouteImport } from './routes/_auth/treninky/$trainingId'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/$'
 
 const rootServerRouteImport = createServerRootRoute()
@@ -86,6 +87,11 @@ const AuthCvikyIndexRoute = AuthCvikyIndexRouteImport.update({
   path: '/cviky/',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthTreninkyTrainingIdRoute = AuthTreninkyTrainingIdRouteImport.update({
+  id: '/treninky/$trainingId',
+  path: '/treninky/$trainingId',
+  getParentRoute: () => AuthRoute,
+} as any)
 const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginIndexRoute
   '/register': typeof RegisterIndexRoute
+  '/treninky/$trainingId': typeof AuthTreninkyTrainingIdRoute
   '/cviky': typeof AuthCvikyIndexRoute
   '/kalendar': typeof AuthKalendarIndexRoute
   '/menu': typeof AuthMenuIndexRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginIndexRoute
   '/register': typeof RegisterIndexRoute
+  '/treninky/$trainingId': typeof AuthTreninkyTrainingIdRoute
   '/cviky': typeof AuthCvikyIndexRoute
   '/kalendar': typeof AuthKalendarIndexRoute
   '/menu': typeof AuthMenuIndexRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/login/': typeof LoginIndexRoute
   '/register/': typeof RegisterIndexRoute
+  '/_auth/treninky/$trainingId': typeof AuthTreninkyTrainingIdRoute
   '/_auth/cviky/': typeof AuthCvikyIndexRoute
   '/_auth/kalendar/': typeof AuthKalendarIndexRoute
   '/_auth/menu/': typeof AuthMenuIndexRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/treninky/$trainingId'
     | '/cviky'
     | '/kalendar'
     | '/menu'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/treninky/$trainingId'
     | '/cviky'
     | '/kalendar'
     | '/menu'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/_auth'
     | '/login/'
     | '/register/'
+    | '/_auth/treninky/$trainingId'
     | '/_auth/cviky/'
     | '/_auth/kalendar/'
     | '/_auth/menu/'
@@ -290,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCvikyIndexRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/treninky/$trainingId': {
+      id: '/_auth/treninky/$trainingId'
+      path: '/treninky/$trainingId'
+      fullPath: '/treninky/$trainingId'
+      preLoaderRoute: typeof AuthTreninkyTrainingIdRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 declare module '@tanstack/react-start/server' {
@@ -305,6 +324,7 @@ declare module '@tanstack/react-start/server' {
 }
 
 interface AuthRouteChildren {
+  AuthTreninkyTrainingIdRoute: typeof AuthTreninkyTrainingIdRoute
   AuthCvikyIndexRoute: typeof AuthCvikyIndexRoute
   AuthKalendarIndexRoute: typeof AuthKalendarIndexRoute
   AuthMenuIndexRoute: typeof AuthMenuIndexRoute
@@ -316,6 +336,7 @@ interface AuthRouteChildren {
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthTreninkyTrainingIdRoute: AuthTreninkyTrainingIdRoute,
   AuthCvikyIndexRoute: AuthCvikyIndexRoute,
   AuthKalendarIndexRoute: AuthKalendarIndexRoute,
   AuthMenuIndexRoute: AuthMenuIndexRoute,

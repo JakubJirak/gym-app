@@ -32,6 +32,7 @@ import type {
   SetType,
 } from "@/utils/types/trainingsTypes.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
@@ -169,6 +170,13 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                         <Calendar className="h-4 w-4" />
                         {formatDate(new Date(training.workoutDate), "PPPP")}
                       </div>
+                      <Link
+                        className="text-xs"
+                        to={"/treninky/$trainingId"}
+                        params={{ trainingId: training.id }}
+                      >
+                        testing
+                      </Link>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
