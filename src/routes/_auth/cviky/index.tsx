@@ -85,19 +85,7 @@ function RouteComponent() {
     ...(customExercises ?? []),
   ];
 
-  const sortedDefaultExercises = defaultExercises?.reduce<SortedExercises>(
-    (acc, exercise) => {
-      if (exercise.muscleGroupName === null) return acc;
-      if (!acc[exercise.muscleGroupName]) {
-        acc[exercise.muscleGroupName] = [];
-      }
-      acc[exercise.muscleGroupName].push(exercise);
-      return acc;
-    },
-    {},
-  );
-
-  const sortedCustomExercises = allExercises?.reduce<SortedExercises>(
+  const sortedExercises = allExercises?.reduce<SortedExercises>(
     (acc, exercise) => {
       if (exercise.muscleGroupName === null) return acc;
       if (!acc[exercise.muscleGroupName]) {
@@ -119,8 +107,7 @@ function RouteComponent() {
   if (
     defaultExercises === undefined ||
     customExercises === undefined ||
-    sortedDefaultExercises === undefined ||
-    sortedCustomExercises === undefined
+    sortedExercises === undefined
   )
     return null;
 
@@ -144,7 +131,7 @@ function RouteComponent() {
         </div>
 
         <div>
-          {Object.entries(sortedCustomExercises).map(
+          {Object.entries(sortedExercises).map(
             ([muscleGroup, exercises], idx, arr) => (
               <div key={muscleGroup} className="pl-1 mt-3">
                 <h3 className="font-semibold text-lg mb-2">{muscleGroup}</h3>
