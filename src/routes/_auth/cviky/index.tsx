@@ -1,13 +1,6 @@
 import Header from "@/components/Header.tsx";
 import { AddExercise } from "@/components/cviky/AddExercise.tsx";
-import { Badge } from "@/components/ui/badge.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs.tsx";
 import { db } from "@/db";
 import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
@@ -15,7 +8,7 @@ import { getExWithMuscleGroup } from "@/utils/serverFn/trainings.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { CirclePlus, Dumbbell } from "lucide-react";
+import { Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
 
 export const Route = createFileRoute("/_auth/cviky/")({
@@ -30,6 +23,16 @@ export const Route = createFileRoute("/_auth/cviky/")({
     ],
   }),
 });
+
+type Exercise = {
+  id: string;
+  name: string;
+  muscleGroupName: string | null;
+};
+
+type SortedExercises = {
+  [muscleGroup: string]: Exercise[];
+};
 
 const addCustomEx = createServerFn({ method: "POST" })
   .validator(
@@ -77,6 +80,35 @@ function RouteComponent() {
     });
   };
 
+  const allExercises = [
+    ...(defaultExercises ?? []),
+    ...(customExercises ?? []),
+  ];
+
+  const sortedDefaultExercises = defaultExercises?.reduce<SortedExercises>(
+    (acc, exercise) => {
+      if (exercise.muscleGroupName === null) return acc;
+      if (!acc[exercise.muscleGroupName]) {
+        acc[exercise.muscleGroupName] = [];
+      }
+      acc[exercise.muscleGroupName].push(exercise);
+      return acc;
+    },
+    {},
+  );
+
+  const sortedCustomExercises = allExercises?.reduce<SortedExercises>(
+    (acc, exercise) => {
+      if (exercise.muscleGroupName === null) return acc;
+      if (!acc[exercise.muscleGroupName]) {
+        acc[exercise.muscleGroupName] = [];
+      }
+      acc[exercise.muscleGroupName].push(exercise);
+      return acc;
+    },
+    {},
+  );
+
   if (!session || isDefaultLoading || isCustomLoading)
     return (
       <>
@@ -84,78 +116,51 @@ function RouteComponent() {
       </>
     );
 
-  if (defaultExercises === undefined || customExercises === undefined)
+  if (
+    defaultExercises === undefined ||
+    customExercises === undefined ||
+    sortedDefaultExercises === undefined ||
+    sortedCustomExercises === undefined
+  )
     return null;
 
   return (
     <div>
       <Header page="CVIKY" />
 
-      <Tabs
-        defaultValue="custom"
-        className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8"
-      >
-        <TabsList className="w-full bg-secondary">
-          <TabsTrigger value="custom">Vlastní cviky</TabsTrigger>
-          <TabsTrigger value="default">Defaultní cviky</TabsTrigger>
-        </TabsList>
-        <TabsContent value="custom">
-          <div className="flex justify-between items-center mb-6 pl-1">
-            <div className="">
-              <h2 className="font-semibold text-lg flex gap-2 items-center mb-1">
-                <CirclePlus size={20} />
-                Vaše vlastní cviky
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                Zde jsou všechny vaše vlastní cviky
-              </p>
-            </div>
-
-            <AddExercise handleAddExercise={handleAddExercise} defaultName="" />
-          </div>
-
-          {customExercises.length === 0 ? (
-            <p className="text-muted-foreground mt-4">
-              Ještě nemáte žádné vlastní cviky
-            </p>
-          ) : (
-            <div>
-              {customExercises.map((exercise) => (
-                <div key={exercise.id}>
-                  <div className="p-2 my-1 rounded-xl flex justify-between items-center">
-                    <p>{exercise.name}</p>
-                    <Badge variant="outline">{exercise.muscleGroupName}</Badge>
-                  </div>
-                  <Separator />
-                </div>
-              ))}
-            </div>
-          )}
-        </TabsContent>
-        <TabsContent value="default">
-          <div className="pl-1 mb-6">
+      <div className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8">
+        <div className="flex justify-between items-center mb-4 pl-1">
+          <div className="">
             <h2 className="font-semibold text-lg flex gap-2 items-center mb-1">
               <Dumbbell size={20} />
-              Defaultní cviky
+              Vaše cviky
             </h2>
             <p className="text-muted-foreground text-sm">
-              Zde jsou všechny defaultní cviky.
+              Zde jsou všechny vaše cviky
             </p>
           </div>
 
-          <div>
-            {defaultExercises.map((exercise) => (
-              <div key={exercise.id}>
-                <div className="p-2 my-1 rounded-xl flex justify-between items-center">
-                  <p>{exercise.name}</p>
-                  <Badge variant="outline">{exercise.muscleGroupName}</Badge>
-                </div>
-                <Separator />
+          <AddExercise handleAddExercise={handleAddExercise} defaultName="" />
+        </div>
+
+        <div>
+          {Object.entries(sortedCustomExercises).map(
+            ([muscleGroup, exercises], idx, arr) => (
+              <div key={muscleGroup} className="pl-1 mt-3">
+                <h3 className="font-semibold text-lg mb-2">{muscleGroup}</h3>
+                {exercises.map((exercise) => (
+                  <div key={exercise.id}>
+                    <div className="my-1 rounded-xl flex justify-between items-center mb-2">
+                      <p>{exercise.name}</p>
+                    </div>
+                  </div>
+                ))}
+                {idx < arr.length - 1 && <Separator />}
               </div>
-            ))}
-          </div>
-        </TabsContent>
-      </Tabs>
+            ),
+          )}
+        </div>
+      </div>
     </div>
   );
 }
