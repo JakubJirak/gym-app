@@ -88,10 +88,12 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
               )}
               <ScrollArea className="max-h-100 overflow-y-auto">
                 <div>
-                  {historySets.map((history) => (
+                  {historySets.map((history, index) => (
                     <div key={history?.id}>
                       <HistorySet date={history?.date} sets={history?.sets} />
-                      <Separator className="my-3" />
+                      {index !== historySets.length - 1 && (
+                        <Separator className="my-3" />
+                      )}
                     </div>
                   ))}
                 </div>
