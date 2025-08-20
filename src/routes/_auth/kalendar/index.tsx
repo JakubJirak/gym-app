@@ -113,10 +113,12 @@ function RouteComponent() {
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
                     <div className="flex flex-col gap-2 items-stretch relative">
-                      {training.workoutExercises.map((exercise) => (
+                      {training.workoutExercises.map((exercise, index) => (
                         <CalendarTrainingLi
                           key={exercise.id}
                           exercise={exercise}
+                          index={index}
+                          len={training.workoutExercises.length}
                         />
                       ))}
                     </div>

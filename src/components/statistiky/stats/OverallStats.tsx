@@ -6,50 +6,64 @@ import {
   TrendingUp,
   Weight,
 } from "lucide-react";
+import { useMemo } from "react";
 
 interface OverallStatsType {
   trainings: TrainingsType;
 }
 
 const OverallStats = ({ trainings }: OverallStatsType) => {
-  const allSets = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) => exAcc + exercise.sets.length,
-        0,
-      ),
-    0,
-  );
-
-  const allWeight = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) =>
-          exAcc +
-          exercise.sets.reduce(
-            (setAcc, set) => setAcc + Number(set.weight ?? 0) * (set.reps ?? 0),
+  const allSets = useMemo(
+    () =>
+      trainings?.reduce(
+        (acc, training) =>
+          acc +
+          training.workoutExercises.reduce(
+            (exAcc, exercise) => exAcc + exercise.sets.length,
             0,
           ),
         0,
       ),
-    0,
+    [trainings],
   );
 
-  const allReps = trainings?.reduce(
-    (acc, training) =>
-      acc +
-      training.workoutExercises.reduce(
-        (exAcc, exercise) =>
-          exAcc +
-          exercise.sets.reduce(
-            (setAcc, set) => setAcc + Number(set.reps ?? 0),
+  const allWeight = useMemo(
+    () =>
+      trainings?.reduce(
+        (acc, training) =>
+          acc +
+          training.workoutExercises.reduce(
+            (exAcc, exercise) =>
+              exAcc +
+              exercise.sets.reduce(
+                (setAcc, set) =>
+                  setAcc + Number(set.weight ?? 0) * (set.reps ?? 0),
+                0,
+              ),
             0,
           ),
         0,
       ),
-    0,
+    [trainings],
+  );
+
+  const allReps = useMemo(
+    () =>
+      trainings?.reduce(
+        (acc, training) =>
+          acc +
+          training.workoutExercises.reduce(
+            (exAcc, exercise) =>
+              exAcc +
+              exercise.sets.reduce(
+                (setAcc, set) => setAcc + Number(set.reps ?? 0),
+                0,
+              ),
+            0,
+          ),
+        0,
+      ),
+    [trainings],
   );
 
   const totalWeight = (allWeight / 100).toFixed(1);

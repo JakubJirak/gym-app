@@ -1,14 +1,17 @@
 import { Badge } from "@/components/ui/badge.tsx";
-import { Separator } from "@/components/ui/separator.tsx";
+import { formatSetInfo } from "@/utils/training-format-utils";
 import type { Exercise } from "@/utils/types/trainingsTypes";
+import { Separator } from "../ui/separator";
 
 interface Props {
   exercise: Exercise;
+  index: number;
+  len: number;
 }
 
-const CalendarTrainingLi = ({ exercise }: Props) => {
+const CalendarTrainingLi = ({ exercise, index, len }: Props) => {
   return (
-    <div key={exercise.id} className="border rounded-lg p-3 space-y-3">
+    <div key={exercise.id} className="rounded-lg mt-2 space-y-3">
       <div className="flex justify-between">
         <h4 className="font-semibold text-lg">{exercise?.exercise?.name}</h4>
         <Badge variant="outline">
@@ -23,17 +26,19 @@ const CalendarTrainingLi = ({ exercise }: Props) => {
               key={set.id}
               className="flex items-center bg-secondary rounded-md py-2 px-3"
             >
-              <span className="text-sm font-medium flex-1">
-                {setIndex + 1}. série
+              <span className="text-sm flex-1">{setIndex + 1}. série</span>
+              <span className="text-sm font-medium mr-2">
+                {formatSetInfo(set)}
               </span>
             </div>
           ))}
         </div>
       </div>
-      {exercise.note && <Separator />}
+
       {exercise.note && (
         <p className="text-sm text-muted-foreground">{exercise.note}</p>
       )}
+      {index !== len - 1 && <Separator />}
     </div>
   );
 };

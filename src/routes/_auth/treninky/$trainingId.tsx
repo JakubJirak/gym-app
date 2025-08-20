@@ -1,5 +1,7 @@
 import Header from "@/components/Header.tsx";
 import TrainingInfo from "@/components/treninky/trenink/TrainingInfo.tsx";
+import TrainingStats from "@/components/treninky/trenink/TrainingStats";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { authClient } from "@/lib/auth-client.ts";
 import { fetchTrainingsById } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -29,9 +31,21 @@ function RouteComponent() {
     <div className="pb-8">
       <Header page={training[0].name} />
 
-      <div className="max-w-[500px] mx-auto w-[90%]">
-        <TrainingInfo trainingArr={training} />
-      </div>
+      <Tabs
+        defaultValue="cviky"
+        className="max-w-[500px] mx-auto w-[90%] space-y-3"
+      >
+        <TabsList className="w-full bg-secondary">
+          <TabsTrigger value="cviky">Cviky</TabsTrigger>
+          <TabsTrigger value="statistiky">Statistiky</TabsTrigger>
+        </TabsList>
+        <TabsContent value="cviky">
+          <TrainingInfo trainingArr={training} />
+        </TabsContent>
+        <TabsContent value="statistiky">
+          <TrainingStats trainingArr={training} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
