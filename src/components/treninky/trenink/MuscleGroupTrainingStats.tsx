@@ -89,11 +89,11 @@ const MuscleGroupTrainingStats = ({ trainingArr }: TrainingStatsProps) => {
         {muscleGroupStats.map((muscleGroup) => (
           <div
             key={muscleGroup.muscleGroup}
-            className="grid grid-cols-[20px_80px_auto] items-center"
+            className="flex gap-1.5 items-center"
           >
             <div
               style={{ backgroundColor: muscleGroup.fill }}
-              className="size-4 rounded-full"
+              className="size-4 rounded-sm"
             />
             <p>{muscleGroup.muscleGroup}</p>
             <p>{muscleGroup.number}</p>

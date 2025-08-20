@@ -1,10 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
-
 type sets = {
   id: string;
   order: number | null;
@@ -24,12 +17,10 @@ const HistorySet = ({ date, sets }: HistorySetProps) => {
   const d = new Date(date);
 
   return (
-    <Card className="py-4">
-      <CardHeader className="px-4">
-        <CardTitle>{d.toLocaleDateString()}</CardTitle>
-      </CardHeader>
-      <CardContent className="px-4">
-        <div className="space-y-2 mt-[-16px]">
+    <div>
+      <h2 className="font-bold mb-2">{d.toLocaleDateString()}</h2>
+      <div>
+        <div className="space-y-2">
           {sets.map((set) => (
             <div
               key={set.id}
@@ -42,8 +33,8 @@ const HistorySet = ({ date, sets }: HistorySetProps) => {
             </div>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

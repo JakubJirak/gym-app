@@ -3,6 +3,7 @@ import HistorySet from "@/components/statistiky/history/HistorySet.tsx";
 import { ExerciseCombobox } from "@/components/treninky/ExerciseCombobox.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
+import { Separator } from "@/components/ui/separator";
 import { authClient } from "@/lib/auth-client.ts";
 import { getExById } from "@/utils/serverFn/trainings.ts";
 import type {
@@ -79,20 +80,19 @@ const HistorySets = ({ trainings }: PowerflitingStatsType) => {
           <ChartFirstSets historySets={historySets} />
 
           <Card>
-            <CardContent>
+            <CardContent className="px-4">
               {historySets.length === 0 && (
                 <p className="text-center text-muted-foreground">
                   Pro tento cvik nemáte žádnou sérii
                 </p>
               )}
               <ScrollArea className="max-h-100 overflow-y-auto">
-                <div className="space-y-4">
+                <div>
                   {historySets.map((history) => (
-                    <HistorySet
-                      key={history?.id}
-                      date={history?.date}
-                      sets={history?.sets}
-                    />
+                    <div key={history?.id}>
+                      <HistorySet date={history?.date} sets={history?.sets} />
+                      <Separator className="my-3" />
+                    </div>
                   ))}
                 </div>
               </ScrollArea>
