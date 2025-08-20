@@ -85,7 +85,7 @@ const MuscleGroupTrainingStats = ({ trainingArr }: TrainingStatsProps) => {
         </PieChart>
       </ChartContainer>
 
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid grid-cols-2 gap-y-2">
         {muscleGroupStats.map((muscleGroup) => (
           <div
             key={muscleGroup.muscleGroup}

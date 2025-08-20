@@ -1,7 +1,7 @@
 import type { TrainingsByIdType } from "@/utils/types/trainingsTypes";
 import {
-  Calendar,
   ChartColumnIncreasing,
+  Dumbbell,
   Repeat,
   TrendingUp,
   Weight,
@@ -62,7 +62,7 @@ const TrainingStats = ({ trainingArr }: TrainingStatsProps) => {
       </p>
       <div className="grid gird-rows-2 grid-cols-2 gap-5">
         <div className="flex flex-col items-center justify-between gap-1 py-4 bg-secondary rounded-2xl text-center">
-          <Calendar />
+          <Dumbbell />
           <p className="mt-1 font-bold text-2xl">{allExercises}</p>
           <p className="text-muted-foreground">Cviky</p>
         </div>
