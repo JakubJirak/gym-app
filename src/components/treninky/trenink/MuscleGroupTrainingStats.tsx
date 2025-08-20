@@ -5,7 +5,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import type { TrainingsByIdType } from "@/utils/types/trainingsTypes";
-import { ChartColumnIncreasing } from "lucide-react";
+import { BicepsFlexed } from "lucide-react";
 import { Pie, PieChart } from "recharts";
 
 interface TrainingStatsProps {
@@ -71,7 +71,7 @@ const MuscleGroupTrainingStats = ({ trainingArr }: TrainingStatsProps) => {
   return (
     <div>
       <p className="flex gap-3 items-center text-lg font-bold mb-4">
-        <ChartColumnIncreasing />
+        <BicepsFlexed />
         Statistiky podle partie
       </p>
 

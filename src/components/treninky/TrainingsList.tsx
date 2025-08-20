@@ -135,7 +135,11 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                   className="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-xl border px-4 outline-none last:border-b has-focus-visible:ring-[3px]"
                 >
                   <AccordionTrigger className="hover:no-underline flex items-center py-3 gap-2">
-                    <div className="w-full grid grid-cols-[5fr_2fr] items-center grid-rows-2">
+                    <Link
+                      className="w-full grid grid-cols-[5fr_2fr] items-center grid-rows-2"
+                      to={"/treninky/$trainingId"}
+                      params={{ trainingId: training.id }}
+                    >
                       <div className="font-semibold">{training.name}</div>
                       <Badge variant="secondary">
                         Cviky: {training.workoutExercises.length}
@@ -144,14 +148,7 @@ const TrainingsList = ({ userId }: TrainingsListProp) => {
                         <Calendar className="h-4 w-4" />
                         {formatDate(new Date(training.workoutDate), "PPPP")}
                       </div>
-                      <Link
-                        className="text-xs"
-                        to={"/treninky/$trainingId"}
-                        params={{ trainingId: training.id }}
-                      >
-                        testing
-                      </Link>
-                    </div>
+                    </Link>
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
                     <div className="flex flex-col items-stretch relative">

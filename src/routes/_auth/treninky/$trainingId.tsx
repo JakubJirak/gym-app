@@ -44,7 +44,7 @@ function RouteComponent() {
           <TrainingInfo trainingArr={training} />
         </TabsContent>
         <TabsContent value="statistiky">
-          <div className="space-y-6">
+          <div className="space-y-8">
             <TrainingStats trainingArr={training} />
             <MuscleGroupTrainingStats trainingArr={training} />
           </div>
