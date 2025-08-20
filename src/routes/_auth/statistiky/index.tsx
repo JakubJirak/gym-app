@@ -57,7 +57,7 @@ function RouteComponent() {
       >
         <TabsList className="w-full bg-secondary">
           <TabsTrigger value="stats">Celkově</TabsTrigger>
-          <TabsTrigger value="musclegroup">Podle části</TabsTrigger>
+          <TabsTrigger value="musclegroup">Podle partie</TabsTrigger>
           <TabsTrigger value="history">Historie</TabsTrigger>
         </TabsList>
         <TabsContent value="stats">

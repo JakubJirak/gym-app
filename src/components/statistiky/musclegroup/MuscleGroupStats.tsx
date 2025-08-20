@@ -5,7 +5,7 @@ const MuscleGroupStats = () => {
     <div className="p-1">
       <p className="flex gap-3 items-center text-lg font-bold mb-4">
         <BicepsFlexed />
-        Podle části těla
+        Podle partie těla
       </p>
       <p>work in progress</p>
     </div>

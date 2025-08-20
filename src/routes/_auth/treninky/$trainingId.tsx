@@ -1,4 +1,5 @@
 import Header from "@/components/Header.tsx";
+import MuscleGroupTrainingStats from "@/components/treninky/trenink/MuscleGroupTrainingStats";
 import TrainingInfo from "@/components/treninky/trenink/TrainingInfo.tsx";
 import TrainingStats from "@/components/treninky/trenink/TrainingStats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -43,7 +44,10 @@ function RouteComponent() {
           <TrainingInfo trainingArr={training} />
         </TabsContent>
         <TabsContent value="statistiky">
-          <TrainingStats trainingArr={training} />
+          <div className="space-y-6">
+            <TrainingStats trainingArr={training} />
+            <MuscleGroupTrainingStats trainingArr={training} />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
