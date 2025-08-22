@@ -7,7 +7,7 @@ const Footer = () => {
       >
         Jakub Jirák
       </a>
-      <p className="text-lg tracking-wider">| 2025</p>
+      <p className="text-lg tracking-wider">| {new Date().getFullYear()}</p>
     </footer>
   );
 };
