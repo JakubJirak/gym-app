@@ -26,7 +26,7 @@ function RouteComponent() {
   });
 
   if (!session) return null;
-  if (training === undefined) return null;
+  if (training === undefined || training.length === 0) return null;
 
   return (
     <div className="pb-8">
