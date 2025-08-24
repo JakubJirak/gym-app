@@ -81,7 +81,9 @@ function RouteComponent() {
                       modifiers={modifiers}
                       {...props}
                       className={
-                        isSpecial ? "bg-ring/70 text-white font-bold" : ""
+                        isSpecial
+                          ? "bg-ring/70 rounded-lg text-white font-bold"
+                          : ""
                       }
                     >
                       {children}

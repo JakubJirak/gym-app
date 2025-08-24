@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button.tsx";
-import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { db } from "@/db";
 import { userWeight } from "@/db/schema.ts";
@@ -86,14 +85,34 @@ const UserWeightInput = () => {
   return (
     <>
       {weightData === undefined || weightData.length === 0 ? (
-        <Card className="p-4">
-          <CardContent className="px-2">
+        <div className="p-2">
+          <form className="flex gap-2 items-center" onSubmit={handleAddWeight}>
+            <p>Vaše váha (kg):</p>
+            <Input
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              className="max-w-[70px]"
+              type="number"
+              min="10"
+              max="500"
+              step="0.01"
+              required
+            />
+            <Button type="submit" className="ml-auto" size="icon">
+              <Check />
+            </Button>
+          </form>
+        </div>
+      ) : (
+        <div className="p-2">
+          {changeWeight ? (
             <form
               className="flex gap-2 items-center"
-              onSubmit={handleAddWeight}
+              onSubmit={handleChangeWeight}
             >
               <p>Vaše váha (kg):</p>
               <Input
+                autoFocus
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 className="max-w-[70px]"
@@ -107,48 +126,21 @@ const UserWeightInput = () => {
                 <Check />
               </Button>
             </form>
-          </CardContent>
-        </Card>
-      ) : (
-        <Card className="p-4">
-          <CardContent className="px-0">
-            {changeWeight ? (
-              <form
-                className="flex gap-2 items-center"
-                onSubmit={handleChangeWeight}
+          ) : (
+            <div className="flex gap-2 items-center">
+              <p>Vaše váha:</p>
+              <p>{weightData[0]?.weight}kg</p>
+              <Button
+                type="button"
+                size="icon"
+                className="ml-auto"
+                onClick={() => setChangeWeight(true)}
               >
-                <p>Vaše váha (kg):</p>
-                <Input
-                  autoFocus
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="max-w-[70px]"
-                  type="number"
-                  min="10"
-                  max="500"
-                  step="0.01"
-                  required
-                />
-                <Button type="submit" className="ml-auto" size="icon">
-                  <Check />
-                </Button>
-              </form>
-            ) : (
-              <div className="flex gap-2 items-center">
-                <p>Vaše váha:</p>
-                <p>{weightData[0]?.weight}kg</p>
-                <Button
-                  type="button"
-                  size="icon"
-                  className="ml-auto"
-                  onClick={() => setChangeWeight(true)}
-                >
-                  <Pencil />
-                </Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                <Pencil />
+              </Button>
+            </div>
+          )}
+        </div>
       )}
     </>
   );

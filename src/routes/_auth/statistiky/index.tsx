@@ -64,7 +64,7 @@ function RouteComponent() {
           <OverallStats trainings={trainings} />
         </TabsContent>
         <TabsContent value="musclegroup">
-          <MuscleGroupStats />
+          <MuscleGroupStats trainings={trainings} />
         </TabsContent>
         <TabsContent value="history">
           <HistorySets trainings={trainings} />

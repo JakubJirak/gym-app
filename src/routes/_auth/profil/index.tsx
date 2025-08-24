@@ -2,6 +2,7 @@ import Header from "@/components/Header.tsx";
 import UserAccInfo from "@/components/profil/UserAccInfo.tsx";
 import UserSetGoals from "@/components/profil/UserSetGoals.tsx";
 import UserWeightInput from "@/components/profil/UserWeightInput.tsx";
+import { Separator } from "@/components/ui/separator";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_auth/profil/")({
@@ -20,7 +21,9 @@ function RouteComponent() {
       <Header page="PROFIL" />
       <div className="max-w-[500px] w-[90%] mx-auto space-y-4 pb-8">
         <UserAccInfo />
+        <Separator />
         <UserWeightInput />
+        <Separator />
         <UserSetGoals />
       </div>
     </>

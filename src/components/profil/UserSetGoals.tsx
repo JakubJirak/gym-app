@@ -1,10 +1,4 @@
 import { Button } from "@/components/ui/button.tsx";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { db } from "@/db";
 import { userGoals } from "@/db/schema.ts";
@@ -12,7 +6,7 @@ import { authClient } from "@/lib/auth-client.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
-import { Pencil } from "lucide-react";
+import { Pencil, Target } from "lucide-react";
 import { type FormEvent, useState } from "react";
 
 const addGoals = createServerFn({ method: "POST" })
@@ -113,18 +107,19 @@ const UserSetGoals = () => {
   };
 
   return (
-    <Card className="p-4">
-      <CardHeader className="px-0">
-        <div className="flex justify-between items-center">
-          <CardTitle>Cíle pro Powerlifting (kg)</CardTitle>
-          {goals === undefined || goals.length === 0 ? null : (
-            <Button size="icon" onClick={() => setEdit(true)}>
-              <Pencil />
-            </Button>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="px-0">
+    <div className="p-2">
+      <div className="flex justify-between items-center mb-6">
+        <p className="flex gap-3 font-bold items-center">
+          <Target />
+          Cíle pro Powerlifting (kg)
+        </p>
+        {goals === undefined || goals.length === 0 ? null : (
+          <Button size="icon" onClick={() => setEdit(true)}>
+            <Pencil />
+          </Button>
+        )}
+      </div>
+      <div className="px-0">
         {goals === undefined || goals.length === 0 || edit ? (
           <form
             className="flex flex-col gap-3 mt-[-8px]"
@@ -189,8 +184,8 @@ const UserSetGoals = () => {
             </div>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
