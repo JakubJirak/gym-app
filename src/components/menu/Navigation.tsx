@@ -5,7 +5,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { IoIosStats } from "react-icons/io";
-import { LuClipboardList, LuDumbbell } from "react-icons/lu";
+import { LuDumbbell } from "react-icons/lu";
 
 const Navigation = () => {
   return (
@@ -28,12 +28,12 @@ const Navigation = () => {
           <p className="text-xl">KALENDÁŘ</p>
         </Card>
       </Link>
-      <Link to={"/rutiny"}>
+      {/*<Link to={"/rutiny"}>
         <Card className="flex flex-row p-3.5 items-center">
           <LuClipboardList size={35} />
           <p className="text-xl">RUTINY</p>
         </Card>
-      </Link>
+      </Link>*/}
       <Link to={"/powerlifting"}>
         <Card className="flex flex-row p-3.5 items-center">
           <Trophy size={35} />
