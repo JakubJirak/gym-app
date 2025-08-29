@@ -1,6 +1,7 @@
 import Header from "@/components/Header.tsx";
 import PowerliftingGoals from "@/components/powerlifting/PowerliftingGoals.tsx";
 import PowerliftingStats from "@/components/powerlifting/PowerliftingStats.tsx";
+import { Separator } from "@/components/ui/separator";
 import { authClient } from "@/lib/auth-client.ts";
 import { fetchTrainings } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -56,6 +57,7 @@ function RouteComponent() {
           deadliftPR={deadliftPR}
           squatPR={squatPR}
         />
+        <Separator />
         <PowerliftingGoals
           benchPR={benchPR}
           deadliftPR={deadliftPR}

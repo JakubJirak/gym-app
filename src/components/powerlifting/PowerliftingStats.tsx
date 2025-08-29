@@ -1,11 +1,4 @@
 import { Badge } from "@/components/ui/badge.tsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import { Separator } from "@/components/ui/separator.tsx";
 import { db } from "@/db";
 import { userWeight } from "@/db/schema.ts";
@@ -47,21 +40,19 @@ const PowerliftingStats = ({
   if (total === 0) return null;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          <p className="flex gap-3 items-center">
-            <Trophy />
-            Powerlifting PR
-          </p>
-        </CardTitle>
-        <CardDescription>
+    <div className="p-2 -mt-2">
+      <div className="mb-6">
+        <h2 className="flex gap-3 items-center text-lg font-bold mb-1.5">
+          <Trophy />
+          Powerlifting PR
+        </h2>
+        <p className="text-muted-foreground text-sm">
           {weightData === undefined || weightData.length === 0
             ? "Zadejte svoji váhu v profilu"
             : `${weightData[0].weight}kg BW`}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </p>
+      </div>
+      <div>
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-1">
             <div className="flex flex-col justify-center items-center gap-1">
@@ -113,8 +104,8 @@ const PowerliftingStats = ({
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

@@ -10,7 +10,7 @@ const PowerliftingGoal = ({ title, goal, value }: PowerliftingGoalProps) => {
   return (
     <div>
       <div className="flex justify-between mb-2">
-        <p>
+        <p className="text-muted-foreground">
           {title} ({goal}kg)
         </p>
         <p>{value}%</p>

@@ -1,10 +1,4 @@
 import PowerliftingGoal from "@/components/powerlifting/PowerliftingGoal.tsx";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import { db } from "@/db";
 import { userGoals } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
@@ -41,17 +35,14 @@ const PowerliftingGoals = ({
   if (!goals || goals.length === 0) return null;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          <p className="flex gap-3 items-center">
-            <Target />
-            Vaše PR cíle
-          </p>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
+    <div className="p-4">
+      <h2 className="flex gap-3 items-center text-lg font-bold mb-4">
+        <Target />
+        Vaše PR cíle
+      </h2>
+
+      <div>
+        <div className="space-y-7">
           <PowerliftingGoal
             title="Squat"
             goal={goals[0].squat ?? ""}
@@ -74,8 +65,8 @@ const PowerliftingGoals = ({
             )}
           />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
