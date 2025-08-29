@@ -12,7 +12,7 @@ import { authClient } from "@/lib/auth-client.ts";
 import { toLocalISODateString } from "@/utils/date-utils.ts";
 import { fetchTrainings } from "@/utils/serverFn/trainings.ts";
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -102,7 +102,11 @@ function RouteComponent() {
                   className="bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-xl border px-4 outline-none last:border-b has-focus-visible:ring-[3px]"
                 >
                   <AccordionTrigger className="hover:no-underline flex items-center py-3 gap-2">
-                    <div className="w-full grid grid-cols-[5fr_2fr] items-center grid-rows-2">
+                    <Link
+                      className="w-full grid grid-cols-[5fr_2fr] items-center grid-rows-2"
+                      to={"/treninky/$trainingId"}
+                      params={{ trainingId: training.id }}
+                    >
                       <div className="font-semibold">{training.name}</div>
                       <Badge variant="secondary">
                         Cviky: {training.workoutExercises.length}
@@ -111,7 +115,7 @@ function RouteComponent() {
                         <CalendarIcon className="h-4 w-4" />
                         {formatDate(new Date(training.workoutDate), "PPPP")}
                       </div>
-                    </div>
+                    </Link>
                   </AccordionTrigger>
                   <AccordionContent className="pb-2">
                     <div className="flex flex-col gap-2 items-stretch relative">
