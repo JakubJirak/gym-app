@@ -131,7 +131,7 @@ function RouteComponent() {
         >
           {Object.entries(sortedExercises).map(([muscleGroup, exercises]) => (
             <AccordionItem key={muscleGroup} value={muscleGroup}>
-              <AccordionTrigger className="text-base font-bold pb-2 pt-3">
+              <AccordionTrigger className="text-base font-bold pb-2 pt-3 hover:no-underline">
                 {muscleGroup}
               </AccordionTrigger>
               <AccordionContent className="pb-2">
