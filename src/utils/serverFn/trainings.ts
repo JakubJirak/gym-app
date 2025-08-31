@@ -159,6 +159,19 @@ export const addExercise = createServerFn()
     });
   });
 
+export const addCustomEx = createServerFn({ method: "POST" })
+  .validator(
+    (data: { userId: string; id: string; name: string; mgId: string }) => data,
+  )
+  .handler(async ({ data }) => {
+    await db.insert(exercises).values({
+      id: data.id,
+      name: data.name,
+      userId: data.userId,
+      muscleGroupId: data.mgId,
+    });
+  });
+
 export const editExercise = createServerFn()
   .validator((data: { exerciseId: string; id: string }) => data)
   .handler(async ({ data }) => {

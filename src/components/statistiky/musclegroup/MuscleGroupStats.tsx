@@ -25,8 +25,6 @@ const MuscleGroupStats = ({ trainings }: MuscleGroupStatsType) => {
     );
   }, [trainings]);
 
-  console.log(muscleGroupCount);
-
   return (
     <div className="p-1">
       <p className="flex gap-3 items-center text-lg font-bold mb-4">

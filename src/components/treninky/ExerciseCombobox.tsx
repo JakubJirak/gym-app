@@ -17,15 +17,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { db } from "@/db";
-import { exercises } from "@/db/schema.ts";
 import { authClient } from "@/lib/auth-client.ts";
+import { addCustomEx } from "@/utils/serverFn/trainings";
 import type {
   ExerciseSelect,
   ExerciseSelectWithID,
 } from "@/utils/types/trainingsTypes.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createServerFn } from "@tanstack/react-start";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 
@@ -39,19 +37,6 @@ interface ExerciseComboboxProps {
   ) => void;
   exercises: ExerciseSelectWithID[];
 }
-
-const addCustomEx = createServerFn({ method: "POST" })
-  .validator(
-    (data: { userId: string; id: string; name: string; mgId: string }) => data,
-  )
-  .handler(async ({ data }) => {
-    await db.insert(exercises).values({
-      id: data.id,
-      name: data.name,
-      userId: data.userId,
-      muscleGroupId: data.mgId,
-    });
-  });
 
 export function ExerciseCombobox({
   selectedStatus,

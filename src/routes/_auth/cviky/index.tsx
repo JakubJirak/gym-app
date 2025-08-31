@@ -1,13 +1,18 @@
 import Header from "@/components/Header.tsx";
 import { AddExercise } from "@/components/cviky/AddExercise.tsx";
-import { Separator } from "@/components/ui/separator.tsx";
-import { db } from "@/db";
-import { exercises } from "@/db/schema.ts";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { authClient } from "@/lib/auth-client.ts";
-import { getExWithMuscleGroup } from "@/utils/serverFn/trainings.ts";
+import {
+  addCustomEx,
+  getExWithMuscleGroup,
+} from "@/utils/serverFn/trainings.ts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { Dumbbell } from "lucide-react";
 import { nanoid } from "nanoid";
 
@@ -33,19 +38,6 @@ type Exercise = {
 type SortedExercises = {
   [muscleGroup: string]: Exercise[];
 };
-
-const addCustomEx = createServerFn({ method: "POST" })
-  .validator(
-    (data: { userId: string; id: string; name: string; mgId: string }) => data,
-  )
-  .handler(async ({ data }) => {
-    await db.insert(exercises).values({
-      id: data.id,
-      name: data.name,
-      userId: data.userId,
-      muscleGroupId: data.mgId,
-    });
-  });
 
 function RouteComponent() {
   const queryClient = useQueryClient();
@@ -97,6 +89,8 @@ function RouteComponent() {
     {},
   );
 
+  const muscleGroups = Object.keys(sortedExercises);
+
   if (!session || isDefaultLoading || isCustomLoading)
     return (
       <>
@@ -112,7 +106,7 @@ function RouteComponent() {
     return null;
 
   return (
-    <div>
+    <div className="pb-8">
       <Header page="CVIKY" />
 
       <div className="max-w-[500px] mx-auto w-[90%] space-y-4 pb-8">
@@ -130,23 +124,31 @@ function RouteComponent() {
           <AddExercise handleAddExercise={handleAddExercise} defaultName="" />
         </div>
 
-        <div>
-          {Object.entries(sortedExercises).map(
-            ([muscleGroup, exercises], idx, arr) => (
-              <div key={muscleGroup} className="pl-1 mt-3">
-                <h3 className="font-semibold text-lg mb-2">{muscleGroup}</h3>
-                {exercises.map((exercise) => (
-                  <div key={exercise.id}>
-                    <div className="my-1 rounded-xl flex justify-between items-center mb-2">
+        <Accordion
+          type="multiple"
+          className="w-full"
+          defaultValue={muscleGroups}
+        >
+          {Object.entries(sortedExercises).map(([muscleGroup, exercises]) => (
+            <AccordionItem key={muscleGroup} value={muscleGroup}>
+              <AccordionTrigger className="text-base font-bold pb-2 pt-3">
+                {muscleGroup}
+              </AccordionTrigger>
+              <AccordionContent className="pb-2">
+                <div className="pl-2 mt-2 space-y-2">
+                  {exercises.map((exercise) => (
+                    <div
+                      key={exercise.id}
+                      className="my-1 rounded-xl text-base flex justify-between items-center"
+                    >
                       <p>{exercise.name}</p>
                     </div>
-                  </div>
-                ))}
-                {idx < arr.length - 1 && <Separator />}
-              </div>
-            ),
-          )}
-        </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </div>
   );
