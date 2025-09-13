@@ -31,11 +31,14 @@ const MuscleGroupStats = ({ trainings }: MuscleGroupStatsType) => {
         <BicepsFlexed />
         Podle partie těla
       </p>
-      <div className="space-y-1">
+      <div className="grid grid-cols-3 gap-3">
         {Object.entries(muscleGroupCount).map(([group, count]) => (
-          <div key={group} className="flex gap-2">
-            <p className="font-bold">{group}:</p>
-            <p>{count}x</p>
+          <div
+            key={group}
+            className="flex flex-col items-center py-4 justify-between gap-1 bg-secondary rounded-2xl text-center"
+          >
+            <p className="mt-1 font-bold text-2xl">{count}</p>
+            <p className="text-muted-foreground">{group}</p>
           </div>
         ))}
       </div>
