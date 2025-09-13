@@ -9,6 +9,7 @@ export const Route = createFileRoute("/login/")({
       });
     }
   },
+
   component: RouteComponent,
   head: () => ({
     meta: [
