@@ -17,9 +17,18 @@ import { z } from "zod";
 
 const registerSchema = z
   .object({
-    name: z.string().min(1, "Zadejte svoje jméno"),
-    email: z.email("Zadejte platný email").min(1, "Zadejte email"),
-    password: z.string().min(8, "Heslo musí mít alespoň 8 znamků"),
+    name: z
+      .string()
+      .min(1, "Zadejte svoje jméno")
+      .max(30, "Jméno je příliš dlouhé"),
+    email: z
+      .email("Zadejte platný email")
+      .min(1, "Zadejte email")
+      .max(60, "Email je příliš dlouhý"),
+    password: z
+      .string()
+      .min(8, "Heslo musí mít alespoň 8 znamků")
+      .max(100, "Heslo je příliš dlouhé"),
     confirmPassword: z.string().min(8, "Potvrďte svoje heslo"),
   })
   .refine((data) => data.password === data.confirmPassword, {
