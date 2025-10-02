@@ -15,7 +15,7 @@ import { useState } from "react";
 import { z } from "zod";
 
 const loginSchema = z.object({
-  email: z.string().min(1, "Zadejte email").email("Zadejte platný email"),
+  email: z.email("Zadejte platný email").min(1, "Zadejte email"),
   password: z.string().min(1, "Zadejte heslo"),
 });
 
